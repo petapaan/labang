@@ -83,7 +83,7 @@ gem install lolcat
 apt install wondershaper -y
 clear
 # REPO    
-    REPO="https://raw.githubusercontent.com/bimaVPN/Apex/ZX/"
+    REPO="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/"
 
 ####
 start=$(date +%s)
