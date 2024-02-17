@@ -18,9 +18,9 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 
-bot="https://raw.githubusercontent.com/bimaVPN/Apex/ZX/bot/bot.sh"
+bot="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/bot/bot.sh"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-IPVPES="https://raw.githubusercontent.com/bimaVPN/Apex/ZX/REGISTRASI"
+IPVPES="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
 clear
 
 # // ipsaya
