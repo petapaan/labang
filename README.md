@@ -7,13 +7,13 @@
  
 
 ### INSTALL SCRIPT 
-<pre><code>apt install -y && wget -q https://raw.githubusercontent.com/bimaVPN/Apex/ZX/ubu20-deb10-stable.sh && chmod +x ubu20-deb10-stable.sh && ./ubu20-deb10-stable.sh</code></pre>
+<pre><code>apt install -y && wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/ubu20-deb10-stable.sh && chmod +x ubu20-deb10-stable.sh && ./ubu20-deb10-stable.sh</code></pre>
 
 ### WORK DI OS
 - UBUNTU 18 / 20
-- DEBIAN 9 / 10 ( recommended )
+- DEBIAN 9  / 10 ( recommended )
 ### SUPPORT PORT
 ```
 - SSL/TLS : 443 / 8443
-- SSHWS : 80 / 8880 / 8080 / 2082 / 2095 / 2096 / 2022 / 2092
+- SSHWS   : 80 / 8880 / 8080 / 2082 / 2095 / 2096 / 2022 / 2092
 ```
