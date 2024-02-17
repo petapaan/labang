@@ -1,5 +1,5 @@
 # UP REPO DEBIAN
-<pre><code>apt update && apt upgrade -y && update-grub</code></pre>
+<pre><code>apt update -y && apt upgrade -y && update-grub</code></pre>
   
   
 # UP REPO UBUNTU
