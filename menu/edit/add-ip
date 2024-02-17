@@ -1,11 +1,11 @@
 #!/bin/bash
 NC='\e[0m'
 clear
-Repo1="https://raw.githubusercontent.com/bimaVPN/Apex/ZX/REGISTRASI/"
+Repo1="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI/"
 export MYIP=$( curl -sS ipv4.icanhazip.com/ )
 SELLER=$(curl -sS ${Repo1}ip | grep $MYIP | awk '{print $2}')
 Exp100=$(curl -sS ${Repo1}ip | grep $MYIP | awk '{print $3}')
-data_ip="https://raw.githubusercontent.com/bimaVPN/Apex/ZX/REGISTRASI"
+data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
 d2=$(date -d "$date_list" +"+%s")
 d1=$(date -d "$Exp" +"+%s")
 dayleft=$(( ($d1 - $d2) / 86400 ))
@@ -25,7 +25,7 @@ BGX="\033[42m"
 END='\e[0m'
 AKTIF="VERIFIED"
 TOKEN="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"
-REPO="https://github.com/bimaVPN/Apex/ZX/REGISTRASI.git"
+REPO="https://github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git"
 EMAIL="bimavpn292@gmail.com"
 USER="bimaVPN"
 
@@ -89,8 +89,8 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     git add . &> /dev/null
     git commit -m m &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/bimaVPN/Apex/ZX/REGISTRASI
-    git push -f https://${TOKEN}@github.com/bimaVPN/Apex/ZX/REGISTRASI.git &> /dev/null
+    git remote add origin https://github.com/ALAWI-VPN/autoscript/main/REGISTRASI
+    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
@@ -163,8 +163,8 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     git add . &> /dev/null
     git commit -m m &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/bimaVPN/Apex/ZX/REGISTRASI
-    git push -f https://${TOKEN}@github.com/bimaVPN/Apex/ZX/REGISTRASI.git &> /dev/null
+    git remote add origin https://github.com/ALAWI-VPN/autoscript/main/REGISTRASI
+    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
@@ -235,8 +235,8 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     git add . &> /dev/null
     git commit -m m &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://bimaVPN/Apex/ZX/REGISTRASI
-    git push -f https://${TOKEN}@github.com/bimaVPN/Apex/ZX/REGISTRASI.git &> /dev/null
+    git remote add origin https://ALAWI-VPN/autoscript/main/REGISTRASI
+    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
