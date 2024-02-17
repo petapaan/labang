@@ -24,10 +24,10 @@ clear;clear;clear
 
   # // Banner
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
-echo -e "  Dev > bimaVPN ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
+echo -e "  Dev > ALAWI VPN ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e " This Will Quick Setup VPN Server On Your Server"
-echo -e "  Auther : ${green}bimaVPN ® ${NC}${YELLOW}(${NC} ${green} BIMA VPN⭐ ${NC}${YELLOW})${NC}"
-echo -e " © Recode By My Self bimaVPN ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "  Auther : ${green}ALAWI VPN ® ${NC}${YELLOW}(${NC} ${green} BIMA VPN⭐ ${NC}${YELLOW})${NC}"
+echo -e " © Recode By My Self ALAWI VPN ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 2
@@ -266,7 +266,7 @@ restart_system(){
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m" 
 clear
-izinsc="https://raw.githubusercontent.com/bimaVPN/Apex/ZX/REGISTRASI"
+izinsc="${REPO}REGISTRASI"
 # USERNAME
 rm -f /usr/bin/user
 username=$(curl $izinsc | grep $MYIP | awk '{print $2}')
@@ -316,7 +316,7 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
 <code>ISP      :</code><code>$ISP</code>
 <code>Exp Sc.  :</code><code>$exp</code>
 <code>────────────────────</code>
-<b> 🇮🇩🇮🇩bimaVPN🇮🇩🇮🇩</b>
+<b> 🇮🇩🇮🇩ALAWI VPN🇮🇩🇮🇩</b>
 <code>────────────────────</code>
 <i>Automatic Notifications From Github</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://wa.me/6281524266702"}]]}' 
@@ -526,7 +526,7 @@ print_success "Password SSH"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit IP & Quota"
-wget -q https://raw.githubusercontent.com/bimaVPN/Apex/ZX/config/fv-tunnel && chmod +x fv-tunnel && ./fv-tunnel
+wget -q ${REPO}config/fv-tunnel && chmod +x fv-tunnel && ./fv-tunnel
 
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
