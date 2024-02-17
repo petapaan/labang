@@ -9,13 +9,13 @@ NC='\e[0m'
 apt update && apt upgrade
 apt install python3 python3-pip git
 cd /usr/bin
-wget https://raw.githubusercontent.com/bimaVPN/Apex/ZX/bot/bot.zip
+wget https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/bot/bot.zip
 unzip bot.zip
 mv bot/* /usr/bin
 chmod +x /usr/bin/*
 rm -rf bot.zip
 clear
-wget https://raw.githubusercontent.com/bimaVPN/Apex/ZX/bot/kyt.zip
+wget https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/bot/kyt.zip
 unzip kyt.zip
 pip3 install -r kyt/requirements.txt
 
@@ -60,9 +60,9 @@ rm -rf kyt.sh
 echo "Done"
 echo "Your Data Bot"
 echo -e "==============================="
-echo "Token Bot         : $bottoken"
+echo "Token Bot      : $bottoken"
 echo "Admin          : $admin"
-echo "Domain        : $domain"
+echo "Domain         : $domain"
 echo "Pub            : $PUB"
 echo "Host           : $NS"
 echo -e "==============================="
