@@ -2,6 +2,7 @@
 clear
 NC='\e[0m'
 grenbo="\e[92;1m"
+cyan="\033[1;36m"
 
 # // IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -55,11 +56,11 @@ ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "             CREATE SSH / OPENVPN ACCOUNT      "
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-  echo -e ""  
+echo -e ""
+echo -e "$cyan╔═════════════════════════════════════════════════╗
+║                  ${NC}BUAT SSH/OVPN                  $cyan║
+╚═════════════════════════════════════════════════╝$NC"
+echo -e ""
 read -p " Username : " Login
 read -p " Password : " Pass
 read -p " Limit IP : " iplimit
