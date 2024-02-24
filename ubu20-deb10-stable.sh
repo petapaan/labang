@@ -23,13 +23,8 @@ clear && clear && clear
 clear;clear;clear
 
   # // Banner
-echo -e "${YELLOW}----------------------------------------------------------${NC}"
-echo -e "  Dev > ALAWI VPN ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
-echo -e " This Will Quick Setup VPN Server On Your Server"
-echo -e "  Auther : ${green}ALAWI VPN ® ${NC}${YELLOW}(${NC} ${green} BIMA VPN⭐ ${NC}${YELLOW})${NC}"
-echo -e " © Recode By My Self ALAWI VPN ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
-echo -e "${YELLOW}----------------------------------------------------------${NC}"
-echo ""
+echo -e ""
+echo -e "AUTOSCRIPT MODIFIED BY ALAWI VPN"
 sleep 2
 ###### IZIN SC 
 
