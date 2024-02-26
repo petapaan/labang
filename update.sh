@@ -28,16 +28,13 @@ fun_bar() {
 }
 res1() {
     wget https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/menu/menu.zip
-    wget -q -O /usr/bin/enc "https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/encrypt/epro" ; chmod +x /usr/bin/enc
-    7z e -paskykenza123 menu.zip
     unzip menu.zip
     chmod +x menu/*
-    enc menu/*
-    mv menu/* /usr/local/sbin    
+    mv menu/* /usr/local/sbin/
     #unzip menu.zip
     #chmod +x menu/*
     #mv menu/* /usr/local/sbin
-    rm -rf menu.zip
+    rm -rf menu menu.zip
     rm -rf update.sh
     wget -qO- fv-tunnel "https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/config/fv-tunnel" 
     chmod +x fv-tunnel 
