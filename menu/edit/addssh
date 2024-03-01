@@ -15,8 +15,11 @@ PUB=$( cat /etc/slowdns/server.pub )
 # // Telegram Bot
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+CHATID2=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY2=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
+export URL="https://api.telegram.org/bot$KEY2/sendMessage"
 clear
 # // izin Ip
 MYIP=$(curl -sS ipv4.icanhazip.com)
