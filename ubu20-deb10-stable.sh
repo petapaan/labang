@@ -303,13 +303,14 @@ else
 sts="${Error}"
 fi
 TIMES="10"
+ISP=$(curl -s ipinfo.io/org)
 CHATID="6331389328"
 KEY="6792425720:AAHASEoqok81u9IwLwIhJ-wVjiLqfnNtC3k"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
     TIMEZONE=$(printf '%(%H:%M:%S)T')
     TEXT="
 <code>────────────────────</code>
-<b>  ⚡AUTOSCRIPT PREMIUM⚡</b>
+<b>AUTOSCRIPT PREMIUM⚡</b>
 <code>────────────────────</code>
 <code>User     :</code><code>$username</code>
 <code>Domain   :</code><code>$domain</code>
@@ -320,7 +321,7 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
 <b>     ALAWI VPN   </b>
 <code>────────────────────</code>
 <i>Automatic Notifications From Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/alawivpn"}]]}' 
+"'&reply_markup={"inline_keyboard":[[{"text":"ORDER SCRIPT","url":"https://t.me/alawivpn"}]]}' 
 
     curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
