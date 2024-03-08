@@ -72,14 +72,13 @@ git commit -m "perbarui ip"
 git push
 }
 pointing
-giting
-#echo -e ""
-#echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
-#echo -e "  \e[1;97;101m              UPDATE IP IZIN              \e[0m"
-#echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
-#echo -e ""
-#echo -e "  \033[1;91mUpdate IP IZIN SCRIPT\033[1;37m"
-#fun_bar 'giting'
-#echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
-#echo -e ""
+echo -e ""
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e "  \e[1;97;101m              UPDATE IP IZIN              \e[0m"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e ""
+echo -e "  \033[1;91mUpdate IP IZIN SCRIPT\033[1;37m"
+fun_bar 'giting'
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e ""
 read -n 1 -s -r -p "  Press [ Enter ] to back on menu"
