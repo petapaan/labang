@@ -1,0 +1,254 @@
+#!/bin/bash
+#warna-warna
+biru="\033[1;36m"
+hijau="\e[92;1m"
+green='\e[32m'
+red='\e[38;5;208m'
+NC='\e[0m'
+clear
+# list domain
+domain1="alawistore.my.id"
+domain2="alawistore.biz.id"
+domain3="alawivpn.cloud"
+domain4="cakdayat.my.id"
+domain5="petapan.my.id"
+domain6="sayasantri.my.id"
+domain7="serverssh.biz.id"
+domain8="sshserver.my.id"
+domain9="udpserver.my.id"
+domain10="vmesserver.my.id"
+domain11="vpnbagus.my.id"
+domain12="vpnssh.biz.id"
+domain13="vpssantri.my.id"
+domain14="vpsvpn.my.id"
+domain15="wush.my.id"
+domain16="wussh.my.id"
+
+# function proses
+function proses() {
+#masukan dr pengguna
+echo -e ""
+while true; do
+read -rp "Masukkan subdomain: " sub
+if [ -z "$sub" ]; then
+    echo -e "${red}Tidak boleh kosong!${NC}"
+else
+    break
+fi
+done
+
+while true; do
+read -rp "Masukkan IP VPS    : " ipvps
+if [ -z "$ipvps" ]; then
+    echo -e "${red}Tidak boleh kosong hey!${NC}"
+else
+    break
+fi
+done
+# akun cloudflare
+CF_ID="vpsvpsku@gmail.com"
+CF_KEY="cb9b858e75a955df979cf4bff74839df1943d"
+
+# Detail Record A
+DOMAIN1="$pilihan"
+SUB_DOMAIN1="${sub}.${DOMAIN1}"
+SUB_DOMAIN01="*.${SUB_DOMAIN1}"
+IP="${ipvps}"
+
+# SUB 1
+set -euo pipefail
+IP1=${IP};
+hijau="\e[92;1m"
+echo -e ""
+echo -e "Sedang pointing ${biru}${SUB_DOMAIN1}$NC..."
+ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN1}&status=active" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" | jq -r .result[0].id)
+RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${SUB_DOMAIN1}" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" | jq -r .result[0].id)
+if [[ "${#RECORD}" -le 10 ]]; then
+RECORD=$(curl -sLX POST "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" \
+--data '{"type":"A","name":"'${SUB_DOMAIN1}'","content":"'${IP1}'","ttl":120,"proxied":false}' | jq -r .result.id)
+fi
+RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records/${RECORD}" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" \
+--data '{"type":"A","name":"'${SUB_DOMAIN1}'","content":"'${IP1}'","ttl":120,"proxied":false}')
+echo -e "${hijau}Sukses!$NC"
+# WILDCARD
+echo -e "Sedang pointing ${biru}${SUB_DOMAIN01}$NC..."
+ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN1}&status=active" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" | jq -r .result[0].id)
+RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${SUB_DOMAIN01}" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" | jq -r .result[0].id)
+if [[ "${#RECORD}" -le 10 ]]; then
+RECORD=$(curl -sLX POST "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" \
+--data '{"type":"A","name":"'${SUB_DOMAIN01}'","content":"'${IP1}'","ttl":120,"proxied":false}' | jq -r .result.id)
+fi
+RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records/${RECORD}" \
+-H "X-Auth-Email: ${CF_ID}" \
+-H "X-Auth-Key: ${CF_KEY}" \
+-H "Content-Type: application/json" \
+--data '{"type":"A","name":"'${SUB_DOMAIN01}'","content":"'${IP1}'","ttl":120,"proxied":false}')
+echo -e "${hijau}Sukses!$NC"
+echo -e ""
+sleep 3
+clear
+#pemberitahuan selesai
+echo -e ""
+echo -e "$biru┌──────────────────────────────────────────┐$NC"
+echo -e "$biru│   ${hijau}POINTING DOMAIN KE CLOUDFLARE SELESAI  $biru│$NC"
+echo -e "$biru└──────────────────────────────────────────┘$NC"
+echo -e ""
+echo -e "${hijau}Berhasil$NC Pointing ${biru}${SUB_DOMAIN1}$NC"
+echo -e "         Untuk ip ${biru}${IP}$NC"
+echo -e ""
+TIMES="10"
+CHATID="6331389328"
+KEY="7104548532:AAHl8gN5J8tWqWnEKpgZFSTDRyuoHwt5bKw"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+TIMEZONE=$(printf '%(%H:%M:%S)T')
+TEXT="
+────────────────────
+<b>   ☘ BERHASIL POINTING ☘</b>
+────────────────────
+<code>Subdomain :</code> <code>${SUB_DOMAIN1}</code>
+<code>IP VPS    :</code> <code>${IP1}</code>
+────────────────────
+<b>    ☘ ALAWI-VPN-SCRIPT ☘</b>
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/alawivpn"}]]}'
+curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+
+read -rp "$( echo -e "Tekan [ ${biru}enter$NC ] untuk kembali... ") "
+echo ""
+clear
+
+}
+
+# menu pilihan list domain
+echo -e ""
+echo -e "${biru}┌──────────────────────────────────────────┐${NC}"
+echo -e "${biru}│${NC}       ${hijau}POINTING DOMAIN ${biru}BY ${red}ALAWI VPN       ${biru}│${NC}"
+echo -e "${biru}└──────────────────────────────────────────${biru}┘${NC}"
+echo -e "${biru}┌──────────────────────────────────────────${biru}┐${NC}"
+echo -e "${biru}│${NC} [${biru}01${NC}] domain ${biru}xxx.alawistore.my.id         ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}02${NC}] domain ${biru}xxx.alawistore.biz.id        ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}03${NC}] domain ${biru}xxx.alawivpn.cloud           ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}04${NC}] domain ${biru}xxx.cakdayat.my.id           ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}05${NC}] domain ${biru}xxx.petapan.my.id            ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}06${NC}] domain ${biru}xxx.sayasantri.my.id         ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}07${NC}] domain ${biru}xxx.serverssh.biz.id         ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}08${NC}] domain ${biru}xxx.sshserver.my.id          ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}09${NC}] domain ${biru}xxx.udpserver.my.id          ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}10${NC}] domain ${biru}xxx.vmesserver.my.id         ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}11${NC}] domain ${biru}xxx.vpnbagus.my.id           ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}12${NC}] domain ${biru}xxx.vpnssh.biz.id            ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}13${NC}] domain ${biru}xxx.vpssantri.my.id          ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}14${NC}] domain ${biru}xxx.vpsvpn.my.id             ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}15${NC}] domain ${biru}xxx.wush.my.id               ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}16${NC}] domain ${biru}xxx.wussh.my.id              ${biru}│${NC}"
+echo -e "${biru}└──────────────────────────────────────────${biru}┘${NC}"
+echo -e ""
+
+read -rp "$(echo -e "${red}Pilih salah satu domain di atas ${biru}1 ${NC}- ${biru}16 ${NC}: ")" host
+case $host in
+    1 | 01)
+    pilihan="$domain1"
+    echo -e "anda memilih domain ${biru}$domain1${NC}"
+    proses
+    ;;
+    2 | 02)
+    pilihan="$domain2"
+    echo -e "anda memilih domain ${biru}$domain2${NC}"
+    proses
+    ;;
+    3 | 03)
+    pilihan="$domain3"
+    echo -e "anda memilih domain ${biru}$domain3${NC}"
+    proses
+    ;;
+    4 | 04)
+    pilihan="$domain4"
+    echo -e "anda memilih domain ${biru}$domain4${NC}"
+    proses
+    ;;
+    5 | 05)
+    pilihan="$domain5"
+    echo -e "anda memilih domain ${biru}$domain5${NC}"
+    proses
+    ;;
+    6 | 06)
+    pilihan="$domain6"
+    echo -e "anda memilih domain ${biru}$domain6${NC}"
+    proses
+    ;;
+    7 | 07)
+    pilihan="$domain7"
+    echo -e "anda memilih domain ${biru}$domain7${NC}"
+    proses
+    ;;
+    8 | 08)
+    pilihan="$domain8"
+    echo -e "anda memilih domain ${biru}$domain8${NC}"
+    proses
+    ;;
+    9 | 09)
+    pilihan="$domain9"
+    echo -e "anda memilih domain ${biru}$domain9${NC}"
+    proses
+    ;;
+    10)
+    pilihan="$domain10"
+    echo -e "anda memilih domain ${biru}$domain10${NC}"
+    proses
+    ;;
+    11)
+    pilihan="$domain11"
+    echo -e "anda memilih domain ${biru}$domain11${NC}"
+    proses
+    ;;
+    12)
+    pilihan="$domain12"
+    echo -e "anda memilih domain ${biru}$domain12${NC}"
+    proses
+    ;;
+    13)
+    pilihan="$domain13"
+    echo -e "anda memilih domain ${biru}$domain13${NC}"
+    proses
+    ;;
+    14)
+    pilihan="$domain14"
+    echo -e "anda memilih domain ${biru}$domain14${NC}"
+    proses
+    ;;
+    15)
+    pilihan="$domain15"
+    echo -e "anda memilih domain ${biru}$domain15${NC}"
+    proses
+    ;;
+    16)
+    pilihan="$domain16"
+    echo -e "anda memilih domain ${biru}$domain16${NC}"
+    proses
+    ;;
+    *)
+    echo -e ""
+    echo -e "${red}anda salah pilih ${hijau}ketik dengan benar!${NC}"
+    sleep 2
+    bash barupo
+esac
