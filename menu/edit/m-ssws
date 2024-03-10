@@ -1,48 +1,50 @@
 #!/bin/bash
-
-# // LUNATIC | PROJECT
-# // 082240074362 >> whatsapp 
-# // t.me/LunaticTunnrl >> Telegram
-# // Dean >> Fb
-
-grenbo="\e[92;1m"
+# color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
 NC='\033[0m'
-
-
 clear
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│$NC\033[42m          MENU MANAGER SS                 $NC"
-echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│  ${grenbo}1.${NC} \033[0;36mCreate Shadowsock${NC}"
-echo -e "\033[1;93m│  ${grenbo}2.${NC} \033[0;36mTrial Shadowsock${NC}"
-echo -e "\033[1;93m│  ${grenbo}3.${NC} \033[0;36mDelete Account Ss${NC}"
-echo -e "\033[1;93m│  ${grenbo}4.${NC} \033[0;36mRenew shadow Account${NC}"
-echo -e "\033[1;93m│  ${grenbo}5.${NC} \033[0;36mCheck User Login Ss${NC}"
-echo -e "\033[1;93m│  ${grenbo}6.${NC} \033[0;36mDetail Account User sadowsok${NC}"
-echo -e "\033[1;93m│  ${grenbo}0.${NC} \033[0;36mComeBack Menu${NC}"
-echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+
 echo -e ""
-read -p "Select From Options [ 1 - 5 ] : " menu
+echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}               MENU MANAGER SHDWSKS              ${NC}${grs}│${NC}"
+echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
+echo -e "${grs}┌───────────────────────┐ ┌───────────────────────┐${NC}"
+echo -e "${grs}│ [${gr}01${NC}] • ADD AKUN       ${grs}│ │ [${gr}04${NC}] • DELETE AKUN    ${grs}│${NC}"
+echo -e "${grs}│                       │ │                   ${NC}    │${NC}"
+echo -e "${grs}│ [${gr}02${NC}] • TRIAL AKUN     ${grs}│ │ [${gr}05${NC}] • USER ONLINE    ${grs}│${NC}"
+echo -e "${grs}│                       │ │                       │${NC}"
+echo -e "${grs}│ [${gr}03${NC}] • RENEW AKUN     ${grs}│ │ [${gr}06${NC}] • USER CONFIG    ${grs}│${NC}"
+echo -e "${grs}└───────────────────────┘ └───────────────────────┘${NC}"
+echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│                [${gr}00${NC}] BACK TO MENU                ${grs}│${NC}"
+echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
+echo -e ""
+read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${NC} ] : ")" menu
+echo -e ""
 case $menu in
-1)
+1|01)
     addss
     ;;
-2)
+2|02)
     trialss
     ;;
-3)
-    delss
-    ;;
-4)
+3|03)
     renewss
     ;;
-5)
+4|04)
+    delss
+    ;;
+5|05)
     cekss
     ;;
-6) 
-   user-ss
-   ;;
+6|06)
+    user-ss
+    ;;
+0|00)
+    menu
+    ;;
 *)
     menu
     ;;

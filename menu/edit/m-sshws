@@ -1,72 +1,60 @@
 #!/bin/bash
-# // Bima | PROJECT
-# // p
-# // t.me/bimavpn1 >> Telegram
-# // Dean >> Fb
-
 # // color
-grenbo="\e[92;1m"
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
 NC='\033[0m'
 clear
-echo -e "\033[1;93m┌─────────────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│$NC\033[42m          MENU MANAGER SSH                     $NC"
-echo -e "\033[1;93m└─────────────────────────────────────────────────┘\033[0m"
-echo -e "\033[1;93m┌─────────────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m01${WH}]${NC} ${COLOR1}• ${WH}ADD AKUN${NC}      ${WH}[${COLOR1}05${WH}]${NC} ${COLOR1}• ${WH}CEK USER ONLINE${NC}   $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC                                              ${NC} $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m02${WH}]${NC} ${COLOR1}• ${WH}TRIAL AKUN${NC}    ${WH}[${COLOR1}06${WH}]${NC} ${COLOR1}• ${WH}CEK USER CONFIG${NC}    $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC                                              ${NC} $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m03${WH}]${NC} ${COLOR1}• ${WH}RENEW AKUN${NC}    ${WH}[${COLOR1}07${WH}]${NC} ${COLOR1}• ${WH}LOCK USER MELANGGAR ${NC}    $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC                                              ${NC} $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m04${WH}]${NC} ${COLOR1}• ${WH}DELETE AKUN${NC}   ${WH}[${COLOR1}08${WH}]${NC} ${COLOR1}• ${WH}SETTING TIME AND LOCK LOGIN${NC}    $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC                                              ${NC} $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m00${WH}]${NC} ${COLOR1}• ${WH}GO BACK${NC}       ${WH}[${COLOR1}09${WH}]${NC} ${COLOR1}• ${WH}UNLOCK USER MULTI LOGIN${NC}    $COLOR1 $NC"
-echo -e "\033[1;93m└─────────────────────────────────────────────────┘\033[0m"
+echo -e "${grs}┌────────────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}                   MENU MANAGER SSH                 ${NC}${grs}│${NC}"
+echo -e "${grs}└────────────────────────────────────────────────────┘${NC}"
+echo -e "${grs}┌─────────────────────────┐┌─────────────────────────┐${NC}"
+echo -e "${grs}│ [${gr}01${NC}] • ADD AKUN         ${grs}││ [${gr}06${NC}] • USER CONFIG      ${grs}│${NC}"
+echo -e "${grs}│                         ││                         │${NC}"
+echo -e "${grs}│ [${gr}02${NC}] • TRIAL AKUN       ${grs}││ [${gr}07${NC}] • LOCK USER        ${grs}│${NC}"
+echo -e "${grs}│                         ││                         │${NC}"
+echo -e "${grs}│ [${gr}03${NC}] • RENEW AKUN       ${grs}││ [${gr}08${NC}] • SET TIME LOCK    ${grs}│${NC}"
+echo -e "${grs}│                         ││                         │${NC}"
+echo -e "${grs}│ [${gr}04${NC}] • DELETE AKUN      ${grs}││ [${gr}09${NC}] • UNLOCK AKUN      ${grs}│${NC}"
+echo -e "${grs}│                         ││                         │${NC}"
+echo -e "${grs}│ [${gr}05${NC}] • USER ONLINE      ${grs}││ [${gr}00${NC}] • BACK TO MENU     ${grs}│${NC}"
+echo -e "${grs}└─────────────────────────┘└─────────────────────────┘${NC}"
 echo -e ""
-read -p "Select From Options [ 1 - 10 or 0 ] : " menu
+read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}9${NC} or ${gr}0${NC} ] : ")" menu
 echo -e ""
 case $menu in
-1)
+1|01)
     addssh
     ;;
-2)
+2|02)
     trial
     ;;
-3)
+3|03)
     renewssh
     ;;
-4)
+4|04)
     delssh
     ;;
-5)
+5|05)
     cekssh
     ;;
-6)
+6|06)
     clear
     user-ssh
     ;;
-7)
+7|07)
     clear
     lock
     ;;
-8)
+8|08)
     autokill
     ;;
-9)
+9|09)
     clear
     unlock
     ;;
-10) 
-    clear
-    lock
-   ;;
-11)
-    clear
-    unlock
-    ;;
-12)
-    clear
-    user-ssh
+0|00)
+    menu
     ;;
 *)
     menu

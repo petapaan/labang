@@ -233,46 +233,58 @@ yesterday_txv=NULL
 fi
 clear
 echo -e " ${cyan}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e " ${cyan}║$NC \033[41m    WELCOME TO AUTOSCRIPT PREMIUM BY BIMA VPN           ${cyan}║${NC}"
+echo -e " ${cyan}║$NC\033[41m        WELCOME TO AUTOSCRIPT PREMIUM BY ALAWI VPN        $NC${cyan}║${NC}"
 echo -e " ${cyan}╚══════════════════════════════════════════════════════════╝${NC}"
 echo -e " ${cyan}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e " ${cyan}║$NC •  ${W}OS ${NC}         : $MODEL${NC}"
-echo -e " ${cyan}║$NC •  ${W}RAM ${NC}        : $tram / $uram MB $NC"
-echo -e " ${cyan}║$NC •  ${W}DATE ${NC}       : $DATEVPS${NC}"
-echo -e " ${cyan}║$NC •  ${W}TIME ${NC}       : $TIMEZONE${NC}"
-echo -e " ${cyan}║$NC •  ${W}SERVER ${NC}     : $ISP${NC}"
-echo -e " ${cyan}║$NC •  ${W}IP VPS ${NC}     : $MYIP${NC}"
-echo -e " ${cyan}║$NC •  ${W}DOMAIN ${NC}     : $domain${NC}"
+echo -e " ${cyan}║$NC •  OS             : $MODEL${NC}"
+echo -e " ${cyan}║$NC •  RAM & USAGE    : $green$tram ${NC}MB | $green$uram ${NC}MB"
+echo -e " ${cyan}║$NC •  UPTIME SERVER  : $uptime"
+echo -e " ${cyan}║$NC •  DATE           : $DATEVPS${NC}"
+echo -e " ${cyan}║$NC •  TIME           : $TIMEZONE${NC}"
+echo -e " ${cyan}║$NC •  SERVER         : $ISP${NC}"
+echo -e " ${cyan}║$NC •  IP VPS         : $MYIP${NC}"
+echo -e " ${cyan}║$NC •  DOMAIN         : $domain${NC}"
+echo -e " ${cyan}║$NC •  STATUS SCRIPT  : $sts"
+echo -e " ${cyan}║$NC •  CLIENT SCRITP  : $username"
+echo -e " ${cyan}║$NC •  Expired SCRIPT : $exp${NC} | $green$certifacate ${NC}Days"
+echo -e " ${cyan}╠══════════════════════════════════════════════════════════╣${NC}"
+echo -e " ${cyan}║ ${NC}SSH $status_ssh NGINX $status_nginx WS $status_ws_epro PROXY $status_haproxy XRAY $status_xray DROP $status_dropbear"
+echo -e " ${cyan}╚══════════════════════════════════════════════════════════╝${NC}"
+akun1="SSH WS"
+akun2="VMESS"
+akun3="VLESS"
+akun4="TROJAN"
+akun5="SHDWSCK"
+akun01="$ssh1"
+akun02="$vma"
+akun03="$vla"
+akun04="$trb"
+akun05="$ssa"
+garis="${cyan}║"
+echo -e " ${cyan}╔══════════════════════════════════════════════════════════╗${NC}"
+echo -e " ${cyan}║${NC}   $(printf "%-10s %-10s %-10s %-10s %-10s %-3s\n" "$akun1" "$akun2" "$akun3" "$akun4" "$akun5" "$garis")"
+echo -e " ${cyan}║${green}     $(printf "%-10s %-10s %-10s %-10s %-8s %-3s\n" "$akun01" "$akun02" "$akun03" "$akun04" "$akun05" "$garis")"
 echo -e " ${cyan}╚══════════════════════════════════════════════════════════╝${NC}"
 echo -e " ${cyan}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e " ${cyan}║ SSH $status_ssh NGINX $status_nginx WS $status_ws_epro PROXY $status_haproxy XRAY $status_xray DROP $status_dropbear"
-echo -e " ${cyan}╚══════════════════════════════════════════════════════════╝${NC}"
-echo -e "      ${cyan}═══════════════════════════════════════════════${NC}" 
-echo -e "               SSH/OPENVPN/UDP :$NC $ssh1" "$a"
-echo -e "               VMESS/WS/GRPC   :$NC $vma" "$a"
-echo -e "               VLESS/WS/GRPC   :$NC $vla" "$a"
-echo -e "               TROJAN/WS/GRPC  :$NC $trb" "$a"
-echo -e "      ${cyan}═══════════════════════════════════════════════${NC}" 
-echo -e " ${cyan}╔════════════════════════════════════════════════════════╗${NC}"
-echo -e " ${cyan}║$NC ${NC}01.)${NC} Ssh OPENVPN ${NC}         ${G}07.)${NC} Backup / Restore       ${NC} ${cyan}║${NC}"
-echo -e " ${cyan}║$NC ${NC}02.)${NC} Xray / Vmess ${NC}        ${G}08.)${NC} Gotop x Ram            ${NC} ${cyan}║${NC}"    
-echo -e " ${cyan}║$NC ${NC}03.)${NC} xray / Vless ${NC}        ${G}09.)${NC} Restart All Service    ${NC} ${cyan}║${NC}"   
-echo -e " ${cyan}║$NC ${NC}04.)${NC} Tr / Trojan ${NC}         ${G}10.)${NC} Tele Bot               ${NC} ${cyan}║${NC}" 
-echo -e " ${cyan}║$NC ${NC}05.)${NC} ss - LIBEV ${NC}          ${G}11.)${NC} Update Version.Sc      ${NC} ${cyan}║${NC}"
-echo -e " ${cyan}║$NC ${NC}06.)${NC} INSTALL UDP ${NC}         ${G}12.)${NC} Extra Menu             ${NC} ${cyan}║${NC}"
-echo -e " ${cyan}╚════════════════════════════════════════════════════════╝${NC}"
-echo -e "    ${cyan}╔═════════════════════════════════════════════════╗${NC}"
-echo -e "    ${cyan}║$NC  ${WH}Total    ${cyan}║${NC}    ${WH}Today     ${WH}Yesterday     ${WH}Month         ${NC}"
-echo -e "    ${cyan}║$NC ${WH}Bantwidth ${cyan}║${NC}  ${WH}$today_tx $today_txv   ${WH}$yesterday_tx $yesterday_txv   ${WH}$month_tx $month_txv$COLOR1${NC}"
-echo -e "    ${cyan}╚═════════════════════════════════════════════════╝${NC}"
-echo -e "         ${cyan}╔═════════════════════════════════════════╗${NC}"
-echo -e "         ${cyan}║$NC Status  : $sts"
-echo -e "         ${cyan}║$NC Client  : $username "
-echo -e "         ${cyan}║$NC Expiry  : $exp ${NC} / $green $certifacate ${NC}Days"
-echo -e "         ${cyan}╚═════════════════════════════════════════╝${NC}"
-echo -e " "
-echo -e " "
-read -p " options [ 1 / 12 ] >  " opt
+echo -e " ${cyan}║$NC [${cyan}01${NC}]• SSH OPENVPN ${NC} (${cyan}menu${NC})  [${cyan}07${NC}]• BACKUP/RESTORE   (${cyan}menu${NC}) ${cyan}║${NC}"
+echo -e " ${cyan}║$NC [${cyan}02${NC}]• XRAY/VMESS ${NC}  (${cyan}menu${NC})  [${cyan}08${NC}]• GOTOP X RAM             ${cyan}║${NC}"
+echo -e " ${cyan}║$NC [${cyan}03${NC}]• XRAY/VLESS ${NC}  (${cyan}menu${NC})  [${cyan}09${NC}]• TELEGRAM BOT     (${cyan}menu${NC}) ${cyan}║${NC}"
+echo -e " ${cyan}║$NC [${cyan}04${NC}]• TROJAN ${NC}      (${cyan}menu${NC})  [${cyan}10${NC}]• SETTING          (${cyan}menu${NC}) ${cyan}║${NC}"
+echo -e " ${cyan}║$NC [${cyan}05${NC}]• SHADOWSOCKS ${NC} (${cyan}menu${NC})  [${cyan}11${NC}]• RESTART ALL SERVICE    ${NC} ${cyan}║${NC}"
+echo -e " ${cyan}║$NC [${cyan}06${NC}]• INSTALL UDP ${NC}         [${cyan}12${NC}]• UPDATE SCRIPT          ${NC} ${cyan}║${NC}"
+echo -e " ${cyan}╠═══════════╦══════════════════════════════════════════════╣${NC}"
+today_tk="Hari ini"
+yesterday_tk="Kemarin"
+month_tk="Sebulan"
+garis="${cyan}║"
+today_val="$today_tx $today_txv"
+yesterday_val="$yesterday_tx $yesterday_txv"
+month_val="$month_tx $month_txv"
+echo -e " ${cyan}║$NC   Total   ${cyan}║${NC} $(printf "%-14s %-15s %-13s %1s\n" "$today_tk" "$yesterday_tk" "$month_tk" "$garis")"
+echo -e " ${cyan}║$NC Bantwidth ${cyan}║${grenbo} $(printf "%-14s %-15s %-13s %1s\n" "$today_val" "$yesterday_val" "$month_val" "$garis")"
+echo -e " ${cyan}╚═══════════╩══════════════════════════════════════════════╝${NC}"
+echo -e ""
+read -p " Pilih 1 sampai 12 : " opt
 echo -e ""
 case $opt in
 1 | 01)
@@ -309,21 +321,25 @@ gotop
 ;;
 9 | 09)
 clear
-restart
+m-bot
 ;;
 10)
 clear
-m-bot
+m-system
 ;;
 11)
+clear
+reset
+;;
+12)
 clear
 wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/update.sh
 chmod +x update.sh
 ./update.sh
 ;;
-12)
+13)
 clear
-m-system
+pointing
 ;;
 0 | 00)
 exit

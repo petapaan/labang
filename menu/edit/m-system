@@ -1,37 +1,37 @@
 #!/bin/bash
 
-# // LUNATIC | PROJECT
-# // 082240074362 >> whatsapp 
-# // t.me/LunaticTunnrl >> Telegram
-# // Dean >> Fb
-UDPX=
 # // color
-grenbo="\e[92;1m"
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
 NC='\033[0m'
-
 clear
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│$NC\033[42m          MENU MANAGER SYSTEM             $NC"
-echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│  ${grenbo}1.${NC} \033[0;36mChange Banner${NC}"
-echo -e "\033[1;93m│  ${grenbo}2.${NC} \033[0;36mChange Domain${NC}"
-echo -e "\033[1;93m│  ${grenbo}3.${NC} \033[0;36mFix Cert Domain${NC}"
-echo -e "\033[1;93m│  ${grenbo}4.${NC} \033[0;36mClear Chache / Sampah${NC}"
-echo -e "\033[1;93m│  ${grenbo}5.${NC} \033[0;36mCreate Slowdns${NC}"
-echo -e "\033[1;93m│  ${grenbo}6.${NC} \033[0;36mCheck Running Service${NC}"
-echo -e "\033[1;93m│  ${grenbo}7.${NC} \033[0;36mSpeedTest${NC}"
-echo -e "\033[1;93m│  ${grenbo}8.${NC} \033[0;36mCheck Bandwith ${NC}"
-echo -e "\033[1;93m│  ${grenbo}0.${NC} \033[0;36mComeBack Menu${NC}"
-echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+
 echo -e ""
-read -p "Select From Options [ 1 - 5 or 0 ] : " menu
+echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}               MENU MANAGER SYSTEM               ${NC}${grs}│${NC}"
+echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
+echo -e "${grs}┌───────────────────────┐ ┌───────────────────────┐${NC}"
+echo -e "${grs}│ [${gr}01${NC}] • CHANGE DOMAIN  ${grs}│ │ [${gr}05${NC}] • CREATE SLOWDNS ${grs}│${NC}"
+echo -e "${grs}│                       │ │                   ${NC}    │${NC}"
+echo -e "${grs}│ [${gr}02${NC}] • CHANGE BANNER  ${grs}│ │ [${gr}06${NC}] • RUNNING SERVICE${grs}│${NC}"
+echo -e "${grs}│                       │ │                       │${NC}"
+echo -e "${grs}│ [${gr}03${NC}] • FIX CERTIFICATE${grs}│ │ [${gr}07${NC}] • SPEEDTEST      ${grs}│${NC}"
+echo -e "${grs}│                       │ │                       │${NC}"
+echo -e "${grs}│ [${gr}04${NC}] • CLEAR CACHE    ${grs}│ │ [${gr}08${NC}] • CHECK BANDWIDTH${grs}│${NC}"
+echo -e "${grs}└───────────────────────┘ └───────────────────────┘${NC}"
+echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│                [${gr}00${NC}] BACK TO MENU                ${grs}│${NC}"
+echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
+echo -e ""
+read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}8${NC} or ${gr}0${NC} ] : ")" menu
+echo -e ""
 case $menu in
 1) clear ;
-    nano /etc/kyt.txt
+    addhost
     ;;
 2) clear ;
-    addhost
+    nano /etc/kyt.txt
     ;;
 3) clear ;
     fixcert

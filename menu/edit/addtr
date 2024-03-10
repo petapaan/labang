@@ -32,60 +32,27 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
+#Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
-#IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
-# Valid Script
-ipsaya=$(curl -sS ipv4.icanhazip.com)
-data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
-checking_sc() {
-  useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
-  if [[ $date_list < $useexp ]]; then
-    echo -ne
-  else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6281524266702"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit 0
-  fi
-}
-checking_sc
-clear
-source /var/lib/kyt/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
-#tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
+tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "\033[1;93m│$NC \033[92m             bimaVPN              \033[0m"
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "             CREATE XRAY / TROJAN  ACCOUNT      "
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-  echo -e ""
-  echo -e "_____________________________________________" | lolcat
-		read -rp "User: " -e user
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
+NC='\033[0m'
+clear
+echo -e ""
+echo -e "${grs}┌───────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}               ADD ACCOUNT TROJAN              ${NC}${grs}│${NC}"
+echo -e "${grs}└───────────────────────────────────────────────┘${NC}"
+echo -e ""
+		read -rp "User           : " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${user_EXISTS} == '1' ]]; then
@@ -101,9 +68,9 @@ clear
 			m-trojan
 		fi
 	done
-
+# perhitungan dan detail
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days): " masaaktif
+read -p "Expired (days) : " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
 tgl=$(date -d "$masaaktif days" +"%d")
@@ -114,7 +81,7 @@ tgl2=$(date +"%d")
 bln2=$(date +"%b")
 thn2=$(date +"%Y")
 tnggl="$tgl2 $bln2, $thn2"
-exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
 sed -i '/#trojanws$/a\#! '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /etc/xray/config.json
 sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
@@ -122,9 +89,6 @@ sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
 
 # Link Trojan Akun
 systemctl restart xray
-trojanlink1="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=bug.com#${user}"
-trojanlink="trojan://${uuid}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
-
 cat >/var/www/html/trojan-$user.txt <<-END
 ◇━━━━━━━━━━━━━━━━━◇
    Format For Clash
@@ -161,19 +125,7 @@ cat >/var/www/html/trojan-$user.txt <<-END
     grpc-service-name: trojan-grpc
 END
 
-TEXT="
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-<code>Link Akun Trojan </code>
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-<code>Link WS          : </code>
-<code>${trojanlink}</code>
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-<code>Link GRPC        : </code>
-<code>${trojanlink1}</code>
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-"
-
-
+clear
 
 systemctl reload xray
 systemctl reload nginx
@@ -209,31 +161,68 @@ echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/trojan/.trojan.db
 curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL
 clear
 echo -e ""
-echo -e "_____________________________________________"
-echo -e "             TROJAN ACCOUNT          " | tee -a /etc/user-create/user.log
-echo -e "_____________________________________________"
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
+echo -e "     TROJAN ACCOUNT      " | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
 echo -e "Remarks          : ${user}"  | tee -a /etc/user-create/user.log
 echo -e "Aktif Selama     : $masaaktif Hari" | tee -a /etc/user-create/user.log
 echo -e "Dibuat Pada      : $tnggl" | tee -a /etc/user-create/user.log
 echo -e "Berakhir Pada    : $expe" | tee -a /etc/user-create/user.log
-echo -e "_____________________________________________"
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
 echo -e "Host/IP          : ${domain}" | tee -a /etc/user-create/user.log
 echo -e "User Quota       : ${Quota} GB" | tee -a /etc/user-create/user.log
-echo -e "User Ip           : ${iplimit} IP" | tee -a /etc/user-create/user.log
+echo -e "User Ip          : ${iplimit} IP" | tee -a /etc/user-create/user.log
 echo -e "Port             : 400-900"  | tee -a /etc/user-create/user.log
 echo -e "Key              : ${uuid}"  | tee -a /etc/user-create/user.log
 #echo -e "Xray Dns.        : ${NS}" | tee -a /etc/user-create/user.log
 #echo -e "Pubkey.          : ${PUB}" | tee -a /etc/user-create/user.log
 echo -e "Path             : /trojan-ws/multi-path" | tee -a /etc/user-create/user.log
 echo -e "ServiceName      : trojan-grpc"  | tee -a /etc/user-create/user.log
-echo -e "_____________________________________________"
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
 echo -e "Link TLS         : ${trojanlink}"  | tee -a /etc/user-create/user.log
-echo -e "_____________________________________________"
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
 echo -e "Link GRPC        : ${trojanlink1}"  | tee -a /etc/user-create/user.log
-echo -e "_____________________________________________"
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
 echo -e "Format OpenClash : https://${domain}:81/trojan-$user.txt"  | tee -a /etc/user-create/user.log
-echo -e "_____________________________________________"
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
 echo -e ""
 echo ""  | tee -a /etc/user-create/user.log
+
+#Function to send notification to Telegram Bot
+function notiftelebot() {
+CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+     **AKUN TROJAN SUKSES DIBUAT**
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+\`Remarks     :\` ${user}
+\`Host/IP     :\` ${domain}
+\`User Quota  :\` ${Quota} GB
+\`User IP     :\` ${iplimit} IP
+\`Port        :\` 400-900
+\`Key         :\` ${uuid}
+\`Path        :\` /trojan-ws/multipath/
+\`ServiceName :\` trojan-grpc
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link WS :**
+\`${trojanlink}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link GRPC :**
+\`${trojanlink1}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+\`Dibuat pada :\` ${tnggl}
+\`Berakhir    :\` ${expe}
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+"
+ENCODED_TEXT=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$TEXT'''))")
+
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$ENCODED_TEXT&parse_mode=HTML" $URL >/dev/null
+}
+notiftelebot
+echo -e "TROJAN SDH BERHASIL DIKIRIM KE TELEGRAM"
 read -p "Ente Back To Menu"
 menu
+

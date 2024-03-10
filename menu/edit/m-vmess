@@ -1,46 +1,50 @@
 #!/bin/bash
-
-# // Bimavpn | PROJECT
-# // Telegram
-# // Dean >> Fb
-
 # // color
-grenbo="\e[92;1m"
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
 NC='\033[0m'
+clear
 
-
-echo -e "\033[1;93m┌─────────────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│$NC\033[42m          MENU MANAGER VMESS                     $NC"
-echo -e "\033[1;93m└─────────────────────────────────────────────────┘\033[0m"
-echo -e "\033[1;93m┌─────────────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m01${WH}]${NC} ${COLOR1}• ${WH}ADD AKUN${NC}      ${WH}[\033[0m04${WH}]${NC} ${COLOR1}• ${WH}DELETE AKUN${NC} "
-echo -e "\033[1;93m│ $NC                                              ${NC} $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m02${WH}]${NC} ${COLOR1}• ${WH}TRIAL AKUN${NC}    ${WH}[${COLOR1}05${WH}]${NC} ${COLOR1}• ${WH}CEK USER ONLINE${NC}   $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC                                              ${NC} $COLOR1 $NC"
-echo -e "\033[1;93m│ $NC  ${WH}[\033[0m03${WH}]${NC} ${COLOR1}• ${WH}RENEW AKUN${NC}    ${WH}[${COLOR1}06${WH}]${NC} ${COLOR1}• ${WH}CEK USER CONFIG${NC}    $COLOR1 $NC"
-echo -e "\033[1;93m└─────────────────────────────────────────────────┘\033[0m"
 echo -e ""
-read -p "Select From Options [ 1 - 6 or 0 ] : " menu
+echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}                MENU MANAGER VMESS               ${NC}${grs}│${NC}"
+echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
+echo -e "${grs}┌───────────────────────┐ ┌───────────────────────┐${NC}"
+echo -e "${grs}│ [${gr}01${NC}] • ADD AKUN       ${grs}│ │ [${gr}04${NC}] • DELETE AKUN    ${grs}│${NC}"
+echo -e "${grs}│                       │ │                   ${NC}    │${NC}"
+echo -e "${grs}│ [${gr}02${NC}] • TRIAL AKUN     ${grs}│ │ [${gr}05${NC}] • USER ONLINE    ${grs}│${NC}"
+echo -e "${grs}│                       │ │                       │${NC}"
+echo -e "${grs}│ [${gr}03${NC}] • RENEW AKUN     ${grs}│ │ [${gr}06${NC}] • USER CONFIG    ${grs}│${NC}"
+echo -e "${grs}└───────────────────────┘ └───────────────────────┘${NC}"
+echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│                [${gr}00${NC}] BACK TO MENU                ${grs}│${NC}"
+echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
+echo -e ""
+read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${NC} ] : ")" menu
 echo -e ""
 case $menu in
-1)   clear ;
-    addws
-    ;;
-2) clear ;
-    trialws
-    ;;
-3) clear ;
-    renewws
-    ;;
-4) clear ;
-    delws
-    ;;
-5) clear ;
-    cekws
-    ;;
-6) clear ;
-    user-ws
-   ;;
+1|01) clear ;
+      addws
+      ;;
+2|02) clear ;
+      trialws
+      ;;
+3|03) clear ;
+      renewws
+      ;;
+4|04) clear ;
+      delws
+      ;;
+5|05) clear ;
+      cekws
+      ;;
+6|06) clear ;
+      user-ws
+      ;;
+0|00) clear ;
+      menu
+      ;;
 *) clear ;
     menu
     ;;

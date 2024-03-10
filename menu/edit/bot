@@ -17,6 +17,8 @@ echo -e " \e[1;971m                      MENU BOT                \e[0m"
 echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "  ${grenbo}[1]${NC}${YELL} Add Bot Notifikasi${NC}"
 echo -e "  ${grenbo}[2]${NC}${YELL} Delete Bot Notifikasi${NC}"
+echo -e "  ${grenbo}[3]${NC}${YELL} Add Bot Transaksi${NC}"
+echo -e "  ${grenbo}[4]${NC}${YELL} Delete Bot Transaksi${NC}"
 echo -e ""
 echo -e "  ${grenbo}[0]${NC}${YELL} Back To Menu${NC}"
 echo -e ""
@@ -27,6 +29,12 @@ case $menu in
     ;;
 2) clear ;
     del-bot-notif
+    ;;
+3) clear ;
+    add-bot-trx
+    ;;
+4) clear ;
+    del-bot-trx
     ;;
 0) clear ;
     menu

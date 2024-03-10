@@ -12,6 +12,14 @@ LIGHT='\033[0;37m'
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
+
+# Getting
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
+clear
+
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 clear
@@ -56,4 +64,27 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/xray/config.json")
     echo " Expired On  : $exp"
     echo -e "\033[0;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
+
+# kirim notifikasi ke bot telegram
+function notiftelebot() {
+    sleep 0
+CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+     <b>AKUN VMESS SUKSES DIHAPUS</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Nama    :</code> <b>$user</b>
+<code>Expired :</code> <b>$exp</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b><i>Notifikasi otomatis dari server...</i></b>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+notiftelebot
+echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
     fi
+read -p "Enter Back To Menu"
+menu

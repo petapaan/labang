@@ -1,73 +1,71 @@
 #!/bin/bash
-clear
-NC='\e[0m'
-grenbo="\e[92;1m"
-cyan="\033[1;36m"
-
-# // IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-clear
-
-# SlowDns
+Green="\e[92;1m"
+RED="\033[31m"
+YELLOW="\033[33m"
+BLUE="\033[36m"
+FONT="\033[0m"
+GREENBG="\033[42;37m"
 NS=$( cat /etc/xray/dns )
 PUB=$( cat /etc/slowdns/server.pub )
-
-# // Telegram Bot
+REDBG="\033[41;37m"
+OK="${Green}--->${FONT}"
+ERROR="${RED}[ERROR]${FONT}"
+GRAY="\e[1;30m"
+NC='\e[0m'
+red='\e[1;31m'
+green='\e[0;32m'
+DF='\e[39m'
+Bold='\e[1m'
+Blink='\e[5m'
+yell='\e[33m'
+red='\e[31m'
+green='\e[32m'
+blue='\e[34m'
+PURPLE='\e[35m'
+cyan='\e[36m'
+Lred='\e[91m'
+Lgreen='\e[92m'
+Lyellow='\e[93m'
+NC='\e[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+LIGHT='\033[0;37m'
+grenbo="\e[92;1m"
+red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+# Getting notif
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-CHATID2=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
-KEY2=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
-export URL="https://api.telegram.org/bot$KEY2/sendMessage"
-clear
-# // izin Ip
-MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
-clear
 
-
-# // Valid Script
-ipsaya=$(curl -sS ipv4.icanhazip.com)
-
-data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
-checking_sc() {
-  useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
-  if [[ $date_list < $useexp ]]; then
-    echo -ne
-  else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6281524266702"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit 0
-  fi
-}
-checking_sc
-clear
+# getting notif trx
+CHATID2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 3)
+KEY2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
+export URL2="https://api.telegram.org/bot$KEY2/sendMessage"
+clear
+
+# detail server
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
+NC='\033[0m'
+clear
 echo -e ""
-echo -e "$cyan╔═════════════════════════════════════════════════╗
-║                  ${NC}BUAT SSH/OVPN                  $cyan║
-╚═════════════════════════════════════════════════╝$NC"
+echo -e "${grs}┌───────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}                 ADD ACCOUNT SSH               ${NC}${grs}│${NC}"
+echo -e "${grs}└───────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p " Username : " Login
 read -p " Password : " Pass
 read -p " Limit IP : " iplimit
-read -p " Expired (Days) : " masaaktif
+read -p " Exp Days : " masaaktif
 #limitip
 if [[ $iplimit -gt 0 ]]; then
 mkdir -p /etc/kyt/limit/ssh/ip
@@ -144,57 +142,92 @@ OVPN Download : https://$domain:81/
 Dibuat Pada      : $tnggl
 Berakhir Pada    : $expe
 ◇━━━━━━━━━━━━━━━━━◇
-
 END
 
-CHATID="$CHATID"
+# Function to send notification to Telegram Bot
+function notiftelebot() {
+    sleep 0
+    CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
 URL="$URL"
 TEXT="
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-<code>Succes Cretae SSH Ovpn Account    </code>
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-<code>Username         : </code> <code>$Login</code>
-<code>Password         : </code> <code>$Pass</code>
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-<code>Host             : </code> <code>$domain</code>
-<code>Port OpenSSH     : 443, 80, 22</code>
-<code>Port Dropbear    : 443, 109</code>
-<code>Port SSH WS      : 80, 8080, 8081-9999 </code>
-<code>Port SSH UDP     : 1-65535 </code>
-<code>Port SSH SSL WS  : 443</code>
-<code>Port SSL/TLS     : 400-900</code>
-<code>Port OVPN WS SSL : 443</code>
-<code>Port OVPN SSL    : 443</code>
-<code>Port OVPN TCP    : 443, 1194</code>
-<code>Port OVPN UDP    : 2200</code>
-<code>BadVPN UDP       : 7100, 7300, 7300</code>
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-<code>SSH UDP VIRAL : </code><code>$domain:1-65535@$Login:$Pass
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-<code>HTTP COSTUM : </code><code>$domain:80@$Login:$Pass</code>
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-<code>Payload WSS      : </code><code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]</code>
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-OVPN Download : https://$domain:81/
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-<code>Save Link Account: </code>https://$domain:81/ssh-$Login.txt
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
-Dibuat Pada          : $tnggl
-Berakhir Pada        : $expe
-<code>◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>    Succes Create SSH Ovpn Account</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Username    :</code> <code>$Login</code>
+<code>Password    :</code> <code>$Pass</code>
+<code>Host        :</code> <code>$domain</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>                   INFORMASI PORT</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>OpenSSH     :</code> 443, 80, 22
+<code>Dropbear    :</code> 443, 109
+<code>SSH WS      :</code> 80, 8080, 8081-9999
+<code>SSH UDP     :</code> 1-65535
+<code>SSH SSL WS  :</code> 443
+<code>SSL/TLS     :</code> 400-900
+<code>OVPN WS SSL :</code> 443
+<code>OVPN SSL    :</code> 443
+<code>OVPN TCP    :</code> 443, 1194
+<code>OVPN UDP    :</code> 2200
+<code>BadVPN UDP  :</code> 7100, 7300, 7300
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>SSH UDP :</b>
+<code>$domain:1-65535@$Login:$Pass</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>HTTP CUSTOM :</b>
+<code>$domain:80@$Login:$Pass</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Payload WSS :</b>
+<code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>OVPN Download:</b>
+https://$domain:81/
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Save Link Account:</b>
+https://$domain:81/ssh-$Login.txt
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Dibuat Pada  :</code> <b>$tnggl</b>
+<code>Berakhir Pada:</code> <b>$expe</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
 "
-
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+
+# function notif transaksi
+function notiftrx() {
+    sleep 0
+    CHATID="$CHATID2"
+KEY="$KEY2"
+TIME="$TIME"
+URL="$URL2"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━◇
+        <b>TRANSAKSI BERHASIL</b>
+◇━━━━━━━━━━━━━━━━━━◇
+<code>Transaksi :</code> <code>SSH WS</code>
+<code>Username  :</code> <code>${Login}</code>
+<code>Domain    :</code> <code>${domain}</code>
+<code>ISP       :</code> <code>${ISP}</code>
+<code>Region    :</code> <code>${CITY}</code>
+<code>User IP   :</code> <code>${iplimit} Perangkat</code>
+<code>Aktif     :</code> <code>${masaaktif} Hari</code>
+◇━━━━━━━━━━━━━━━━━━◇
+<i>Notif Transaksi Akun SSH...</i>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
 clear
+notiftelebot
+notiftrx
 echo ""
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "         SSH / OPENVPN ACCOUNT   " | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "  SSH / OPENVPN ACCOUNT   " | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "Username         : $Login" | tee -a /etc/user-create/user.log
 echo -e "Password         : $Pass" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "Limit Ip         : ${iplimit} User" | tee -a /etc/user-create/user.log
 echo -e "Host             : $domain" | tee -a /etc/user-create/user.log
 echo -e "Location         : $CITY" | tee -a /etc/user-create/user.log
@@ -210,22 +243,22 @@ echo -e "Port OVPN SSL    : 443" | tee -a /etc/user-create/user.log
 echo -e "Port OVPN TCP    : 443, 1194" | tee -a /etc/user-create/user.log
 echo -e "Port OVPN UDP    : 2200" | tee -a /etc/user-create/user.log
 echo -e "BadVPN UDP       : 7100, 7300, 7300" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "SSH UDP VIRAL : $domain:1-65535@$Login:$Pass"            | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "HTTP COSTUM : $domain:80@$Login:$Pass"                   | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "Payload WSS      : GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "Payload WS       : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: ws[crlf][crlf]" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "OVPN Download    : https://$domain:81/" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "Save Link Account: https://$domain:81/ssh-$Login.txt" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "Dibuat Pada      : $tnggl" | tee -a /etc/user-create/user.log
 echo -e "Berakhir Pada    : $expe" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 
 read -p "Enter Back To Menu"
 menu

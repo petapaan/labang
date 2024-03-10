@@ -9,6 +9,12 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 clear
+# Getting
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
+clear
 
 NUMBER_OF_CLIENTS=$(grep -c -E "^#& " "/etc/xray/config.json")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
@@ -52,3 +58,25 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^#& " "/etc/xray/config.json")
     echo -e "\033[0;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
     echo ""
     fi
+# kirim notifikasi ke bot telegram
+function notiftelebot() {
+    sleep 0
+CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+     <b>AKUN VLESS SUKSES DIHAPUS</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Nama    :</code> <b>$user</b>
+<code>Expired :</code> <b>$exp</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b><i>Notifikasi otomatis dari server...</i></b>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+notiftelebot
+echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
+read -p "Tekan [ enter ] untuk kembali ke menu"
+menu

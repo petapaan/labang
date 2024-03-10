@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# // LUNATIC | PROJECT
-
-NS=$( cat /etc/xray/dns )
-PUB=$( cat /etc/slowdns/server.pub )
-
 NC='\e[0m'
 
 # Telegram Bot
@@ -21,45 +16,21 @@ clear
 
 # // Valid Script
 ipsaya=$(curl -sS ipv4.icanhazip.com)
-
-
-data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
-checking_sc() {
-  useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
-  if [[ $date_list < $useexp ]]; then
-    echo -ne
-  else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6281524266702"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit 0
-  fi
-}
-checking_sc
-clear
-
 domain=$(cat /etc/xray/domain)
 clear
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "\033[1;93m│$NC \033[92m             bimaVPN              \033[0m"
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "             CREATE XRAY / VLESS ACCOUNT      "
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-  echo -e ""
-  read -rp "User: " -e user
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
+NC='\033[0m'
+clear
+echo -e ""
+echo -e "${grs}┌───────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}                ADD ACCOUNT VLESS              ${NC}${grs}│${NC}"
+echo -e "${grs}└───────────────────────────────────────────────┘${NC}"
+echo -e ""
+  read -rp "User          : " -e user
   CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
   if [[ ${CLIENT_EXISTS} == '1' ]]; then
@@ -76,7 +47,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
   fi
 done
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days): " masaaktif
+read -p "Expired (days) : " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
 tgl=$(date -d "$masaaktif days" +"%d")
@@ -191,44 +162,87 @@ ${vlesslink2}
 Link GRPC     : 
 ${vlesslink3}
 ◇━━━━━━━━━━━━━━━━━◇
-
-
 END
 
 systemctl restart xray
 systemctl restart nginx
 clear
 echo -e ""
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "                    VLESS         " | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Remarks     : ${user}" | tee -a /etc/user-create/user.log
-echo -e "Aktif Selama     : $masaaktif Hari" | tee -a /etc/user-create/user.log
-echo -e "Dibuat Pada      : $tnggl" | tee -a /etc/user-create/user.log
-echo -e "Berakhir Pada    : $expe" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Domain      : ${domain}" | tee -a /etc/user-create/user.log
-echo -e "User Quota  : ${Quota} GB" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "          VLESS          " | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Remarks       : ${user}" | tee -a /etc/user-create/user.log
+echo -e "Aktif Selama  : $masaaktif Hari" | tee -a /etc/user-create/user.log
+echo -e "Dibuat Pada   : $tnggl" | tee -a /etc/user-create/user.log
+echo -e "Berakhir Pada : $expe" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Domain        : ${domain}" | tee -a /etc/user-create/user.log
+echo -e "User Quota    : ${Quota} GB" | tee -a /etc/user-create/user.log
 echo -e "User Ip       : ${iplimit} IP" | tee -a /etc/user-create/user.log
-echo -e "port TLS    : 400-900" | tee -a /etc/user-create/user.log
-echo -e "Port DNS    : 443" | tee -a /etc/user-create/user.log
-echo -e "Port NTLS   : 80, 8080, 8880, 2082" | tee -a /etc/user-create/user.log
-echo -e "User ID     : ${uuid}" | tee -a /etc/user-create/user.log
-echo -e "Xray Dns.   : ${NS}" | tee -a /etc/user-create/user.log
-echo -e "Pubkey.     : ${PUB}" | tee -a /etc/user-create/user.log
-echo -e "Encryption  : none" | tee -a /etc/user-create/user.log
-echo -e "Path TLS    : /vless/multi-path " | tee -a /etc/user-create/user.log
-echo -e "ServiceName : vless-grpc" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Link TLS    : ${vlesslink1}" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Link NTLS   : ${vlesslink2}" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Link GRPC   : ${vlesslink3}" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "port TLS      : 400-900" | tee -a /etc/user-create/user.log
+echo -e "Port DNS      : 443" | tee -a /etc/user-create/user.log
+echo -e "Port NTLS     : 80, 8080, 8880, 2082" | tee -a /etc/user-create/user.log
+echo -e "User ID       : ${uuid}" | tee -a /etc/user-create/user.log
+echo -e "Encryption    : none" | tee -a /etc/user-create/user.log
+echo -e "Path TLS      : /vless/multi-path " | tee -a /etc/user-create/user.log
+echo -e "ServiceName   : vless-grpc" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Link TLS      : ${vlesslink1}" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Link NTLS     : ${vlesslink2}" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Link GRPC     : ${vlesslink3}" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e "Format OpenClash : https://${domain}:81/vless-$user.txt" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e ""
 echo "" | tee -a /etc/user-create/user.log
-read -p "Enter Back To menu"
+
+# Function to send notification to Telegram Bot
+function notiftelebot() {
+    sleep 0
+    CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+     **XRAY/VLESS SUCCES CREATED**
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+\`Remarks       :\` ${user}
+\`Aktif Selama  :\` $masaaktif Hari
+\`Dibuat Pada   :\` $tnggl
+\`Berakhir Pada :\` $expe
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+\`Domain        :\` \`${domain}\`
+\`User Quota    :\` ${Quota} GB
+\`User Ip       :\` ${iplimit} IP
+\`port TLS      :\` 400-900
+\`Port DNS      :\` 443
+\`Port NTLS     :\` 80, 8080, 8880, 2082
+\`User ID       :\` \`${uuid}\`
+\`Encryption    :\` none
+\`Path TLS      :\` /vless/multi-path
+\`ServiceName   :\` vless-grpc
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link TLS      :**
+\`${vlesslink1}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link NTLS     :**
+\`${vlesslink2}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link GRPC     :**
+\`${vlesslink3}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Format OpenClash :**
+https://${domain}:81/vless-$user.txt
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+"
+ENCODED_TEXT=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$TEXT'''))")
+
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$ENCODED_TEXT&parse_mode=HTML" $URL >/dev/null
+}
+notiftelebot
+echo -e "SUDAH DIKIRIM KE TELEGRAM"
+read -p "Press [ enter ] back to menu"
 menu

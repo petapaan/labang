@@ -12,62 +12,24 @@ KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
-
-# // IZIN SCRIPT
-MYIP=$(curl -sS ipv4.icanhazip.com)
-
-clear
-
-# // Valid Script
-ipsaya=$(curl -sS ipv4.icanhazip.com) 
-
-# //
-data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
-checking_sc() {
-  useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
-  if [[ $date_list < $useexp ]]; then
-    echo -ne
-  else
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    echo -e ""
-    echo -e "            ${RED}PERMISSION DENIED !${NC}"
-    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
-    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
-    echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      ${GREEN}WhatsApp${NC} wa.me/6281524266702"
-    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
-    exit 0
-  fi
-}
-checking_sc
-clear
 sspwd=$(cat /etc/xray/passwd)
 clear
-source /var/lib/kyt/ipvps.conf
-if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
 clear
-echo ""
-echo ""
-echo ""
 #tls="$(cat ~/log-install.txt | grep -w "Sodosok WS/GRPC" | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "\033[1;93m│$NC \033[92m             LUNATIC TUNNELING              \033[0m"
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-  echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-  echo -e "       CREATE SHADOWSOCKS ACCOUNT      "
-  echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-  echo -e ""
-		read -rp "Username:  " -e user
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
+NC='\033[0m'
+clear
+echo -e ""
+echo -e "${grs}┌───────────────────────────────────────────────┐${NC}"
+echo -e "${grs}│${bg}              ADD ACCOUNT SHDWSCKS             ${NC}${grs}│${NC}"
+echo -e "${grs}└───────────────────────────────────────────────┘${NC}"
+echo -e ""
+		read -rp "Username       : " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
@@ -86,7 +48,7 @@ v2ray-menu
 
 cipher="aes-128-gcm"
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days): " masaaktif
+read -p "Expired (days) : " masaaktif
 read -p "Limit User (GB): " Quota
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -354,30 +316,73 @@ if [[ "${DATADB}" != '' ]]; then
 fi
 echo "### ${user} ${exp} ${uuid}" >>/etc/shadowsocks/.shadowsocks.d
 clear
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "                   SHADOWSOCKS         " | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Remarks     : ${user}" | tee -a /etc/user-create/user.log
-echo -e "Aktif Selama   : $masaaktif Hari" | tee -a /etc/user-create/user.log
-echo -e "Dibuat Pada    : $tnggl" | tee -a /etc/user-create/user.log
-echo -e "Berakhir Pada  : $expe" | tee -a /etc/user-create/user.log
-echo -e "User Quota       : ${Quota} GB" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Domain      : ${domain}" | tee -a /etc/user-create/user.log
-echo -e "Port TLS    : 443/8443/900" | tee -a /etc/user-create/user.log
-echo -e "Password    : ${uuid}" | tee -a /etc/user-create/user.log
-echo -e "Cipers      : aes-128-gcm" | tee -a /etc/user-create/user.log
-echo -e "Network     : ws/grpc" | tee -a /etc/user-create/user.log
-echo -e "Path        : /ss-ws" | tee -a /etc/user-create/user.log
-echo -e "ServiceName : ss-grpc" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Link WS TLS : ${sslinkws}" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Link WS None TLS : ${nonsslinkws}" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
-echo -e "Link GRPC : ${sslinkgrpc}" | tee -a /etc/user-create/user.log
-echo -e "_______________________________________________________" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "       SHADOWSOCKS         " | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Remarks      : ${user}" | tee -a /etc/user-create/user.log
+echo -e "Aktif Selama : $masaaktif Hari" | tee -a /etc/user-create/user.log
+echo -e "Dibuat Pada  : $tnggl" | tee -a /etc/user-create/user.log
+echo -e "Berakhir Pada: $expe" | tee -a /etc/user-create/user.log
+echo -e "User Quota   : ${Quota} GB" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Domain       : ${domain}" | tee -a /etc/user-create/user.log
+echo -e "Port TLS     : 443/8443/900" | tee -a /etc/user-create/user.log
+echo -e "Password     : ${uuid}" | tee -a /etc/user-create/user.log
+echo -e "Cipers       : aes-128-gcm" | tee -a /etc/user-create/user.log
+echo -e "Network      : ws/grpc" | tee -a /etc/user-create/user.log
+echo -e "Path         : /ss-ws" | tee -a /etc/user-create/user.log
+echo -e "ServiceName  : ss-grpc" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Link WS TLS  :" | tee -a /etc/user-create/user.log
+echo -e "${sslinkws}" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Link WS NTLS :" | tee -a /etc/user-create/user.log
+echo -e "${nonsslinkws}" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
+echo -e "Link GRPC    :" | tee -a /etc/user-create/user.log
+echo -e "${sslinkgrpc}" | tee -a /etc/user-create/user.log
+echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e ""
-echo "" | tee -a /etc/user-create/user.log
+
+#Function to send notification to Telegram Bot
+function notiftelebot() {
+CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+       **SHADOWSOCKS**
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+\`Remarks      :\` ${user}
+\`Aktif Selama :\` $masaaktif Hari
+\`Dibuat Pada  :\` $tnggl
+\`Berakhir Pada:\` $expe
+\`User Quota   :\` ${Quota} GB
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+\`Domain       :\` \`${domain}\`
+\`Port TLS     :\` 443/8443/900
+\`Password     :\` \`${uuid}\`
+\`Cipers       :\` aes-128-gcm
+\`Network      :\` ws/grpc
+\`Path         :\` /ss-ws
+\`ServiceName  :\` ss-grpc
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link WS TLS  :**
+\`${sslinkws}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link WS NTLS :**
+\`${nonsslinkws}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+**Link GRPC    :**
+\`${sslinkgrpc}\`
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+"
+ENCODED_TEXT=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$TEXT'''))")
+
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$ENCODED_TEXT&parse_mode=HTML" $URL >/dev/null
+}
+notiftelebot
+echo -e "SHADOWSOCKS SDH BERHASIL DIKIRIM KE TELEGRAM"
 read -n 1 -s -r -p "Press any key to back on menu"
 menu

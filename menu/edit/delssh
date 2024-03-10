@@ -10,6 +10,12 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 clear
+#Getting
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
+clear
 # ==========================================
 echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "                MEMBER SSH                   "
@@ -38,8 +44,31 @@ read -p "Ketik Usernamenya : " Pengguna
 
 if getent passwd $Pengguna > /dev/null 2>&1; then
         userdel $Pengguna > /dev/null 2>&1
-        echo -e "User $Pengguna Berhasil Di Hapus Sayang."
+        echo -e "User $Pengguna Berhasil Dihapus Sayang."
+# kirim notifikasi ke bot telegram
+function notiftelebot() {
+    sleep 0
+CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+       <b>AKUN SSH SUKSES DIHAPUS</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Nama    :</code> <b>$Pengguna</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b><i>Notifikasi otomatis dari server...</i></b>
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+notiftelebot
+echo -e ""
+echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
+read -p "Tekan Enter untuk kembali ke menu"
+menu
 else
-        echo -e "Failure: User $Pengguna Tidak Di Temukan."
+        echo -e "Failure: User $Pengguna Tidak Ditemukan."
+menu
 fi
 
