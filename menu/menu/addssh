@@ -66,6 +66,7 @@ read -p " Username : " Login
 read -p " Password : " Pass
 read -p " Limit IP : " iplimit
 read -p " Exp Days : " masaaktif
+read -p " Pembeli  : " pembeli
 #limitip
 if [[ $iplimit -gt 0 ]]; then
 mkdir -p /etc/kyt/limit/ssh/ip
@@ -197,8 +198,7 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 
 # function notif transaksi
 function notiftrx() {
-    sleep 0
-    CHATID="$CHATID2"
+CHATID="$CHATID2"
 KEY="$KEY2"
 TIME="$TIME"
 URL="$URL2"
@@ -206,16 +206,16 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━◇
         <b>TRANSAKSI BERHASIL</b>
 ◇━━━━━━━━━━━━━━━━━━◇
-<code>Transaksi :</code> <code>SSH WS</code>
-<code>Username  :</code> <code>${Login}</code>
-<code>Domain    :</code> <code>${domain}</code>
-<code>ISP       :</code> <code>${ISP}</code>
-<code>Region    :</code> <code>${CITY}</code>
-<code>User IP   :</code> <code>${iplimit} Perangkat</code>
-<code>Aktif     :</code> <code>${masaaktif} Hari</code>
+☘️ » <code>Trx       :</code> <code>SSH WS</code>
+☘️ » <code>Pembeli   :</code> <code>${pembeli}</code>
+☘️ » <code>Domain    :</code> <code>${domain}</code>
+☘️ » <code>ISP       :</code> <code>${ISP}</code>
+☘️ » <code>Region    :</code> <code>${CITY}</code>
+☘️ » <code>User IP   :</code> <code>${iplimit} Perangkat</code>
+☘️ » <code>Aktif     :</code> <code>${masaaktif} Hari</code>
 ◇━━━━━━━━━━━━━━━━━━◇
 <i>Notif Transaksi Akun SSH...</i>
-"
+"'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
