@@ -38,7 +38,20 @@ KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
+# getting notif trx
+CHATID2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 3)
+KEY2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL2="https://api.telegram.org/bot$KEY2/sendMessage"
+clear
+
+# detail server
+IP=$(curl -sS ipv4.icanhazip.com)
+ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
+CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
+clear
+
 tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 # // color
@@ -73,6 +86,7 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (days) : " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
+read -p "Username Buyer : " pembeli
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -174,8 +188,6 @@ echo -e "User Quota       : ${Quota} GB" | tee -a /etc/user-create/user.log
 echo -e "User Ip          : ${iplimit} IP" | tee -a /etc/user-create/user.log
 echo -e "Port             : 400-900"  | tee -a /etc/user-create/user.log
 echo -e "Key              : ${uuid}"  | tee -a /etc/user-create/user.log
-#echo -e "Xray Dns.        : ${NS}" | tee -a /etc/user-create/user.log
-#echo -e "Pubkey.          : ${PUB}" | tee -a /etc/user-create/user.log
 echo -e "Path             : /trojan-ws/multi-path" | tee -a /etc/user-create/user.log
 echo -e "ServiceName      : trojan-grpc"  | tee -a /etc/user-create/user.log
 echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇"
@@ -221,7 +233,31 @@ ENCODED_TEXT=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$TEX
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$ENCODED_TEXT&parse_mode=HTML" $URL >/dev/null
 }
+# function notif transaksi
+function notiftrx() {
+CHATID="$CHATID2"
+KEY="$KEY2"
+TIME="$TIME"
+URL="$URL2"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━◇
+        <b>TRANSAKSI BERHASIL</b>
+◇━━━━━━━━━━━━━━━━━━◇
+☘️ » <code>Trx       :</code> <code>Trojan Account</code>
+☘️ » <code>Pembeli   :</code> <code>${pembeli}</code>
+☘️ » <code>Domain    :</code> <code>${domain}</code>
+☘️ » <code>ISP       :</code> <code>${ISP}</code>
+☘️ » <code>Region    :</code> <code>${CITY}</code>
+☘️ » <code>User IP   :</code> <code>${iplimit} Perangkat</code>
+☘️ » <code>Aktif     :</code> <code>${masaaktif} Hari</code>
+◇━━━━━━━━━━━━━━━━━━◇
+<i>Notif Transaksi Akun Trojan...</i>
+"'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+clear
 notiftelebot
+notiftrx
 echo -e "TROJAN SDH BERHASIL DIKIRIM KE TELEGRAM"
 read -p "Ente Back To Menu"
 menu

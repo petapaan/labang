@@ -32,12 +32,19 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-# Getting
+# Getting notif
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
+# getting notif trx
+CHATID2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 3)
+KEY2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL2="https://api.telegram.org/bot$KEY2/sendMessage"
+clear
+
 MYIP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /etc/xray/domain)
 
@@ -78,6 +85,7 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (days) : " masaaktif
 read -p "Limit User (GB): " Quota
 read -p "Limit User (IP): " iplimit
+read -p "Username Buyer : " pembeli
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
@@ -292,8 +300,32 @@ https://${domain}:81/vmess-$user.txt
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
+# function notif transaksi
+function notiftrx() {
+CHATID="$CHATID2"
+KEY="$KEY2"
+TIME="$TIME"
+URL="$URL2"
+TEXT="
+◇━━━━━━━━━━━━━━━━━━◇
+        <b>TRANSAKSI BERHASIL</b>
+◇━━━━━━━━━━━━━━━━━━◇
+☘️ » <code>Trx       :</code> <code>VMESS Account</code>
+☘️ » <code>Pembeli   :</code> <code>${pembeli}</code>
+☘️ » <code>Domain    :</code> <code>${domain}</code>
+☘️ » <code>ISP       :</code> <code>${ISP}</code>
+☘️ » <code>Region    :</code> <code>${CITY}</code>
+☘️ » <code>User IP   :</code> <code>${iplimit} Perangkat</code>
+☘️ » <code>Aktif     :</code> <code>${masaaktif} Hari</code>
+◇━━━━━━━━━━━━━━━━━━◇
+<i>Notif Transaksi Akun VMESS...</i>
+"'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
 clear
 notiftelebot
+notiftrx
+clear
 echo -e "VMESS SDH BERHASIL DIKIRIM KE TELEGRAM"
 clear
 echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
