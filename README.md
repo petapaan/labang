@@ -7,7 +7,7 @@
  
 
 ### INSTALL SCRIPT 
-<pre><code>apt install -y && wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/ubu20-deb10-stable.sh && chmod +x ubu20-deb10-stable.sh && ./ubu20-deb10-stable.sh</code></pre>
+<pre><code>apt install -y && wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/setup.sh && chmod +x setup.sh && ./setup.sh</code></pre>
 
 ### WORK DI OS
 - UBUNTU 18 / 20
