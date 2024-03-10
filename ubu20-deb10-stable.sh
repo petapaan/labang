@@ -284,6 +284,9 @@ d1=$(date -d "$valid" +%s)
 d2=$(date -d "$today" +%s)
 certifacate=$(((d1 - d2) / 86400))
 # VPS Information
+COUNTRY=$(curl ipinfo.io/country)
+OS=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
+
 DATE=$(date +'%Y-%m-%d')
 datediff() {
     d1=$(date -d "$1" +%s)
@@ -304,26 +307,27 @@ sts="${Error}"
 fi
 TIMES="10"
 ISP=$(curl -s ipinfo.io/org)
+# TELEGRAM GET ID & TOKEN
+TIMES="10"
 CHATID="6331389328"
-KEY="6792425720:AAHASEoqok81u9IwLwIhJ-wVjiLqfnNtC3k"
+KEY="7016086820:AAEpoO19DJl7TJ75wQK6E3g2mS2VqLVGoBM"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
-    TIMEZONE=$(printf '%(%H:%M:%S)T')
-    TEXT="
-<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
+TIMEZONE=$(printf '%(%H:%M:%S)T')
+TEXT="
+━━━━━━━━━━━━━━━━━━━━━━━
 <b>☘️ PREMIUM SCRIPT INSTALLED ☘️</b>
-<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
-<code>User     :</code><code>$username</code>
-<code>Domain   :</code><code>$domain</code>
-<code>IPVPS    :</code><code>$MYIP</code>
-<code>ISP      :</code><code>$ISP</code>
-<code>Exp Sc.  :</code><code>$exp</code>
-<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
-<b>     ALAWI VPN   </b>
-<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
-<i>Automatic Notifications From Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"ORDER SCRIPT","url":"https://t.me/alawivpn"}]]}' 
-
-    curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+━━━━━━━━━━━━━━━━━━━━━━━
+☘️ » <b>User  :</b> <code>${username}</code>
+☘️ » <b>IP  :</b> <code>${MYIP}</code>
+☘️ » <b>Domain  :</b> <code>${domain}</code>
+☘️ » <b>ISP  :</b> <code>${ISP}</code>
+☘️ » <b>Country  :</b> <code>${COUNTRY}</code>
+☘️ » <b>OS  :</b> <code>${OS}</code>
+☘️ » <b>Expired  :</b> <code>${exp}</code>
+━━━━━━━━━━━━━━━━━━━━━━━
+<i>Auto Notification Before Installed...</i>
+"'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"ORDER ☘️","url":"https://t.me/muslimvpn"}]]}'
+curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
 # Pasang SSL
