@@ -985,7 +985,7 @@ clear
     menu
     profile
     enable_services
-    udp
+    install_udp
     restart_system
 }
 instal
