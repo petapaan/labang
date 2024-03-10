@@ -96,9 +96,9 @@ function print_ok() {
     echo -e "${OK} ${BLUE} $1 ${FONT}"
 }
 function print_install() {
-	echo -e "${green} =============================== ${FONT}"
+	echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
     echo -e "${YELLOW} # $1 ${FONT}"
-	echo -e "${green} =============================== ${FONT}"
+	echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
     sleep 1
 }
 
@@ -108,9 +108,9 @@ function print_error() {
 
 function print_success() {
     if [[ 0 -eq $? ]]; then
-		echo -e "${green} =============================== ${FONT}"
+		echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
         echo -e "${Green} # $1 berhasil dipasang"
-		echo -e "${green} =============================== ${FONT}"
+		echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
         sleep 2
     fi
 }
@@ -309,17 +309,17 @@ KEY="6792425720:AAHASEoqok81u9IwLwIhJ-wVjiLqfnNtC3k"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
     TIMEZONE=$(printf '%(%H:%M:%S)T')
     TEXT="
-<code>────────────────────</code>
-<b>AUTOSCRIPT PREMIUM⚡</b>
-<code>────────────────────</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
+<b>☘️ PREMIUM SCRIPT INSTALLED ☘️</b>
+<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
 <code>User     :</code><code>$username</code>
 <code>Domain   :</code><code>$domain</code>
 <code>IPVPS    :</code><code>$MYIP</code>
 <code>ISP      :</code><code>$ISP</code>
 <code>Exp Sc.  :</code><code>$exp</code>
-<code>────────────────────</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
 <b>     ALAWI VPN   </b>
-<code>────────────────────</code>
+<code>━━━━━━━━━━━━━━━━━━━━━━━</code>
 <i>Automatic Notifications From Github</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"ORDER SCRIPT","url":"https://t.me/alawivpn"}]]}' 
 
