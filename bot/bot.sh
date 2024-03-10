@@ -4,8 +4,8 @@ domain=$(cat /etc/xray/domain)
 grenbo="\e[92;1m"
 NC='\e[0m'
 #install
-apt update && apt upgrade
-apt install python3 python3-pip git
+apt update -y && apt upgrade -y
+apt install python3 python3-pip git -y
 cd /usr/bin
 wget https://raw.githubusercontent.com/ALAWI-VPN/VPN/vip/umdah/bot.zip
 unzip bot.zip
