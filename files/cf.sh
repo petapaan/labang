@@ -73,6 +73,19 @@ echo "$SUB_DOMAIN" > /etc/v2ray/domain
 echo "$SUB_DOMAIN" > /etc/xray/scdomain
 echo "IP=$SUB_DOMAIN" > /var/lib/kyt/ipvps.conf
 
-
+CHATID="6331389328"
+KEY="7104548532:AAHl8gN5J8tWqWnEKpgZFSTDRyuoHwt5bKw"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+TIMEZONE=$(printf '%(%H:%M:%S)T')
+TEXT="
+────────────────────
+<b>   ☘ BERHASIL POINTING ☘</b>
+────────────────────
+<code>Subdomain :</code> <code>${SUB_DOMAIN}</code>
+<code>IP VPS    :</code> <code>${IP}</code>
+────────────────────
+<b>    ☘ ALAWI-VPN-SCRIPT ☘</b>
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/alawivpn"}]]}'
+curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 rm -rf cf
 sleep 1
