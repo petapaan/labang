@@ -15,13 +15,13 @@ green='\e[0;32m'
 # ===================
 clear
   # // Exporint IP AddressInformation
-sudo apt-get install curl
+sudo apt-get install curl -y
 sudo apt update -y && sudo apt upgrade -y
 export IP=$( curl -sS icanhazip.com )
 
 # // Clear Data
 clear
-clear && clear && clearsudo apt-get install curl
+clear && clear && clear
 clear;clear;clear
 
   # // Banner
@@ -236,17 +236,17 @@ clear
 function pasang_domain() {
 echo -e ""
 clear
-    echo -e "   .----------------------------------."
+echo -e "   .----------------------------------."
 echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
 echo -e "   '----------------------------------'"
 echo -e "     \e[1;32m1)\e[0m Menggunakan Domain Sendiri"
-echo -e "     \e[1;32m2)\e[0m Menggunakan Domain Random"
+echo -e "     \e[1;32m2)\e[0m Menggunakan Domain bawaan SC"
 echo -e "   ------------------------------------"
-read -p "   Please select numbers 1-2 or Any Button(Random) : " host
+read -p "   Please select numbers 1/2 : " host
 echo ""
 if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
-read -p "   Subdomain: " host1
+read -p "   sub.domain: " host1
 echo "IP=" >> /var/lib/kyt/ipvps.conf
 echo $host1 > /etc/xray/domain
 echo $host1 > /root/domain
@@ -257,9 +257,10 @@ wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
 rm -f /root/cf.sh
 clear
 else
-print_install "Random Subdomain/Domain is Used"
+wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
+rm -f /root/cf.sh
 clear
-    fi
+fi
 }
 
 clear
