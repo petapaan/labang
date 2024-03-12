@@ -15,11 +15,13 @@ green='\e[0;32m'
 # ===================
 clear
   # // Exporint IP AddressInformation
+sudo apt-get install curl
+sudo apt update -y && sudo apt upgrade -y
 export IP=$( curl -sS icanhazip.com )
 
 # // Clear Data
 clear
-clear && clear && clear
+clear && clear && clearsudo apt-get install curl
 clear;clear;clear
 
   # // Banner
