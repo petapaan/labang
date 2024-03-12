@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NC='\e[0m'
-
+#===================================
 # Telegram Bot
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -14,17 +14,17 @@ KEY2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL2="https://api.telegram.org/bot$KEY2/sendMessage"
 clear
-
+#===================================
 # detail server
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
-clear
 # // ip info
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
+#===================================
 # // Valid Script
 ipsaya=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /etc/xray/domain)
@@ -264,13 +264,13 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━◇
         <b>TRANSAKSI BERHASIL</b>
 ◇━━━━━━━━━━━━━━━━━━◇
-☘️ » <code>Trx       :</code> <code>VLESS Account</code>
-☘️ » <code>Pembeli   :</code> <code>${pembeli}</code>
-☘️ » <code>Domain    :</code> <code>${domain}</code>
-☘️ » <code>ISP       :</code> <code>${ISP}</code>
-☘️ » <code>Region    :</code> <code>${CITY}</code>
-☘️ » <code>User IP   :</code> <code>${iplimit} Perangkat</code>
-☘️ » <code>Aktif     :</code> <code>${masaaktif} Hari</code>
+☘️ » <code>Trx     :</code> <code>VLESS Account</code>
+☘️ » <code>Pembeli :</code> @${pembeli}
+☘️ » <code>Domain  :</code> <code>${domain}</code>
+☘️ » <code>ISP     :</code> <code>${ISP}</code>
+☘️ » <code>Region  :</code> <code>${CITY}</code>
+☘️ » <code>User IP :</code> <code>${iplimit} Perangkat</code>
+☘️ » <code>Aktif   :</code> <code>${masaaktif} Hari</code>
 ◇━━━━━━━━━━━━━━━━━━◇
 <i>Notif Transaksi Akun VLESS...</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'

@@ -82,3 +82,4 @@ fun_bar 'giting'
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
 read -n 1 -s -r -p "  Press [ Enter ] to back on menu"
+menu

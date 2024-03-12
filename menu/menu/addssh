@@ -206,13 +206,13 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━◇
         <b>TRANSAKSI BERHASIL</b>
 ◇━━━━━━━━━━━━━━━━━━◇
-☘️ » <code>Trx       :</code> <code>SSH WS</code>
-☘️ » <code>Pembeli   :</code> <code>${pembeli}</code>
-☘️ » <code>Domain    :</code> <code>${domain}</code>
-☘️ » <code>ISP       :</code> <code>${ISP}</code>
-☘️ » <code>Region    :</code> <code>${CITY}</code>
-☘️ » <code>User IP   :</code> <code>${iplimit} Perangkat</code>
-☘️ » <code>Aktif     :</code> <code>${masaaktif} Hari</code>
+☘️ » <code>Trx     :</code> <code>SSH WS</code>
+☘️ » <code>Pembeli :</code> @${pembeli}
+☘️ » <code>Domain  :</code> <code>${domain}</code>
+☘️ » <code>ISP     :</code> <code>${ISP}</code>
+☘️ » <code>Region  :</code> <code>${CITY}</code>
+☘️ » <code>User IP :</code> <code>${iplimit} Perangkat</code>
+☘️ » <code>Aktif   :</code> <code>${masaaktif} Hari</code>
 ◇━━━━━━━━━━━━━━━━━━◇
 <i>Notif Transaksi Akun SSH...</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'

@@ -32,6 +32,7 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+#===================================
 #Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -44,14 +45,14 @@ KEY2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL2="https://api.telegram.org/bot$KEY2/sendMessage"
 clear
-
+#===================================
 # detail server
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
-
+#===================================
 tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 # // color
@@ -243,13 +244,13 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━◇
         <b>TRANSAKSI BERHASIL</b>
 ◇━━━━━━━━━━━━━━━━━━◇
-☘️ » <code>Trx       :</code> <code>Trojan Account</code>
-☘️ » <code>Pembeli   :</code> <code>${pembeli}</code>
-☘️ » <code>Domain    :</code> <code>${domain}</code>
-☘️ » <code>ISP       :</code> <code>${ISP}</code>
-☘️ » <code>Region    :</code> <code>${CITY}</code>
-☘️ » <code>User IP   :</code> <code>${iplimit} Perangkat</code>
-☘️ » <code>Aktif     :</code> <code>${masaaktif} Hari</code>
+☘️ » <code>Trx     :</code> <code>Trojan Account</code>
+☘️ » <code>Pembeli :</code> @${pembeli}
+☘️ » <code>Domain  :</code> <code>${domain}</code>
+☘️ » <code>ISP     :</code> <code>${ISP}</code>
+☘️ » <code>Region  :</code> <code>${CITY}</code>
+☘️ » <code>User IP :</code> <code>${iplimit} Perangkat</code>
+☘️ » <code>Aktif   :</code> <code>${masaaktif} Hari</code>
 ◇━━━━━━━━━━━━━━━━━━◇
 <i>Notif Transaksi Akun Trojan...</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'

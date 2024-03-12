@@ -341,6 +341,10 @@ chmod +x update.sh
 clear
 pointing
 ;;
+14)
+clear
+barupo
+;;
 0 | 00)
 exit
 ;;

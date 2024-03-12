@@ -32,6 +32,7 @@ ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
 grenbo="\e[92;1m"
 red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+#===================================
 # Getting notif
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -44,7 +45,7 @@ KEY2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL2="https://api.telegram.org/bot$KEY2/sendMessage"
 clear
-
+#===================================
 MYIP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /etc/xray/domain)
 
@@ -79,8 +80,8 @@ clear
 			menu
 		fi
 done
-ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
-CITY=$(curl -s ipinfo.io/city )
+ISP=$(cat /etc/xray/isp)
+CITY=$(cat /etc/xray/city)
 uuid=$(cat /proc/sys/kernel/random/uuid)
 read -p "Expired (days) : " masaaktif
 read -p "Limit User (GB): " Quota
@@ -310,13 +311,13 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━◇
         <b>TRANSAKSI BERHASIL</b>
 ◇━━━━━━━━━━━━━━━━━━◇
-☘️ » <code>Trx       :</code> <code>VMESS Account</code>
-☘️ » <code>Pembeli   :</code> <code>${pembeli}</code>
-☘️ » <code>Domain    :</code> <code>${domain}</code>
-☘️ » <code>ISP       :</code> <code>${ISP}</code>
-☘️ » <code>Region    :</code> <code>${CITY}</code>
-☘️ » <code>User IP   :</code> <code>${iplimit} Perangkat</code>
-☘️ » <code>Aktif     :</code> <code>${masaaktif} Hari</code>
+☘️ » <code>Trx     :</code> <code>VMESS Account</code>
+☘️ » <code>Pembeli :</code> @${pembeli}
+☘️ » <code>Domain  :</code> <code>${domain}</code>
+☘️ » <code>ISP     :</code> <code>${ISP}</code>
+☘️ » <code>Region  :</code> <code>${CITY}</code>
+☘️ » <code>User IP :</code> <code>${iplimit} Perangkat</code>
+☘️ » <code>Aktif   :</code> <code>${masaaktif} Hari</code>
 ◇━━━━━━━━━━━━━━━━━━◇
 <i>Notif Transaksi Akun VMESS...</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'
