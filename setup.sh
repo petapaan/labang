@@ -325,7 +325,7 @@ TEXT="
 ━━━━━━━━━━━━━━━━━━━━━━━
 <b>☘️ PREMIUM SCRIPT INSTALLED ☘️</b>
 ━━━━━━━━━━━━━━━━━━━━━━━
-☘️ » <b>User  :</b> <code>${username}</code>
+☘️ » <b>User  :</b> <code>${buyer}</code>
 ☘️ » <b>IP  :</b> <code>${MYIP}</code>
 ☘️ » <b>Domain  :</b> <code>${domain}</code>
 ☘️ » <b>ISP  :</b> <code>${ISP}</code>
