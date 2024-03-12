@@ -252,7 +252,7 @@ def kirim_pesan(pesan):
     response = requests.post(url, params=params)
     return response.json()
 #proses kirim teks/pesan ken bot
-pesan = """
+pesan = f"""
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
      <b>AKUN TROJAN SUKSES DIBUAT</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
