@@ -26,7 +26,12 @@ clear;clear;clear
 
   # // Banner
 echo -e ""
-echo -e "AUTOSCRIPT MODIFIED BY ALAWI VPN"
+echo -e "${green}AUTOSCRIPT MODIFIED BY ALAWI VPN"
+echo -e ""
+while true; do
+    read -rp "Masukkan nama kamu (tanpa spasi): " buyer
+    [[ -n "$buyer" ]] && break
+done
 sleep 2
 MYIP=$(wget -qO- ipinfo.io/ip);
 clear
