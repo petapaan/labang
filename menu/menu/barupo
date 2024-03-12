@@ -29,21 +29,12 @@ function proses() {
 #masukan dr pengguna
 echo -e ""
 while true; do
-read -rp "Masukkan subdomain: " sub
-if [ -z "$sub" ]; then
-    echo -e "${red}Tidak boleh kosong!${NC}"
-else
-    break
-fi
+    read -rp "Masukkan subdomain : " sub
+    [[ -n "$sub" ]] && break
 done
-
 while true; do
-read -rp "Masukkan IP VPS    : " ipvps
-if [ -z "$ipvps" ]; then
-    echo -e "${red}Tidak boleh kosong hey!${NC}"
-else
-    break
-fi
+    read -rp "Masukkan IP VPS    : " ipvps
+    [[ -n "$ipvps" ]] && break
 done
 # akun cloudflare
 CF_ID="vpsvpsku@gmail.com"
