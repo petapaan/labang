@@ -212,47 +212,92 @@ echo "" | tee -a /etc/user-create/user.log
 
 # Function to send notification to Telegram Bot
 function notiftelebot() {
-    sleep 0
-    CHATID="$CHATID"
-KEY="$KEY"
-TIME="$TIME"
-URL="$URL"
-TEXT="
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-     **XRAY/VLESS SUCCES CREATED**
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-\`Remarks       :\` ${user}
-\`Aktif Selama  :\` $masaaktif Hari
-\`Dibuat Pada   :\` $tnggl
-\`Berakhir Pada :\` $expe
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-\`Domain        :\` \`${domain}\`
-\`User Quota    :\` ${Quota} GB
-\`User Ip       :\` ${iplimit} IP
-\`port TLS      :\` 400-900
-\`Port DNS      :\` 443
-\`Port NTLS     :\` 80, 8080, 8880, 2082
-\`User ID       :\` \`${uuid}\`
-\`Encryption    :\` none
-\`Path TLS      :\` /vless/multi-path
-\`ServiceName   :\` vless-grpc
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-**Link TLS      :**
-\`${vlesslink1}\`
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-**Link NTLS     :**
-\`${vlesslink2}\`
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-**Link GRPC     :**
-\`${vlesslink3}\`
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-**Format OpenClash :**
-https://${domain}:81/vless-$user.txt
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-"
-ENCODED_TEXT=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$TEXT'''))")
+export CHATID="$CHATID"
+export KEY="$KEY"
+export TIME="$TIME"
+export URL="$URL"
+export user="${user}"
+export masaaktif="$masaaktif"
+export tnggl="${tnggl}"
+export expe="${expe}"
+export domain="${domain}"
+export Quota="${Quota}"
+export iplimit="${iplimit}"
+export uuid="${uuid}"
+export vlesslink1="${vlesslink1}"
+export vlesslink2="${vlesslink2}"
+export vlesslink3="${vlesslink3}"
 
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$ENCODED_TEXT&parse_mode=HTML" $URL >/dev/null
+python3 - <<END
+import os
+import requests
+# Mendapatkan nilai variabel bash menggunakan os.getenv()
+CHATID = os.getenv('CHATID')
+KEY = os.getenv('KEY')
+TIME = os.getenv('TIME')
+URL = os.getenv('URL')
+user = os.getenv('user')
+masaaktif = os.getenv('masaaktif')
+tnggl = os.getenv('tnggl')
+expe = os.getenv('expe')
+domain = os.getenv('domain')
+Quota = os.getenv('Quota')
+iplimit = os.getenv('iplimit')
+uuid = os.getenv('uuid')
+vlesslink1 = os.getenv('vlesslink1')
+vlesslink2 = os.getenv('vlesslink2')
+vlesslink3 = os.getenv('vlesslink3')
+
+# Fungsi untuk mengirim pesan ke bot Telegram
+def kirim_pesan(pesan):
+    TOKEN = KEY  # Ganti dengan token API bot Telegram Anda
+    chat_id = CHATID  # Ganti dengan ID obrolan atau username penerima pesan
+
+    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
+    params = {
+        'chat_id': chat_id,
+        'text': pesan,
+        'parse_mode': 'HTML'  # Menggunakan HTML untuk formatting teks
+    }
+
+    response = requests.post(url, params=params)
+    return response.json()
+#proses kirim teks/pesan ken bot
+pesan = """
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>XRAY/VLESS SUCCES CREATED</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Remarks       :</code> {user}
+<code>Aktif Selama  :</code> {masaaktif} Hari
+<code>Dibuat Pada   :</code> {tnggl}
+<code>Berakhir Pada :</code> {expe}
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Domain        :</code> <code>{domain}</code>
+<code>User Quota    :</code> {Quota} GB
+<code>User Ip       :</code> {iplimit} IP
+<code>port TLS      :</code> 400-900
+<code>Port DNS      :</code> 443
+<code>Port NTLS     :</code> 80, 8080, 8880, 2082
+<code>User ID       :</code> <code>{uuid}</code>
+<code>Encryption    :</code> none
+<code>Path TLS      :</code> /vless/multi-path
+<code>ServiceName   :</code> vless-grpc
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Link TLS      :</b>
+<code>{vlesslink1}</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Link NTLS     :</b>
+<code>{vlesslink2}</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Link GRPC     :</b>
+<code>{vlesslink3}</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Format OpenClash :</b>
+https://{domain}:81/vless-{user}.txt">https://{domain}:81/vless-{user}.txt
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+"""
+kirim_pesan(pesan)
+END
 }
 # function notif transaksi
 function notiftrx() {

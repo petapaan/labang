@@ -201,38 +201,82 @@ echo -e "◇━━━━━━━━━━━━━━━━━━━━━━�
 echo -e ""
 echo ""  | tee -a /etc/user-create/user.log
 
-#Function to send notification to Telegram Bot
+# Function to send notification to Telegram Bot
 function notiftelebot() {
-CHATID="$CHATID"
-KEY="$KEY"
-TIME="$TIME"
-URL="$URL"
-TEXT="
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-     **AKUN TROJAN SUKSES DIBUAT**
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-\`Remarks     :\` ${user}
-\`Host/IP     :\` ${domain}
-\`User Quota  :\` ${Quota} GB
-\`User IP     :\` ${iplimit} IP
-\`Port        :\` 400-900
-\`Key         :\` ${uuid}
-\`Path        :\` /trojan-ws/multipath/
-\`ServiceName :\` trojan-grpc
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-**Link WS :**
-\`${trojanlink}\`
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-**Link GRPC :**
-\`${trojanlink1}\`
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-\`Dibuat pada :\` ${tnggl}
-\`Berakhir    :\` ${expe}
-◇━━━━━━━━━━━━━━━━━━━━━━━◇
-"
-ENCODED_TEXT=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$TEXT'''))")
+export CHATID="$CHATID"
+export KEY="$KEY"
+export TIME="$TIME"
+export URL="$URL"
+export user="${user}"
+export masaaktif="$masaaktif"
+export tnggl="${tnggl}"
+export expe="${expe}"
+export domain="${domain}"
+export Quota="${Quota}"
+export iplimit="${iplimit}"
+export uuid="${uuid}"
+export trojanlink="${trojanlink}"
+export trojanlink1="${trojanlink1}"
 
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$ENCODED_TEXT&parse_mode=HTML" $URL >/dev/null
+python3 - <<END
+import os
+import requests
+# Mendapatkan nilai variabel bash menggunakan os.getenv()
+CHATID = os.getenv('CHATID')
+KEY = os.getenv('KEY')
+TIME = os.getenv('TIME')
+URL = os.getenv('URL')
+user = os.getenv('user')
+masaaktif = os.getenv('masaaktif')
+tnggl = os.getenv('tnggl')
+expe = os.getenv('expe')
+domain = os.getenv('domain')
+Quota = os.getenv('Quota')
+iplimit = os.getenv('iplimit')
+uuid = os.getenv('uuid')
+trojanlink = os.getenv('trojanlink')
+trojanlink1 = os.getenv('trojanlink1')
+
+# Fungsi untuk mengirim pesan ke bot Telegram
+def kirim_pesan(pesan):
+    TOKEN = KEY  # Ganti dengan token API bot Telegram Anda
+    chat_id = CHATID  # Ganti dengan ID obrolan atau username penerima pesan
+
+    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
+    params = {
+        'chat_id': chat_id,
+        'text': pesan,
+        'parse_mode': 'HTML'  # Menggunakan HTML untuk formatting teks
+    }
+
+    response = requests.post(url, params=params)
+    return response.json()
+#proses kirim teks/pesan ken bot
+pesan = """
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+     <b>AKUN TROJAN SUKSES DIBUAT</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Remarks     :</code> {user}
+<code>Host/IP     :</code> {domain}
+<code>User Quota  :</code> {Quota} GB
+<code>User IP     :</code> {iplimit} IP
+<code>Port        :</code> 400-900
+<code>Key         :</code> <code>{uuid}</code>
+<code>Path        :</code> /trojan-ws/multipath/
+<code>ServiceName :</code> trojan-grpc
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Link WS :</b>
+<code>{trojanlink}</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Link GRPC :</b>
+<code>{trojanlink1}</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Dibuat pada :</code> {tnggl}
+<code>Berakhir    :</code> {expe}
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+"""
+kirim_pesan(pesan)
+END
 }
 # function notif transaksi
 function notiftrx() {
