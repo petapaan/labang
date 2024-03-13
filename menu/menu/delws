@@ -33,7 +33,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/xray/config.json")
 		echo ""
 		echo -e "\033[0;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 		read -n 1 -s -r -p "Press any key to back on menu"
-        menu
+        m-vmess
 	fi
 
 	clear
@@ -48,7 +48,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/xray/config.json")
     echo -e "\033[0;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 	read -rp "Input Username : " user
     if [ -z $user ]; then
-    menu
+    m-vmess
     else
     exp=$(grep -wE "^### $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
     sed -i "/^### $user $exp/,/^},{/d" /etc/xray/config.json
@@ -84,5 +84,6 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 }
 notiftelebot
 echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
-read -p "Press [ Enter] to  Back To Menu"
-addws
+echo -e ""
+read -p "Tekan [ enter ] untuk kembali "
+m-vmess

@@ -69,6 +69,7 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 notiftelebot
 echo -e ""
 echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
-read -p "Tekan Enter untuk kembali ke menu"
-addssh
+echo -e ""
+read -p "Tekan [ enter ] untuk kembali "
+m-sshws
 
