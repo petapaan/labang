@@ -293,7 +293,7 @@ pesan = f"""
 <code>{vlesslink3}</code>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <b>Format OpenClash :</b>
-https://{domain}:81/vless-{user}.txt">https://{domain}:81/vless-{user}.txt
+https://{domain}:81/vless-{user}.txt
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 """
 kirim_pesan(pesan)
@@ -321,9 +321,9 @@ TEXT="
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
-clear
 notiftelebot
 notiftrx
 echo -e "SUDAH DIKIRIM KE TELEGRAM"
-read -p "Press [ enter ] back to menu"
-menu
+echo -e ""
+read -p "Tekan [ enter ] untuk kembali "
+m-vless

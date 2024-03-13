@@ -360,5 +360,5 @@ echo -e "Format OpenClash : https://${domain}:81/vmess-$user.txt" | tee -a /etc/
 echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
 echo -e ""
 echo "" | tee -a /etc/user-create/user.log
-read -p "Enter Back To Menu"
-menu
+read -p "Tekan [ enter ] untuk kembali "
+m-vmess

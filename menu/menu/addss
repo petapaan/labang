@@ -420,9 +420,8 @@ TEXT="
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"TESTI ☘️","url":"https://t.me/configsantritestimoni"}]]}'
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
-clear
 notiftelebot
 notiftrx
 echo -e "SHADOWSOCKS SDH BERHASIL DIKIRIM KE TELEGRAM"
-read -n 1 -s -r -p "Press any key to back on menu"
-menu
+read -p "Tekan [ enter ] untuk kembali "
+m-ssws
