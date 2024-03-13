@@ -265,7 +265,7 @@ def kirim_pesan(pesan):
 #proses kirim teks/pesan ken bot
 pesan = f"""
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
-<b>XRAY/VLESS SUCCES CREATED</b>
+<b>     XRAY/VLESS SUCCES CREATED</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <code>Remarks       :</code> {user}
 <code>Aktif Selama  :</code> {masaaktif} Hari
