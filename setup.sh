@@ -361,14 +361,16 @@ print_install "Memasang SSL Pada Domain"
 }
 
 function make_folder_xray() {
-rm -rf /etc/vmess/.vmess.db
+    rm -rf /etc/vmess/.vmess.db
     rm -rf /etc/vless/.vless.db
     rm -rf /etc/trojan/.trojan.db
     rm -rf /etc/shadowsocks/.shadowsocks.db
     rm -rf /etc/ssh/.ssh.db
     rm -rf /etc/bot/.bot.db
+    rm -rf /etc/bottrx/.bot.db
     rm -rf /etc/user-create/user.log
     mkdir -p /etc/bot
+    mkdir -p /etc/bottrx
     mkdir -p /etc/xray
     mkdir -p /etc/vmess
     mkdir -p /etc/vless
@@ -397,6 +399,7 @@ rm -rf /etc/vmess/.vmess.db
     touch /etc/shadowsocks/.shadowsocks.db
     touch /etc/ssh/.ssh.db
     touch /etc/bot/.bot.db
+    touch /etc/bottrx/.bot.db
     echo "& plughin Account" >>/etc/vmess/.vmess.db
     echo "& plughin Account" >>/etc/vless/.vless.db
     echo "& plughin Account" >>/etc/trojan/.trojan.db
