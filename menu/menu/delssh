@@ -45,9 +45,13 @@ read -p "Ketik Usernamenya : " Pengguna
 if getent passwd $Pengguna > /dev/null 2>&1; then
         userdel $Pengguna > /dev/null 2>&1
         echo -e "User $Pengguna Berhasil Dihapus Sayang."
+else
+        echo -e "Failure: User $Pengguna Tidak Ditemukan."
+clear
+delssh
+fi
 # kirim notifikasi ke bot telegram
 function notiftelebot() {
-    sleep 0
 CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
@@ -66,9 +70,5 @@ notiftelebot
 echo -e ""
 echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
 read -p "Tekan Enter untuk kembali ke menu"
-menu
-else
-        echo -e "Failure: User $Pengguna Tidak Ditemukan."
-menu
-fi
+addssh
 
