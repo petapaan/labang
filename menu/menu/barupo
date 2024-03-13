@@ -237,6 +237,10 @@ case $host in
     echo -e "anda memilih domain ${biru}$domain16${NC}"
     proses
     ;;
+    0)
+    clear
+    menu
+    ;;
     *)
     echo -e ""
     echo -e "${red}anda salah pilih ${hijau}ketik dengan benar!${NC}"
