@@ -60,7 +60,6 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^#& " "/etc/xray/config.json")
     fi
 # kirim notifikasi ke bot telegram
 function notiftelebot() {
-    sleep 0
 CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
@@ -78,5 +77,6 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 }
 notiftelebot
 echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
+echo -e ""
 read -p "Tekan [ enter ] untuk kembali ke menu"
-menu
+addvless
