@@ -24,12 +24,21 @@ clear
 clear && clear && clear
 clear;clear;clear
 
-  # // Banner
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
+NC='\033[0m'
+clear
+
+# // Banner
 echo -e ""
-echo -e "${green}AUTOSCRIPT MODIFIED BY ALAWI VPN"
+echo -e "   ${grs}───────────────────────────────────────────${NC}"
+echo -e "        ${gr}AUTOSCRIPT MODIFIED BY ALAWI VPN${NC}"
+echo -e "   ${grs}───────────────────────────────────────────${NC}"
 echo -e ""
 while true; do
-    read -rp "Masukkan nama kamu (tanpa spasi): " buyer
+    read -rp "   Masukkan nama kamu (tanpa spasi): " buyer
     [[ -n "$buyer" ]] && break
 done
 sleep 2
@@ -239,32 +248,36 @@ function base_package() {
 clear
 # Fungsi input domain
 function pasang_domain() {
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
+NC='\033[0m'
 echo -e ""
-clear
-echo -e "   .----------------------------------."
-echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
-echo -e "   '----------------------------------'"
-echo -e "     \e[1;32m1)\e[0m Menggunakan Domain Sendiri"
-echo -e "     \e[1;32m2)\e[0m Menggunakan Domain bawaan SC"
-echo -e "   ------------------------------------"
-read -p "   Please select numbers 1/2 : " host
-echo ""
+echo -e "   ${grs}─────────────────────────────────────────${NC}"
+echo -e "       ${gr}PILIHAN DOMAIN YANG AKAN DIPASANG${NC}"
+echo -e "   ${grs}─────────────────────────────────────────${NC}"
+echo -e "    [${gr}01${NC}]Menggunakan Domain Sendiri"
+echo -e "    [${gr}02${NC}]Menggunakan Domain Bawaan Script"
+echo -e "   ${grs}─────────────────────────────────────────${NC}"
+echo -e ""
+read -rp "   $(echo -e "Silahkan pilih ${gr}1${NC}/${gr}2${NC} atau ${grs}[ ${gr}enter ${grs}]${NC}: ")" host
 if [[ $host == "1" ]]; then
-echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
-read -p "   sub.domain: " host1
-echo "IP=" >> /var/lib/kyt/ipvps.conf
-echo $host1 > /etc/xray/domain
-echo $host1 > /root/domain
-echo ""
+    echo -e "   ${gr}Masukkan Domain kamu...!$NC"
+    read -p "   Domain: " host1
+    echo "IP=" > /var/lib/kyt/ipvps.conf
+    echo $host1 > /etc/xray/domain
+    echo $host1 > /root/domain
+    echo ""
 elif [[ $host == "2" ]]; then
-#install cf
-wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
-rm -f /root/cf.sh
-clear
+    #install cf
+    wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
+    rm -f /root/cf.sh
+    clear
 else
-wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
-rm -f /root/cf.sh
-clear
+    wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
+    rm -f /root/cf.sh
+    clear
 fi
 }
 
@@ -567,16 +580,6 @@ systemctl start udp-mini-3
 print_success "Limit IP Service"
 }
 
-function ssh_slow(){
-clear
-# // Installing UDP Mini
-print_install "Memasang modul SlowDNS Server"
-    wget -q -O /tmp/nameserver "${REPO}files/nameserver" >/dev/null 2>&1
-    chmod +x /tmp/nameserver
-    bash /tmp/nameserver | tee /root/install.log
- print_success "SlowDNS"
-}
-
 clear
 function ins_SSHD(){
 clear
@@ -672,7 +675,7 @@ print_success "Backup Server"
 }
 
 clear
-function ins_swab(){
+function ins_swap(){
 clear
 print_install "Memasang Swap 1 G"
 gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
@@ -914,8 +917,8 @@ print_install "Enable Service"
 }
 function install_udp() {
 cd
-rm -rf /root/udp
-mkdir -p /root/udp
+rm -rf /etc/udp
+mkdir -p /etc/udp
 
 # change to time GMT+7
 echo "change to time GMT+7"
@@ -923,12 +926,12 @@ ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # install udp-custom
 echo downloading udp-custom
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ixz82G_ruRBnEEp4vLPNF2KZ1k8UfrkV' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ixz82G_ruRBnEEp4vLPNF2KZ1k8UfrkV" -O /root/udp/udp-custom && rm -rf /tmp/cookies.txt
-chmod +x /root/udp/udp-custom
+wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ixz82G_ruRBnEEp4vLPNF2KZ1k8UfrkV' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ixz82G_ruRBnEEp4vLPNF2KZ1k8UfrkV" -O /etc/udp/udp-custom && rm -rf /tmp/cookies.txt
+chmod +x /etc/udp/udp-custom
 
 echo downloading default config
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1klXTiKGUd2Cs5cBnH3eK2Q1w50Yx3jbf' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1klXTiKGUd2Cs5cBnH3eK2Q1w50Yx3jbf" -O /root/udp/config.json && rm -rf /tmp/cookies.txt
-chmod 644 /root/udp/config.json
+wget -q --show-progress --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1klXTiKGUd2Cs5cBnH3eK2Q1w50Yx3jbf' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1klXTiKGUd2Cs5cBnH3eK2Q1w50Yx3jbf" -O /etc/udp/config.json && rm -rf /tmp/cookies.txt
+chmod 644 /etc/udp/config.json
 
 if [ -z "$1" ]; then
 cat <<EOF > /etc/systemd/system/udp-custom.service
@@ -938,8 +941,8 @@ Description=UDP Custom by ePro Dev. Team
 [Service]
 User=root
 Type=simple
-ExecStart=/root/udp/udp-custom server
-WorkingDirectory=/root/udp/
+ExecStart=/etc/udp/udp-custom server
+WorkingDirectory=/etc/udp/
 Restart=always
 RestartSec=2s
 
@@ -954,8 +957,8 @@ Description=UDP Custom by ePro Dev. Team
 [Service]
 User=root
 Type=simple
-ExecStart=/root/udp/udp-custom server -exclude $1
-WorkingDirectory=/root/udp/
+ExecStart=/etc/udp/udp-custom server -exclude $1
+WorkingDirectory=/etc/udp/
 Restart=always
 RestartSec=2s
 
@@ -970,8 +973,18 @@ systemctl start udp-custom &>/dev/null
 echo enable service udp-custom
 systemctl enable udp-custom &>/dev/null
 }
-# Fingsi Install Script
-function instal(){
+# function rm file root
+deleting_tmp() {
+history -c
+rm -rf /root/menu
+rm -rf /root/*.zip
+rm -rf /root/*.sh
+rm -rf /root/LICENSE
+rm -rf /root/README.md
+rm -rf /root/domain
+}
+# Fungsi Install Script
+function installing(){
 clear
     first_setup
     nginx_install
@@ -980,39 +993,87 @@ clear
     pasang_domain
     password_default
     pasang_ssl
-    install_xray
-    ssh
-    udp_mini
-    ssh_slow
-    ins_SSHD
-    ins_dropbear
-    ins_vnstat
-    ins_openvpn
-    ins_backup
-    ins_swab
-    ins_Fail2ban
-    ins_epro
-    ins_restart
-    menu
-    profile
-    enable_services
-    install_udp
-    restart_system
 }
-instal
-echo ""
-history -c
-rm -rf /root/menu
-rm -rf /root/*.zip
-rm -rf /root/*.sh
-rm -rf /root/LICENSE
-rm -rf /root/README.md
-rm -rf /root/domain
+installing
 clear
+# color fun
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\033[1;32m"
+grn=""
+gry="\033[1;37m"
+NC='\033[0m'
+
+# function bar animasi
+fun_bar() {
+    CMD[0]="$1"
+    CMD[1]="$2"
+    (
+        [[ -e $HOME/fim ]] && rm $HOME/fim
+        ${CMD[0]} -y >/dev/null 2>&1
+        ${CMD[1]} -y >/dev/null 2>&1
+        touch $HOME/fim
+    ) >/dev/null 2>&1 &
+    tput civis
+    echo -ne "   ${grs}Sedang memasang ${gry}- ${grs}["
+    while true; do                                                      for ((i = 0; i < 18; i++)); do
+            echo -ne "${gr}#"
+            sleep 0.1s
+        done
+        [[ -e $HOME/fim ]] && rm $HOME/fim && break
+        echo -e "${grs}]"
+        sleep 1s
+        tput cuu1
+        tput dl1
+        echo -ne "   ${grs}Sedang memasang ${gry}- ${grs}["
+    done
+    echo -e "${grs}]${gry} - ${gr}Selesai !${gry}"
+    tput cnorm
+}
+echo -e "   ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "   ${bg}     PEMASANGAN SELURUH PAKET PENTING      ${NC}
+echo -e "   ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+echo -e "   ${gr}MEMASANG XRAY${NC}"
+fun_bar 'install_xray'
+echo -e "   ${gr}MEMASANG SSH${NC}"
+fun_bar 'ssh'
+echo -e "   ${gr}MEMASANG UDP MINI${NC}"
+fun_bar 'udp_mini'
+echo -e "   ${gr}MEMASANG SSHD${NC}"
+fun_bar 'ins_SSHD'
+echo -e "   ${gr}MEMASANG DROPBEAR${NC}"
+fun_bar 'ins_dropbear'
+echo -e "   ${gr}MEMASANG VNSTAT${NC}"
+fun_bar 'ins_vnstat'
+echo -e "   ${gr}MEMASANG OPENVPN${NC}"
+fun_bar 'ins_openvpn'
+echo -e "   ${gr}MEMASANG BACKUP${NC}"
+fun_bar 'ins_backup'
+echo -e "   ${gr}MEMASANG SWAP RAM 1GB${NC}"
+fun_bar 'ins_swap'
+echo -e "   ${gr}MEMASANG FAIL2BAN${NC}"
+fun_bar 'ins_Fail2ban'
+echo -e "   ${gr}MEMASANG EPROXY${NC}"
+fun_bar 'ins_epro'
+echo -e "   ${gr}MEMASANG RESTART${NC}"
+fun_bar 'ins_restart'
+echo -e "   ${gr}MEMASANG MENU${NC}"
+fun_bar 'menu'
+echo -e "   ${gr}MEMASANG PROFILE${NC}"
+fun_bar 'profile'
+echo -e "   ${gr}MENGHIDUPKAN SEMUA SERCICE${NC}"
+fun_bar 'enable_services'
+echo -e "   ${gr}MEMASANG UDP CUSTOM${NC}"
+fun_bar 'install_udp'
+echo -e "   ${gr}MERESTART SEMUA SYSTEM${NC}"
+fun_bar 'restart_system'
+echo -e "   ${gr}DELETING TEMPORARY FILE${NC}"
+fun_bar 'deleting_tmp'
+echo -e ""
 #sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
 sudo hostnamectl set-hostname $username
 echo -e "${green} Script Successfull Installed"
 echo ""
-read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For reboot") "
+read -rp "$(echo -e "   Script ${gr}Selesai ${NC}dipasang. Klik [ ${gr}enter ${NC}] untuk reboot: ")"
 reboot
