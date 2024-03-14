@@ -272,11 +272,11 @@ echo -e " ${grs}║${green}     $(printf "%-10s %-10s %-10s %-10s %-8s %-3s\n" "
 echo -e " ${grs}╚══════════════════════════════════════════════════════════╝${NC}"
 echo -e " ${grs}╔══════════════════════════════════════════════════════════╗${NC}"
 echo -e " ${grs}║$NC [${gr}01${NC}]• SSH OPENVPN ${NC} (${gr}menu${NC})  [${gr}07${NC}]• BACKUP/RESTORE   (${gr}menu${NC}) ${grs}║${NC}"
-echo -e " ${grs}║$NC [${gr}02${NC}]• XRAY/VMESS ${NC}  (${gr}menu${NC})  [${gr}08${NC}]• GOTOP X RAM             ${grs}║${NC}"
-echo -e " ${grs}║$NC [${gr}03${NC}]• XRAY/VLESS ${NC}  (${gr}menu${NC})  [${gr}09${NC}]• TELEGRAM BOT     (${gr}menu${NC}) ${grs}║${NC}"
-echo -e " ${grs}║$NC [${gr}04${NC}]• TROJAN ${NC}      (${gr}menu${NC})  [${gr}10${NC}]• SETTING          (${gr}menu${NC}) ${grs}║${NC}"
-echo -e " ${grs}║$NC [${gr}05${NC}]• SHADOWSOCKS ${NC} (${gr}menu${NC})  [${gr}11${NC}]• RESTART ALL SERVICE    ${NC} ${grs}║${NC}"
-echo -e " ${grs}║$NC [${gr}06${NC}]• INSTALL UDP ${NC}         [${gr}12${NC}]• UPDATE SCRIPT          ${NC} ${grs}║${NC}"
+echo -e " ${grs}║$NC [${gr}02${NC}]• XRAY/VMESS ${NC}  (${gr}menu${NC})  [${gr}08${NC}]• SETTING          (${gr}menu${NC}) ${grs}║${NC}"
+echo -e " ${grs}║$NC [${gr}03${NC}]• XRAY/VLESS ${NC}  (${gr}menu${NC})  [${gr}09${NC}]• GOTOP X RAM             ${grs}║${NC}"
+echo -e " ${grs}║$NC [${gr}04${NC}]• TROJAN ${NC}      (${gr}menu${NC})  [${gr}10${NC}]• RESTART ALL SERVICE     ${grs}║${NC}"
+echo -e " ${grs}║$NC [${gr}05${NC}]• SHADOWSOCKS ${NC} (${gr}menu${NC})  [${gr}11${NC}]• INSTALL UDP             ${grs}║${NC}"
+echo -e " ${grs}║$NC [${gr}06${NC}]• TELEGRAM BOT      (${gr}menu${NC})  [${gr}12${NC}]• UPDATE SCRIPT           ${grs}║${NC}"
 echo -e " ${grs}╠═══════════╦══════════════════════════════════════════════╣${NC}"
 today_tk="Hari ini"
 yesterday_tk="Kemarin"
@@ -314,7 +314,7 @@ m-ssws
 ;;
 6 | 06)
 clear
-wget https://raw.githubusercontent.com/gemilangvip/autoscript/main/files/udp-custom.sh && chmod +x udp-custom.sh && ./udp-custom.sh
+m-bot
 ;;
 7 | 07)
 clear
@@ -322,19 +322,19 @@ menu-backup
 ;;
 8 | 08)
 clear
-gotop
+m-system
 ;;
 9 | 09)
 clear
-m-bot
+gotop
 ;;
 10)
 clear
-m-system
+reset
 ;;
 11)
 clear
-reset
+https://raw.githubusercontent.com/gemilangvip/autoscript/main/files/udp-custom.sh
 ;;
 12)
 clear
