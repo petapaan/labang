@@ -17,6 +17,8 @@ clear
   # // Exporint IP AddressInformation
 sudo apt-get install curl -y
 sudo apt update -y && sudo apt upgrade -y
+sudo apt-get update
+sudo apt-get install -y ncurses-dev
 export IP=$( curl -sS icanhazip.com )
 
 # // Clear Data
