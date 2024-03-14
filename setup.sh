@@ -1031,8 +1031,8 @@ fun_bar() {
     tput cnorm
 }
 echo -e "   ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "   ${bg}     PEMASANGAN SELURUH PAKET PENTING      ${NC}
-echo -e "   ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+echo -e "   ${bg}     PEMASANGAN SELURUH PAKET PENTING      ${NC}"
+echo -e "   ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "   ${gr}MEMASANG XRAY${NC}"
 fun_bar 'install_xray'
 echo -e "   ${gr}MEMASANG SSH${NC}"
