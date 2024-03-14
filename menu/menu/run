@@ -199,6 +199,7 @@ echo -e " ${cy}│$NC$NC\033[41m              Service Information           $NC$
 echo -e " ${cy}╰════════════════════════════════════════════╯$NC"
 echo -e " ${cy}╭════════════════════════════════════════════╮$NC"
 echo -e " ${cy}│ ${cy}Service SSH / TUN                 $blue=$NC $status_ssh"
+echo -e " ${cy}│ ${cy}Service UDP Custom                $blue=$NC $status_udp"
 echo -e " ${cy}│ ${cy}Service OpenVPN SSL               $blue=$NC $status_openvpn"
 echo -e " ${cy}│ ${cy}Service OpenVPN WS-SSL            $blue=$NC $status_openvpn"
 echo -e " ${cy}│ ${cy}Service OpenVPN UDP               $blue=$NC $status_openvpn"
