@@ -267,7 +267,7 @@ echo -e ""
 read -rp " $(echo -e "Silahkan pilih ${gr}1${NC}/${gr}2${NC} atau ${grs}[ ${gr}enter ${grs}]${NC}: ")" host
 if [[ $host == "1" ]]; then
     echo -e " ${gr}Masukkan Domain kamu...!$NC"
-    read -p "   Domain: " host1
+    read -p " Domain: " host1
     echo "IP=" > /var/lib/kyt/ipvps.conf
     echo $host1 > /etc/xray/domain
     echo $host1 > /root/domain
@@ -278,15 +278,15 @@ elif [[ $host == "2" ]]; then
     rm -f /root/cf.sh
     clear
 else
-    wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
-    rm -f /root/cf.sh
-    clear
+    echo -e " ${gr}Masukkan Domain kamu...!$NC"
+    read -p " Domain: " host1
+    echo "IP=" > /var/lib/kyt/ipvps.conf
+    echo $host1 > /etc/xray/domain
+    echo $host1 > /root/domain
 fi
 }
 
 clear
-#GANTI PASSWORD DEFAULT
-
 restart_system(){
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -359,7 +359,7 @@ clear
 # Pasang SSL
 function pasang_ssl() {
 clear
-print_install "➣ MEMASANG SSL Pada Domain"
+print_install "Memasang SSL Pada Domain"
     rm -rf /etc/xray/xray.key
     rm -rf /etc/xray/xray.crt
     domain=$(cat /root/domain)
@@ -1019,7 +1019,7 @@ fun_bar() {
         touch $HOME/fim
     ) >/dev/null 2>&1 &
     tput civis
-    echo -ne " ${grs}Sedang ➣ MEMASANG ${gry}- ${grs}["
+    echo -ne " ${grs}Sedang memasang ${gry}- ${grs}["
     while true; do                                                      for ((i = 0; i < 18; i++)); do
             echo -ne "${gr}➣"
             sleep 0.1s
@@ -1037,46 +1037,45 @@ fun_bar() {
 echo -e " ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e " ${bg}     PEMASANGAN SELURUH PAKET PENTING      ${NC}"
 echo -e " ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e " ${gr}➣ MEMASANG XRAY${NC}"
+echo -e " ${gr}MEMASANG XRAY${NC}"
 fun_bar 'install_xray'
-echo -e " ${gr}➣ MEMASANG SSH${NC}"
+echo -e " ${gr}MEMASANG SSH${NC}"
 fun_bar 'ssh'
-echo -e " ${gr}➣ MEMASANG UDP MINI${NC}"
+echo -e " ${gr}MEMASANG UDP MINI${NC}"
 fun_bar 'udp_mini'
-echo -e " ${gr}➣ MEMASANG SSHD${NC}"
+echo -e " ${gr}MEMASANG SSHD${NC}"
 fun_bar 'ins_SSHD'
-echo -e " ${gr}➣ MEMASANG DROPBEAR${NC}"
+echo -e " ${gr}MEMASANG DROPBEAR${NC}"
 fun_bar 'ins_dropbear'
-echo -e " ${gr}➣ MEMASANG VNSTAT${NC}"
+echo -e " ${gr}MEMASANG VNSTAT${NC}"
 fun_bar 'ins_vnstat'
-echo -e " ${gr}➣ MEMASANG OPENVPN${NC}"
+echo -e " ${gr}MEMASANG OPENVPN${NC}"
 fun_bar 'ins_openvpn'
-echo -e " ${gr}➣ MEMASANG BACKUP${NC}"
+echo -e " ${gr}MEMASANG BACKUP${NC}"
 fun_bar 'ins_backup'
-echo -e " ${gr}➣ MEMASANG SWAP RAM 1GB${NC}"
+echo -e " ${gr}MEMASANG SWAP RAM 1GB${NC}"
 fun_bar 'ins_swap'
-echo -e " ${gr}➣ MEMASANG FAIL2BAN${NC}"
+echo -e " ${gr}MEMASANG FAIL2BAN${NC}"
 fun_bar 'ins_Fail2ban'
-echo -e " ${gr}➣ MEMASANG EPROXY${NC}"
+echo -e " ${gr}MEMASANG EPROXY${NC}"
 fun_bar 'ins_epro'
-echo -e " ${gr}➣ MEMASANG RESTART${NC}"
+echo -e " ${gr}MEMASANG RESTART${NC}"
 fun_bar 'ins_restart'
-echo -e " ${gr}➣ MEMASANG MENU${NC}"
+echo -e " ${gr}MEMASANG MENU${NC}"
 fun_bar 'menu'
-echo -e " ${gr}➣ MEMASANG PROFILE${NC}"
+echo -e " ${gr}MEMASANG PROFILE${NC}"
 fun_bar 'profile'
-echo -e " ${gr}➣ MENGHIDUPKAN SEMUA SERCICE${NC}"
+echo -e " ${gr}MENGHIDUPKAN SEMUA SERVICE${NC}"
 fun_bar 'enable_services'
-echo -e " ${gr}➣ MEMASANG UDP CUSTOM${NC}"
+echo -e " ${gr}MEMASANG UDP CUSTOM${NC}"
 fun_bar 'install_udp'
-echo -e " ${gr}➣ MERESTART SEMUA SYSTEM${NC}"
+echo -e " ${gr}MERESTART SEMUA SYSTEM${NC}"
 fun_bar 'restart_system'
-echo -e " ${gr}➣ DELETING TEMPORARY FILE${NC}"
+echo -e " ${gr}DELETING TEMPORARY FILE${NC}"
 fun_bar 'deleting_tmp'
 echo -e ""
 #sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
-echo -e "${green} Script Successfull Installed"
-echo ""
-read -rp "$(echo -e "   Script ${gr}Selesai ${NC}dipasang. Klik [ ${gr}enter ${NC}] untuk reboot: ")"
+echo -e " ${gr}Script Successfull Installed"
+read -rp "$(echo -e " Script ${gr}Selesai ${NC}dipasang. Klik [ ${gr}enter ${NC}] untuk reboot: ")"
 reboot
