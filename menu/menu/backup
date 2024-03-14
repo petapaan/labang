@@ -36,6 +36,8 @@ cp /etc/gshadow backup/
 cp /etc/crontab backup/
 cp -r /var/lib/kyt/ backup/kyt 
 cp -r /etc/xray backup/xray
+cp -r /etc/bot backup/bot
+cp -r /etc/bottrx backup/bottrx
 cp -r /var/www/html/ backup/html
 cd /root
 zip -r $IP-$date.zip backup > /dev/null 2>&1
@@ -59,17 +61,17 @@ KEY="$KEY"
 TIME="$TIME"
 URL="$URL"
 TEXT="
-<code>━━━━━━━━━━━━━━</code>
-<b>   ⚠️BACKUP NOTIF⚠️</b>
-<b>     Detail Backup VPS</b>
-<code>━━━━━━━━━━━━━━</code>
-<b>IP VPS  :</b> <code>${IP} </code>
-<b>DOMAIN :</b> <code>${domain}</code>
-<b>Tanggal : $date</b>
-<code>━━━━━━━━━━━━━━</code>
-<b>Link Backup   :</b> $link
-<code>━━━━━━━━━━━━━━</code>
-<code>Silahkan copy Link dan restore di VPS baru</code>
+────────────────────
+<b>☘ BERHASIL BACKUP VPS ☘</b>
+────────────────────
+<code>IP VPS  :</code> <code>${IP} </code>
+<code>Domain  :</code> <code>${domain}</code>
+<code>Tanggal :</code> <code> $date</code>
+────────────────────
+<code>Link Backup:</code>
+$link
+────────────────────
+<i>Silahkan copy Link dan restore di VPS baru</i>
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 echo ""
