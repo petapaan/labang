@@ -11,6 +11,7 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 IPVPS=$(curl -s ipv4.icanhazip.com)
 domain=$(cat /etc/xray/domain)
+# Getting
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
@@ -25,12 +26,11 @@ TEXT="
 ────────────────────
 <b☘ BERHASIL RESTORE VPS ☘</b>
 ────────────────────
-<code>Host   : ${domain}</code>
-<code>IP VPS : ${IPVPS}</code>
+<code>Host   :</code> <code>${domain}</code>
+<code>IP VPS :</code> <code>${IPVPS}</code>
 ────────────────────
     <b>☘ ALAWI-VPN-SCRIPT ☘</b>
 "
-
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 # ==========================================
@@ -55,8 +55,10 @@ cp -r bot /etc/
 cp -r bottrx /etc/
 cp -r html /var/www/
 cp crontab /etc/
-
+restart
+clear
 notif_restore
 rm -rf /root/backup
-rm -f backup.zip
-echo ""
+rm -rf backup.zip
+echo -e "Berhasil restore vps"
+read -
