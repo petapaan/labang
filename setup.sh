@@ -107,7 +107,7 @@ clear
 ####
 start=$(date +%s)
 secs_to_human() {
-    echo "   Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
+    echo " ➣ Installation time: $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
 }
 ### Status
 function print_ok() {
@@ -257,16 +257,16 @@ gr="\e[92;1m"
 NC='\033[0m'
 clear
 echo -e ""
-echo -e "   ${grs}─────────────────────────────────────────${NC}"
-echo -e "       ${gr}PILIHAN DOMAIN YANG AKAN DIPASANG${NC}"
-echo -e "   ${grs}─────────────────────────────────────────${NC}"
-echo -e "    [${gr}01${NC}]Menggunakan Domain Sendiri"
-echo -e "    [${gr}02${NC}]Menggunakan Domain Bawaan Script"
-echo -e "   ${grs}─────────────────────────────────────────${NC}"
+echo -e " ${grs}─────────────────────────────────────────${NC}"
+echo -e "     ${gr}PILIHAN DOMAIN YANG AKAN DIPASANG${NC}"
+echo -e " ${grs}─────────────────────────────────────────${NC}"
+echo -e "  [${gr}01${NC}]Menggunakan Domain Sendiri"
+echo -e "  [${gr}02${NC}]Menggunakan Domain Bawaan Script"
+echo -e " ${grs}─────────────────────────────────────────${NC}"
 echo -e ""
-read -rp "   $(echo -e "Silahkan pilih ${gr}1${NC}/${gr}2${NC} atau ${grs}[ ${gr}enter ${grs}]${NC}: ")" host
+read -rp " $(echo -e "Silahkan pilih ${gr}1${NC}/${gr}2${NC} atau ${grs}[ ${gr}enter ${grs}]${NC}: ")" host
 if [[ $host == "1" ]]; then
-    echo -e "   ${gr}Masukkan Domain kamu...!$NC"
+    echo -e " ${gr}Masukkan Domain kamu...!$NC"
     read -p "   Domain: " host1
     echo "IP=" > /var/lib/kyt/ipvps.conf
     echo $host1 > /etc/xray/domain
@@ -359,7 +359,7 @@ clear
 # Pasang SSL
 function pasang_ssl() {
 clear
-print_install "Memasang SSL Pada Domain"
+print_install "➣ MEMASANG SSL Pada Domain"
     rm -rf /etc/xray/xray.key
     rm -rf /etc/xray/xray.crt
     domain=$(cat /root/domain)
@@ -448,7 +448,7 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     clear
     curl -s ipinfo.io/city >>/etc/xray/city
     curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
-    print_install "Memasang Konfigurasi Packet"
+    print_install "➣ MEMASANG Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "${REPO}config/haproxy.cfg" >/dev/null 2>&1
     wget -O /etc/nginx/conf.d/xray.conf "${REPO}config/xray.conf" >/dev/null 2>&1
     sed -i "s/xxx/${domain}/g" /etc/haproxy/haproxy.cfg
@@ -487,7 +487,7 @@ print_success "Konfigurasi Packet"
 
 function ssh(){
 clear
-print_install "Memasang Password SSH"
+print_install "➣ MEMASANG Password SSH"
     wget -O /etc/pam.d/common-password "${REPO}files/password"
 chmod +x /etc/pam.d/common-password
 
@@ -560,7 +560,7 @@ print_success "Password SSH"
 
 function udp_mini(){
 clear
-print_install "Memasang Service Limit IP & Quota"
+print_install "➣ MEMASANG Service Limit IP & Quota"
 wget -q ${REPO}config/fv-tunnel && chmod +x fv-tunnel && ./fv-tunnel
 
 # // Installing UDP Mini
@@ -588,7 +588,7 @@ print_success "Limit IP Service"
 clear
 function ins_SSHD(){
 clear
-print_install "Memasang SSHD"
+print_install "➣ MEMASANG SSHD"
 wget -q -O /etc/ssh/sshd_config "${REPO}files/sshd" >/dev/null 2>&1
 chmod 700 /etc/ssh/sshd_config
 /etc/init.d/ssh restart
@@ -645,7 +645,7 @@ print_success "OpenVPN"
 
 function ins_backup(){
 clear
-print_install "Memasang Backup Server"
+print_install "➣ MEMASANG Backup Server"
 #BackupOption
 apt install rclone -y
 printf "q\n" | rclone config
@@ -682,7 +682,7 @@ print_success "Backup Server"
 clear
 function ins_swap(){
 clear
-print_install "Memasang Swap 1 G"
+print_install "➣ MEMASANG Swap 1 G"
 gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
     gotop_link="https://github.com/xxxserxxx/gotop/releases/download/v$gotop_latest/gotop_v"$gotop_latest"_linux_amd64.deb"
     curl -sL "$gotop_link" -o /tmp/gotop.deb
@@ -808,7 +808,7 @@ print_success "All Packet"
 #Instal Menu
 function menu(){
     clear
-    print_install "Memasang Menu Packet"
+    print_install "➣ MEMASANG Menu Packet"
     wget ${REPO}menu/menu.zip
     unzip menu.zip
     chmod +x menu/*
@@ -1019,9 +1019,9 @@ fun_bar() {
         touch $HOME/fim
     ) >/dev/null 2>&1 &
     tput civis
-    echo -ne "   ${grs}Sedang memasang ${gry}- ${grs}["
+    echo -ne " ${grs}Sedang ➣ MEMASANG ${gry}- ${grs}["
     while true; do                                                      for ((i = 0; i < 18; i++)); do
-            echo -ne "${gr}#"
+            echo -ne "${gr}➣"
             sleep 0.1s
         done
         [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -1029,49 +1029,49 @@ fun_bar() {
         sleep 1s
         tput cuu1
         tput dl1
-        echo -ne "   ${grs}Sedang memasang ${gry}- ${grs}["
+        echo -ne " ${grs}Sedang memasang ${gry}- ${grs}["
     done
     echo -e "${grs}]${gry} - ${gr}Selesai !${gry}"
     tput cnorm
 }
-echo -e "   ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "   ${bg}     PEMASANGAN SELURUH PAKET PENTING      ${NC}"
-echo -e "   ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "   ${gr}MEMASANG XRAY${NC}"
+echo -e " ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e " ${bg}     PEMASANGAN SELURUH PAKET PENTING      ${NC}"
+echo -e " ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e " ${gr}➣ MEMASANG XRAY${NC}"
 fun_bar 'install_xray'
-echo -e "   ${gr}MEMASANG SSH${NC}"
+echo -e " ${gr}➣ MEMASANG SSH${NC}"
 fun_bar 'ssh'
-echo -e "   ${gr}MEMASANG UDP MINI${NC}"
+echo -e " ${gr}➣ MEMASANG UDP MINI${NC}"
 fun_bar 'udp_mini'
-echo -e "   ${gr}MEMASANG SSHD${NC}"
+echo -e " ${gr}➣ MEMASANG SSHD${NC}"
 fun_bar 'ins_SSHD'
-echo -e "   ${gr}MEMASANG DROPBEAR${NC}"
+echo -e " ${gr}➣ MEMASANG DROPBEAR${NC}"
 fun_bar 'ins_dropbear'
-echo -e "   ${gr}MEMASANG VNSTAT${NC}"
+echo -e " ${gr}➣ MEMASANG VNSTAT${NC}"
 fun_bar 'ins_vnstat'
-echo -e "   ${gr}MEMASANG OPENVPN${NC}"
+echo -e " ${gr}➣ MEMASANG OPENVPN${NC}"
 fun_bar 'ins_openvpn'
-echo -e "   ${gr}MEMASANG BACKUP${NC}"
+echo -e " ${gr}➣ MEMASANG BACKUP${NC}"
 fun_bar 'ins_backup'
-echo -e "   ${gr}MEMASANG SWAP RAM 1GB${NC}"
+echo -e " ${gr}➣ MEMASANG SWAP RAM 1GB${NC}"
 fun_bar 'ins_swap'
-echo -e "   ${gr}MEMASANG FAIL2BAN${NC}"
+echo -e " ${gr}➣ MEMASANG FAIL2BAN${NC}"
 fun_bar 'ins_Fail2ban'
-echo -e "   ${gr}MEMASANG EPROXY${NC}"
+echo -e " ${gr}➣ MEMASANG EPROXY${NC}"
 fun_bar 'ins_epro'
-echo -e "   ${gr}MEMASANG RESTART${NC}"
+echo -e " ${gr}➣ MEMASANG RESTART${NC}"
 fun_bar 'ins_restart'
-echo -e "   ${gr}MEMASANG MENU${NC}"
+echo -e " ${gr}➣ MEMASANG MENU${NC}"
 fun_bar 'menu'
-echo -e "   ${gr}MEMASANG PROFILE${NC}"
+echo -e " ${gr}➣ MEMASANG PROFILE${NC}"
 fun_bar 'profile'
-echo -e "   ${gr}MENGHIDUPKAN SEMUA SERCICE${NC}"
+echo -e " ${gr}➣ MENGHIDUPKAN SEMUA SERCICE${NC}"
 fun_bar 'enable_services'
-echo -e "   ${gr}MEMASANG UDP CUSTOM${NC}"
+echo -e " ${gr}➣ MEMASANG UDP CUSTOM${NC}"
 fun_bar 'install_udp'
-echo -e "   ${gr}MERESTART SEMUA SYSTEM${NC}"
+echo -e " ${gr}➣ MERESTART SEMUA SYSTEM${NC}"
 fun_bar 'restart_system'
-echo -e "   ${gr}DELETING TEMPORARY FILE${NC}"
+echo -e " ${gr}➣ DELETING TEMPORARY FILE${NC}"
 fun_bar 'deleting_tmp'
 echo -e ""
 #sudo hostnamectl set-hostname $user
