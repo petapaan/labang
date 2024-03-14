@@ -28,7 +28,8 @@ TEXT="
 <b>  ☘️ BERHASIL RESTORE VPS ☘️</b>
 ━━━━━━━━━━━━━━━━━━━━━
 <code>Domain  :</code> <code>$domain</code>
-<code>IP VPS  :</code> <code>$IP</code>                         <code>Tanggal :</code> <code>$date</code>
+<code>IP VPS  :</code> <code>$IP</code>
+<code>Tanggal :</code> <code>$date</code>
 <code>Proses  :</code> <code>Restore VPS</code>
 ━━━━━━━━━━━━━━━━━━━━━
 "
@@ -46,6 +47,17 @@ sleep 1
 clear
 echo Start Restore
 cd /root/backup
+cp -r bot /etc/
+cp -r bottrx /etc/
+cd
+rm -rf /root/backup
+rm -rf backup.zip
+# ulangi lagi
+wget -O backup.zip "$url"
+unzip backup.zip
+rm -f backup.zip
+clear
+cd /root/backup
 cp passwd /etc/
 cp group /etc/
 cp shadow /etc/
@@ -58,6 +70,7 @@ cp -r html /var/www/
 cp crontab /etc/
 clear
 notif_restore
+cd
 rm -rf /root/backup
 rm -rf backup.zip
 echo -e "Berhasil restore vps"
