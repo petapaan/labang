@@ -107,7 +107,7 @@ clear
 ####
 start=$(date +%s)
 secs_to_human() {
-    echo "Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
+    echo "   Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
 }
 ### Status
 function print_ok() {
@@ -255,6 +255,7 @@ grs="\033[1;93m"
 bg="\033[42m"
 gr="\e[92;1m"
 NC='\033[0m'
+clear
 echo -e ""
 echo -e "   ${grs}─────────────────────────────────────────${NC}"
 echo -e "       ${gr}PILIHAN DOMAIN YANG AKAN DIPASANG${NC}"
@@ -285,6 +286,7 @@ fi
 
 clear
 #GANTI PASSWORD DEFAULT
+
 restart_system(){
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
@@ -317,7 +319,8 @@ datediff() {
     echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
 }
 mai="datediff "$Exp" "$DATE""
-
+# atur hostname
+sudo hostnamectl set-hostname $username
 # Status Expired Active
 Info="(${green}Active${NC})"
 Error="(${RED}ExpiRED${NC})"
@@ -993,7 +996,6 @@ clear
     base_package
     make_folder_xray
     pasang_domain
-    password_default
     pasang_ssl
 }
 installing
@@ -1074,7 +1076,6 @@ fun_bar 'deleting_tmp'
 echo -e ""
 #sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
-sudo hostnamectl set-hostname $username
 echo -e "${green} Script Successfull Installed"
 echo ""
 read -rp "$(echo -e "   Script ${gr}Selesai ${NC}dipasang. Klik [ ${gr}enter ${NC}] untuk reboot: ")"
