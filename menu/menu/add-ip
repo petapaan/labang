@@ -3,8 +3,8 @@ NC='\e[0m'
 clear
 Repo1="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
 export MYIP=$(curl -sS ipv4.icanhazip.com)
-SELLER=$(curl -sS ${Repo1}ip | grep $MYIP | awk '{print $2}')
-Exp100=$(curl -sS ${Repo1}ip | grep $MYIP | awk '{print $3}')
+SELLER=$(curl -sS ${Repo1} | grep $MYIP | awk '{print $2}')
+Exp100=$(curl -sS ${Repo1} | grep $MYIP | awk '{print $3}')
 data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
 d2=$(date -d "$date_list" +"+%s")
 d1=$(date -d "$Exp" +"+%s")
@@ -43,7 +43,7 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     echo -e ""
     echo -e ""
     read -p "  Input IP Address : " ip
-    CLIENT_EXISTS=$(grep -w $ip /root/ipvps/autoscript/REGISTRASI | wc -l)
+    CLIENT_EXISTS=$(grep -w $ip /root/ipvps/REGISTRASI | wc -l)
     if [[ ${CLIENT_EXISTS} == '1' ]]; then
         echo "IP Already Exist !"
         exit 0
