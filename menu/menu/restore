@@ -3,11 +3,11 @@
 # Color
 RED='\033[0;31m'
 NC='\033[0m'
-GREEN='\033[0;32m'
+gr='\033[0;32m'
 ORANGE='\033[0;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
+cy='\033[0;36m'
 LIGHT='\033[0;37m'
 IP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /etc/xray/domain)
@@ -36,27 +36,46 @@ TEXT="
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 # ==========================================
-# Getting
 clear
-echo "Silahkan Masukin Link Backupnya"
-read -rp "Link File: " -e url
+echo -e ""
+echo -e " [${gr}01${NC}] Restore bot notif & transaksi ${gr}dulu${NC}"
+echo -e " [${gr}02${NC}] Restore data vps penting"
+echo -e ""
+read -rp "$(echo-e "  Silahkan pilih ${gr}1 ${cy}dulu baru ${gr}2${NC}: ")" opt
+case $opt in
+    1) restore_bot ;;
+    2) restore_vps ;;
+    *) restore_bot ;;
+esac
+
+restore_bot() {
+echo -e "${gr} Silahkan Masukkan Link Backupnya di bawah ini!${NC}"
+read -rp " Link File: " -e url
 wget -O backup.zip "$url"
 unzip backup.zip
 rm -f backup.zip
-sleep 1
 clear
-echo Start Restore
+echo -e "${gr} System memulai Restore bot..${NC}"
 cd /root/backup
 cp -r bot /etc/
 cp -r bottrx /etc/
 cd
 rm -rf /root/backup
 rm -rf backup.zip
-# ulangi lagi
+echo -e "${gr} Restore bot selesai!${NC}"
+read -rp "$(echo -e " Tekan [ ${gr}enter"{NC} ] untuk kembali ke menu ")"
+menu
+}
+restore_vps() {
+clear
+echo -e ""
+echo -e "${gr} Silahkan Masukkan Link Backupnya di bawah ini!${NC}"
+read -rp " Link File: " -e url
 wget -O backup.zip "$url"
 unzip backup.zip
 rm -f backup.zip
 clear
+echo -e "${gr} System memulai Restore VPS..${NC}"
 cd /root/backup
 cp passwd /etc/
 cp group /etc/
@@ -73,6 +92,6 @@ notif_restore
 cd
 rm -rf /root/backup
 rm -rf backup.zip
-echo -e "Berhasil restore vps"
-read -rp "Tekan [ enter ] untuk kembali ke menu"
+echo -e "${gr} Restore VPS selesai${NC}"
+read -rp "$(echo -e " Tekan [ ${gr}enter${NC} ] untuk kembali ke menu")"
 menu
