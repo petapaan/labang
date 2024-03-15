@@ -93,7 +93,7 @@ echo -e ""
 echo -e " [${gr}01${NC}] Restore bot notif & transaksi ${gr}dulu${NC}"
 echo -e " [${gr}02${NC}] Restore data vps penting"
 echo -e ""
-read -rp "$(echo -e "  Silahkan pilih ${gr}1 ${cy}dulu baru ${gr}2${NC}: ")" opt
+read -rp "$(echo -e " Silahkan pilih ${gr}1 ${NC}dulu baru ${gr}2${NC}: ")" opt
 case $opt in
     1) restore_bot ;;
     2) restore_vps ;;
