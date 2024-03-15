@@ -33,7 +33,7 @@ checking_sc() {
 clear
 echo -e ""
 echo -e "${grs} ───────────────────────────────────────${NC}"
-echo -e "${bg}      MENU MANAGER BACKUP & RESTORE     ${NC}"
+echo -e " ${bg}     MENU MANAGER BACKUP & RESTORE     ${NC}"
 echo -e "${grs} ───────────────────────────────────────${NC}"
 echo -e " [${gr}01${NC}] Backup  (${gr}menu${NC})"
 echo -e " [${gr}02${NC}] Restore (${gr}menu${NC})"
