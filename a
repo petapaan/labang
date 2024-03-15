@@ -116,8 +116,13 @@ pesan = f"""
 <code>IP VPS     :</code> <code>{ip}</code>
 <code>Exp SCRIPT :</code> <code>{tanggal}</code>
 ━━━━━━━━━━━━━━━━━━━━━
-<b>LINK INSTALL SCRIPT:</b>
+➣ <b>REPOSITORY INDONESIA</b>
+<code>wget https://raw.githubusercontent.com/ALAWI-VPN/repoindo/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
+
+➣ <b>CMD INSTALL SCRIPT:</b>
 <code>apt install -y && wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
+
+➣ <b>Jika terjadi lost signal ketik saja</b> <code>screen -r update</code> <b>atau</b> <code>screen -r alawi</code>
 """
 kirim_pesan(pesan)
 END
