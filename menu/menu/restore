@@ -36,7 +36,7 @@ rm -rf /root/backup
 rm -rf backup.zip
 echo -e "${gr} Restore bot selesai!${NC}"
 read -rp "$(echo -e " Tekan [ ${gr}enter${NC} ] untuk kembali ke menu ")"
-menu
+menu-backup
 }
 
 restore_vps() {
