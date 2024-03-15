@@ -1076,6 +1076,5 @@ fun_bar 'deleting_tmp'
 echo -e ""
 #sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
-echo -e " ${gr}Script Successfull Installed"
 read -rp "$(echo -e " Script ${gr}Selesai ${NC}dipasang. Klik [ ${gr}enter ${NC}] untuk reboot: ")"
 reboot
