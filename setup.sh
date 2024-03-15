@@ -645,7 +645,7 @@ print_success "OpenVPN"
 
 function ins_backup(){
 clear
-print_install "➣ MEMASANG Backup Server"
+print_install "Memasang Backup Server"
 #BackupOption
 apt install rclone -y
 printf "q\n" | rclone config
@@ -677,12 +677,35 @@ EOF
 chown -R www-data:www-data /etc/msmtprc
 wget -q -O /etc/ipserver "${REPO}files/ipserver" && bash /etc/ipserver
 print_success "Backup Server"
-}
 
+# mengatur service autobackup
+service_file="/etc/systemd/system/autobackup.service"
+# Membuat file service autobackup
+cat <<EOF > "$service_file"
+[Unit]
+Description=Autobackup Service
+
+[Service]
+ExecStart=/usr/local/sbin/backup
+
+[Install]
+WantedBy=default.target
+EOF
+
+# Mengaktifkan service autobackup
+systemctl enable autobackup.service
+
+# mengatur crontab autobackup setiap jam
+cron_file="/etc/cron.d/autobackup"
+# Membuat file crontab autobackup
+echo "0 * * * * root /usr/local/sbin/backup" > "$cron_file"
+}
 clear
+
+
 function ins_swap(){
 clear
-print_install "➣ MEMASANG Swap 1 G"
+print_install "Memasang Swap 1 G"
 gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
     gotop_link="https://github.com/xxxserxxx/gotop/releases/download/v$gotop_latest/gotop_v"$gotop_latest"_linux_amd64.deb"
     curl -sL "$gotop_link" -o /tmp/gotop.deb
