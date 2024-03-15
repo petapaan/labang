@@ -22,7 +22,7 @@ clear
 # fungsi-fungsi
 restore_bot() {
 echo -e "${gr} Silahkan Masukkan Link Backupnya di bawah ini!${NC}"
-read -rp " Link File: " -e url
+read -rp "7 Link File: " -e url
 wget -O backup.zip "$url"
 unzip backup.zip
 rm -f backup.zip
@@ -35,7 +35,7 @@ cd
 rm -rf /root/backup
 rm -rf backup.zip
 echo -e "${gr} Restore bot selesai!${NC}"
-read -rp "$(echo -e " Tekan [ ${gr}enter"{NC} ] untuk kembali ke menu ")"
+read -rp "$(echo -e " Tekan [ ${gr}enter${NC} ] untuk kembali ke menu ")"
 menu
 }
 
