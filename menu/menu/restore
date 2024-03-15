@@ -1,18 +1,17 @@
 #!/bin/bash
 # ==========================================
-# Color
-RED='\033[0;31m'
+clear
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
 NC='\033[0m'
-gr='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-cy='\033[0;36m'
-LIGHT='\033[0;37m'
+
+# getting info vps
 IP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /etc/xray/domain)
 date=$(date +"%Y-%m-%d")
-# Getting
+# Getting bot token & id
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
@@ -21,8 +20,9 @@ clear
 # =========================================
 # fungsi-fungsi
 restore_bot() {
+echo -e ""
 echo -e "${gr} Silahkan Masukkan Link Backupnya di bawah ini!${NC}"
-read -rp "7 Link File: " -e url
+read -rp " Link File: " -e url
 wget -O backup.zip "$url"
 unzip backup.zip
 rm -f backup.zip
