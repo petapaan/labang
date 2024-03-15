@@ -55,9 +55,18 @@ Tanggal       : $date
 " | mail -s "Backup Data" $email
 rm -rf /root/backup
 rm -r /root/$IP-$date.zip
-clear
 
-# function notif telegram bot
+clear
+echo -e "
+Detail Backup 
+==================================
+IP VPS        : $IP
+Link Backup   : $link
+Tanggal       : $date
+==================================
+"
+echo "Silahkan copy Link dan restore di VPS baru"
+echo ""
 function notiftelebot() {
 export CHATID="$CHATID"
 export KEY="$KEY"
@@ -65,7 +74,7 @@ export TIME="$TIME"
 export URL="$URL"
 export IP="$IP"
 export domain="$domain"
-export link="$link"
+export link2="$link"
 export date="$date"
 
 python3 - <<END
@@ -78,7 +87,7 @@ TIME = os.getenv('TIME')
 URL = os.getenv('URL')
 IP = os.getenv('IP')
 domain = os.getenv('domain')
-link = os.getenv('link')
+link = os.getenv('link2')
 date = os.getenv('date')
 
 # Fungsi untuk mengirim pesan ke bot Telegram
@@ -113,14 +122,3 @@ kirim_pesan(pesan)
 END
 }
 notiftelebot
-clear
-echo -e "
-Detail Backup 
-==================================
-IP VPS        : $IP
-Link Backup   : $link
-Tanggal       : $date
-==================================
-"
-echo "Silahkan copy Link dan restore di VPS baru"
-echo ""
