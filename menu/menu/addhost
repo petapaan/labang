@@ -81,7 +81,6 @@ function pasang_domain() {
 echo -e "Sebelum Ganti Domain Harap Pointing Dulu Ip Vps Kalian"
 green "Ganti Domain"
 sleep 1
-while true; do
     read -rp "Input your domain : " -e pp
     if [ -z $pp ]; then
         echo -e "Tidak ada domain yang diinput"
@@ -90,7 +89,6 @@ while true; do
         echo $pp > /root/domain
         echo "IP=$pp" > /var/lib/kyt/ipvps.conf
     fi
-done
 }
 
 
@@ -118,6 +116,7 @@ function pasang_ssl() {
     systemctl restart haproxy
 }
 function notif_addhost() {
+domain=$(cat /etc/xray/domain)
 green "Notif AddHost Tele"
 CHATID="${CHATID}"
 KEY="${KEY}"
@@ -132,7 +131,7 @@ TEXT="
 ────────────────────
     <b>☘ ALAWI-VPN-SCRIPT ☘</b>
 "'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/alawivpn"}]]}'
-curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 pasang_domain
 read -rp "$(echo -e "Pasang SSL atau tidak? (y/n)")" putuskan
@@ -144,6 +143,7 @@ elif [ "$putuskan" == "n" ]; then
 else
     echo -e "Anda salah tekan. System akan melewati sesi ini"
     notif_addhost
+fi
 echo ""
 green "Back to menu in 2 sec ${NC}"
 sleep 2
