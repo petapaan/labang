@@ -78,23 +78,24 @@ red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 clear
 
 function pasang_domain() {
-    echo -e "Sebelum Ganti Domain Harap Pointing Dulu Ip Vps Kalian"
-    green "Ganti Domain"
-    sleep 1
-    read -rp "Input ur domain : " -e pp
+echo -e "Sebelum Ganti Domain Harap Pointing Dulu Ip Vps Kalian"
+green "Ganti Domain"
+sleep 1
+while true; do
+    read -rp "Input your domain : " -e pp
     if [ -z $pp ]; then
-        echo -e "
-        Tidak ada domain yang di input"
+        echo -e "Tidak ada domain yang diinput"
     else
-    echo "$pp" > /etc/xray/domain
-    echo $pp > /root/domain
+        echo "$pp" > /etc/xray/domain
+        echo $pp > /root/domain
         echo "IP=$pp" > /var/lib/kyt/ipvps.conf
     fi
+done
 }
 
 
 function pasang_ssl() {
-    green "Pasang SSL"
+    green "Pasang SSL..."
     sleep 1
     rm -rf /etc/xray/xray.key
     rm -rf /etc/xray/xray.crt
@@ -118,10 +119,10 @@ function pasang_ssl() {
 }
 function notif_addhost() {
 green "Notif AddHost Tele"
-CHATID="$CHATID"
-KEY="$KEY"
-TIME="$TIME"
-URL="$URL"
+CHATID="${CHATID}"
+KEY="${KEY}"
+TIME="${TIME}"
+URL="${URL}"
 TEXT="
 ────────────────────
 <b>☘ BERHASIL GANTI DOMAIN ☘</b>
@@ -130,13 +131,19 @@ TEXT="
 <code>IP VPS :</code> <code> ${MYIP}</code>
 ────────────────────
     <b>☘ ALAWI-VPN-SCRIPT ☘</b>
-"'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"ORDER ☘️","url":"https://t.me/muslimvpn"}]]}'
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/alawivpn"}]]}'
+curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 pasang_domain
-pasang_ssl
-notif_addhost
-
+read -rp "$(echo -e "Pasang SSL atau tidak? (y/n)")" putuskan
+if [ "$putuskan" == "y" ]; then
+    pasang_ssl
+    notif_addhost
+elif [ "putuskan" == "n" ]; then
+    notif_addhost
+else
+    echo -e "Anda salah tekan. System akan melewati sesi ini"
+    notif_addhost
 echo ""
 green "Back to menu in 2 sec ${NC}"
 sleep 2
