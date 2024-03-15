@@ -1,5 +1,13 @@
 #!/bin/bash
 clear
+# color fun
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\033[1;32m"
+gry="\033[1;37m"
+NC='\033[0m'
+
+# function bar animasi
 fun_bar() {
     CMD[0]="$1"
     CMD[1]="$2"
@@ -10,20 +18,19 @@ fun_bar() {
         touch $HOME/fim
     ) >/dev/null 2>&1 &
     tput civis
-    echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
-    while true; do
-        for ((i = 0; i < 18; i++)); do
-            echo -ne "\033[0;32m>"
+    echo -ne " ${grs}Sedang memasang ${gry}- ${grs}["
+    while true; do                                                      for ((i = 0; i < 18; i++)); do
+            echo -ne "${gr}➣"
             sleep 0.1s
         done
         [[ -e $HOME/fim ]] && rm $HOME/fim && break
-        echo -e "\033[0;33m]"
+        echo -e "${grs}]"
         sleep 1s
         tput cuu1
         tput dl1
-        echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
+        echo -ne " ${grs}Sedang memasang ${gry}- ${grs}["
     done
-    echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+    echo -e "${grs}]${gry} - ${gr}Selesai !${gry}"
     tput cnorm
 }
 res1() {
@@ -43,13 +50,14 @@ res1() {
 }
 netfilter-persistent
 clear
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
-echo -e " \e[1;97;101m            UPDATE SCRIPT               \e[0m"
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e "${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${bg}              UPDATE SCRIPT               ${NC}"
+echo -e "${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""
-echo -e "  \033[1;91m Update Script Service\033[1;37m"
+echo -e " ${gr}UPDATING SCRIPT PREMIUM${NC}"
 fun_bar 'res1'
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e "${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""
-read -n 1 -s -r -p "Press [ Enter ] to back on menu"
+sleep 3
 menu
+
