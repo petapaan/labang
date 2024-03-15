@@ -69,6 +69,7 @@ echo "$SUB_DOMAIN" > /etc/v2ray/domain
 echo "$SUB_DOMAIN" > /etc/xray/scdomain
 echo "IP=$SUB_DOMAIN" > /var/lib/kyt/ipvps.conf
 
+TIMES="10"
 CHATID="6331389328"
 KEY="7104548532:AAHl8gN5J8tWqWnEKpgZFSTDRyuoHwt5bKw"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
