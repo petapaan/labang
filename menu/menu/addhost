@@ -139,7 +139,7 @@ read -rp "$(echo -e "Pasang SSL atau tidak? (y/n)")" putuskan
 if [ "$putuskan" == "y" ]; then
     pasang_ssl
     notif_addhost
-elif [ "putuskan" == "n" ]; then
+elif [ "$putuskan" == "n" ]; then
     notif_addhost
 else
     echo -e "Anda salah tekan. System akan melewati sesi ini"
