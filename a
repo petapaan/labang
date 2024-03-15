@@ -71,6 +71,58 @@ git add REGISTRASI
 git commit -m "perbarui ip"
 git push
 }
+# function bot notif 
+function notiftelebot() {
+export CHATID="6331389328"
+export KEY="7097156228:AAF4Qav6b_8ag9iaKwhdIF1E9tOpSDiQUzI"
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
+export user="${user}"
+export tanggal="${tanggal}"
+export ip="${ip}"
+
+python3 - <<END
+import os
+import requests
+# Mendapatkan nilai variabel bash menggunakan os.getenv()
+CHATID = os.getenv('CHATID')
+KEY = os.getenv('KEY')
+TIME = os.getenv('TIME')
+URL = os.getenv('URL')
+user = os.getenv('user')
+tanggal = os.getenv('tanggal')
+ip = os.getenv('ip')
+
+# Fungsi untuk mengirim pesan ke bot Telegram
+def kirim_pesan(pesan):
+    TOKEN = KEY  # Ganti dengan token API bot Telegram Anda
+    chat_id = CHATID  # Ganti dengan ID obrolan atau username penerima pesan
+
+    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
+    params = {
+        'chat_id': chat_id,
+        'text': pesan,
+        'parse_mode': 'HTML'  # Menggunakan HTML untuk formatting teks
+    }
+
+    response = requests.post(url, params=params)
+    return response.json()
+#proses kirim teks/pesan ken bot
+pesan = f"""
+━━━━━━━━━━━━━━━━━━━━━
+<b>IZIN SCRIPT ALAWI-VPN PREM</b>
+━━━━━━━━━━━━━━━━━━━━━
+<code>Username   :</code> <code>{user}</code>
+<code>IP VPS     :</code> <code>{ip}</code>
+<code>Exp SCRIPT :</code> <code>{tanggal}</code>
+━━━━━━━━━━━━━━━━━━━━━
+<b>LINK INSTALL SCRIPT:</b>
+<code>apt install -y && wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
+"""
+kirim_pesan(pesan)
+END
+}
+
 pointing
 echo -e ""
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
@@ -81,5 +133,6 @@ echo -e "  \033[1;91mUpdate IP IZIN SCRIPT\033[1;37m"
 fun_bar 'giting'
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
+notiftelebot
 read -n 1 -s -r -p "  Press [ Enter ] to back on menu"
 menu
