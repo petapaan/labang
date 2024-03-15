@@ -18,36 +18,8 @@ KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
-function notif_restore() {
-CHATID="$CHATID"
-KEY="$KEY"
-TIME="$TIME"
-URL="$URL"
-TEXT="
-━━━━━━━━━━━━━━━━━━━━━
-<b>  ☘️ BERHASIL RESTORE VPS ☘️</b>
-━━━━━━━━━━━━━━━━━━━━━
-<code>Domain  :</code> <code>$domain</code>
-<code>IP VPS  :</code> <code>$IP</code>
-<code>Tanggal :</code> <code>$date</code>
-<code>Proses  :</code> <code>Restore VPS</code>
-━━━━━━━━━━━━━━━━━━━━━
-"
-curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-}
-# ==========================================
-clear
-echo -e ""
-echo -e " [${gr}01${NC}] Restore bot notif & transaksi ${gr}dulu${NC}"
-echo -e " [${gr}02${NC}] Restore data vps penting"
-echo -e ""
-read -rp "$(echo -e "  Silahkan pilih ${gr}1 ${cy}dulu baru ${gr}2${NC}: ")" opt
-case $opt in
-    1) restore_bot ;;
-    2) restore_vps ;;
-    *) restore_bot ;;
-esac
-
+# =========================================
+# fungsi-fungsi
 restore_bot() {
 echo -e "${gr} Silahkan Masukkan Link Backupnya di bawah ini!${NC}"
 read -rp " Link File: " -e url
@@ -66,6 +38,7 @@ echo -e "${gr} Restore bot selesai!${NC}"
 read -rp "$(echo -e " Tekan [ ${gr}enter"{NC} ] untuk kembali ke menu ")"
 menu
 }
+
 restore_vps() {
 clear
 echo -e ""
@@ -95,3 +68,34 @@ rm -rf backup.zip
 echo -e "${gr} Restore VPS selesai${NC}"
 read -rp "$(echo -e " Tekan [ ${gr}enter${NC} ] untuk kembali ke menu")"
 menu
+}
+
+function notif_restore() {
+CHATID="$CHATID"
+KEY="$KEY"
+TIME="$TIME"
+URL="$URL"
+TEXT="
+━━━━━━━━━━━━━━━━━━━━━
+<b>  ☘️ BERHASIL RESTORE VPS ☘️</b>
+━━━━━━━━━━━━━━━━━━━━━
+<code>Domain  :</code> <code>$domain</code>
+<code>IP VPS  :</code> <code>$IP</code>
+<code>Tanggal :</code> <code>$date</code>
+<code>Proses  :</code> <code>Restore VPS</code>
+━━━━━━━━━━━━━━━━━━━━━
+"
+curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+# ==========================================
+clear
+echo -e ""
+echo -e " [${gr}01${NC}] Restore bot notif & transaksi ${gr}dulu${NC}"
+echo -e " [${gr}02${NC}] Restore data vps penting"
+echo -e ""
+read -rp "$(echo -e "  Silahkan pilih ${gr}1 ${cy}dulu baru ${gr}2${NC}: ")" opt
+case $opt in
+    1) restore_bot ;;
+    2) restore_vps ;;
+    *) restore_bot ;;
+esac
