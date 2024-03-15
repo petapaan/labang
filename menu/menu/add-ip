@@ -24,10 +24,10 @@ YELL='\033[1;33m'
 BGX="\033[42m"
 END='\e[0m'
 AKTIF="VERIFIED"
-TOKEN="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"
-REPO="https://github.com/ALAWI-VPN/autoscript.git"
-EMAIL="alawivpn@gmail.com"
-USER="ALAWI-VPN"
+TOKEN=""
+REPO=""
+EMAIL=""
+USER=""
 
 
 add-ip() {
