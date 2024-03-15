@@ -1,8 +1,8 @@
 #!/bin/bash
 NC='\e[0m'
 clear
-Repo1="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI/"
-export MYIP=$( curl -sS ipv4.icanhazip.com/ )
+Repo1="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
+export MYIP=$(curl -sS ipv4.icanhazip.com)
 SELLER=$(curl -sS ${Repo1}ip | grep $MYIP | awk '{print $2}')
 Exp100=$(curl -sS ${Repo1}ip | grep $MYIP | awk '{print $3}')
 data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
@@ -24,16 +24,16 @@ YELL='\033[1;33m'
 BGX="\033[42m"
 END='\e[0m'
 AKTIF="VERIFIED"
-TOKEN="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"
-REPO="https://github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git"
-EMAIL="bimavpn292@gmail.com"
-USER="bimaVPN"
+TOKEN="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"
+REPO="https://github.com/ALAWI-VPN/autoscript.git"
+EMAIL="alawivpn@gmail.com"
+USER="ALAWI-VPN"
 
 
 add-ip() {
 TIMES="10"
-CHATID="6465475379"
-KEY="6817038105:AAGr5wlr7GzRmzHi0rjPExxvvLeM5v2yk9I"
+CHATID="6331389328"
+KEY="7097156228:AAF4Qav6b_8ag9iaKwhdIF1E9tOpSDiQUzI"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 
 
@@ -43,17 +43,16 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     echo -e ""
     echo -e ""
     read -p "  Input IP Address : " ip
-    CLIENT_EXISTS=$(grep -w $ip /root/ipvps/ip | wc -l)
+    CLIENT_EXISTS=$(grep -w $ip /root/ipvps/autoscript/REGISTRASI | wc -l)
     if [[ ${CLIENT_EXISTS} == '1' ]]; then
-    echo "IP Already Exist !"
-    exit 0
+        echo "IP Already Exist !"
+        exit 0
     fi
     echo -e ""
-   # read -p "  Input Username IP (Example : Lunatic) : " name
-    name=H6EFctYeZ3DqOWSaiXjtT1u8`</dev/urandom tr -dc A-Z0-9 | head -c4`
+    read -p "  Input Username IP (Example : alawi) : " name
+    #name=H6EFctYeZ3DqOWSaiXjtT1u8`</dev/urandom tr -dc A-Z0-9 | head -c4`
     echo -e ""
     clear
-    echo -e ""
     echo -e ""
     echo "  How Much Days Do You Want ?"
     echo "  [1] 30 Days"
@@ -63,35 +62,34 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     echo "  [5] Custom Expiration Date"
     echo -e ""
     read -p "  Input Menu Number : " exp
-    
     if [[ ${exp} == '1' ]]; then
-    exp2=`date -d "30 days" +"%Y-%m-%d"`
-    echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/ip
+        exp2=`date -d "30 days" +"%Y-%m-%d"`
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
     elif [[ ${exp} == '2' ]]; then
-    exp2=`date -d "60 days" +"%Y-%m-%d"`
-    echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/ip
+        exp2=`date -d "60 days" +"%Y-%m-%d"`
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
     elif [[ ${exp} == '3' ]]; then
-    exp2=`date -d "90 days" +"%Y-%m-%d"`
-    echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/ip
+        exp2=`date -d "90 days" +"%Y-%m-%d"`
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
     elif [[ ${exp} == '4' ]]; then
-    exp2="Lifetime"
-    echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/ip
+        exp2="Lifetime"
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
     elif [[ ${exp} == '5' ]]; then
-    read -p "Input Expired Days : " exp11
-    exp2=`date -d "$exp11 days" +"%Y-%m-%d"`
-    echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/ip
+        read -p "Input Expired Days : " exp11
+        exp2=`date -d "${exp11} days" +"%Y-%m-%d"`
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
     fi
-    cd /root/ipvps
+    cd /root/ipvps/
     git config --global user.email "${EMAIL}" &> /dev/null
     git config --global user.name "${USER}" &> /dev/null
     rm -rf .git &> /dev/null
     git init &> /dev/null
-    git add . &> /dev/null
-    git commit -m m &> /dev/null
+    git add * &> /dev/null
+    git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/ALAWI-VPN/autoscript/main/REGISTRASI
-    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git &> /dev/null
-    rm -rf /root/ipvps
+    git remote add origin https://github.com/ALAWI-VPN/autoscript.git
+    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript.git &> /dev/null
+    rm -rf /root/ipvps/
     clear
     sleep 1
     echo "  Registering IP Address..."
@@ -128,43 +126,41 @@ TEXT="
 curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 
-del-ip() {
-TIMES="10"
-CHATID="6465475379"
-KEY="6817038105:AAGr5wlr7GzRmzHi0rjPExxvvLeM5v2yk9I"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
-
+del-ip() { TIMES="10"
+CHATID="${CHATID}" 
+KEY="${KEY}"
+URL="${URL}"
     rm -rf /root/ipvps
-    git clone ${REPO} /root/Apex/ZX/REGISTRASI/ &> /dev/null
+    git clone ${REPO} /root/ipvps/ &> /dev/null
     clear
     echo ""
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "          \e[1;97mList IP Address Have Been Registered${NC}"
+    echo -e "          \e[1;97mList IP Address Have Bee.n Registered${NC}"
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
-    grep -E "^###"    "/root/Apex/ZX/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
-    grep -E "^#&"    "/root/Apex/ZX/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
+    grep -E "^###"    "/root/ipvps/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
+    grep -E "^#&"    "/root/ipvps/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
     echo ""
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
     read -p "   Input IP Address To Delete : " ipdel
-    name=$(cat /root/Apex/ZX/REGISTRASI | grep $ipdel | awk '{print $2}')
-    exp=$(cat /root/Apex/ZX/REGISTRASI | grep $ipdel | awk '{print $3}')
+    name=$(cat /root/ipvps/REGISTRASI | grep $ipdel | awk '{print $2}')
+    exp=$(cat /root/ipvps/REGISTRASI | grep $ipdel | awk '{print $3}')
     if [[ ${exp} == 'Lifetime' ]]; then
-    sed -i "/^#&   $name   $exp $ipdel/,/^},{/d" /root/ipvps/ip
+        sed -i "/^#&   $name   $exp $ipdel/,/^},{/d" /root/ipvps/ip
     else
-    sed -i "/^### $name $exp $ipdel/,/^},{/d" /root/ipvps/ip
+        sed -i "/^### $name $exp $ipdel/,/^},{/d" /root/ipvps/ip
     fi
     cd /root/ipvps
     git config --global user.email "${EMAIL}" &> /dev/null
-    git config --global user.name "${USER}" &> /dev/null
+    git config --global user.name "${USER}" &> /dev/nul
     rm -rf .git &> /dev/null
     git init &> /dev/null
-    git add . &> /dev/null
-    git commit -m m &> /dev/null
+    git add * &> /dev/null
+    git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/ALAWI-VPN/autoscript/main/REGISTRASI
-    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git &> /dev/null
+    git remote add origin https://github.com/ALAWI-VPN/autoscript.git
+    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
@@ -201,42 +197,41 @@ curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$T
 
 renew-ip() {
 TIMES="10"
-CHATID="6465475379"
-KEY="6817038105:AAGr5wlr7GzRmzHi0rjPExxvvLeM5v2yk9I"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
-
+CHATID="${CHATID}"
+KEY="$KEY}"
+URL="${URL}"
     rm -rf /root/ipvps
-    git clone ${REPO} /root/Apex/ZX/REGISTRASI/ &> /dev/null
+    git clone ${REPO} /root/ipvps/ &> /dev/null
     clear
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "          \e[1;97mList IP Address Have Been Registered${NC}"
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
-    grep -E "^###" "/root/Apex/ZX/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
+    grep -E "^###" "/root/ipvps/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
     echo ""
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
-    read -p "  Input IP Address To Renew : " ipdel
+    read -p "  Input IP Address To Renew : " ipnew
     read -p "  Input Days  : " days
-    name=$(cat /root/Apex/ZX/REGISTRASI | grep $ipdel | awk '{print $2}')
-    exp=$(cat /root/Apex/ZX/REGISTRASI | grep $ipdel | awk '{print $3}')
+    name=$(cat /root/ipvps/REGISTRASI | grep ${ipnew} | awk '{print $2}')
+    exp=$(cat /root/ipvps/REGISTRASI | grep ${ipnew} | awk '{print $3}')
     now=$(date +%Y-%m-%d)
     d1=$(date -d "$exp" +%s)
     d2=$(date -d "$now" +%s)
     exp2=$(( (d1 - d2) / 86400 ))
     exp3=$(($exp2 + $days))
     exp4=`date -d "$exp3 days" +"%Y-%m-%d"`
-    sed -i "s/### $name $exp $ipdel/### $name $exp4 $ipdel/g" /root/ipvps/ip
+    sed -i "s/### $name $exp ${ipnew}/### $name $exp4 ${ipnew}/g" /root/ipvps/REGISTRASI
     cd /root/ipvps
     git config --global user.email "${EMAIL}" &> /dev/null
     git config --global user.name "${USER}" &> /dev/null
     rm -rf .git &> /dev/null
     git init &> /dev/null
-    git add . &> /dev/null
-    git commit -m m &> /dev/null
+    git add * &> /dev/null
+    git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://ALAWI-VPN/autoscript/main/REGISTRASI
-    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript/main/REGISTRASI.git &> /dev/null
+    git remote add origin https://ALAWI-VPN/autoscript.git
+    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
@@ -252,7 +247,7 @@ TEXT2="
 <code>    SUCCES RENEW  IP VPS</code>
 <code>───────────────────────────</code>
 <code>USERNAME       : $name</code>
-<code>IP Address     : $ipdel</code>
+<code>IP Address     : ${ipnew}</code>
 <code>Expired On     : $exp4</code>
 <code>───────────────────────────</code>
 "
@@ -261,11 +256,11 @@ TEXT2="
     echo -e "          \e[1;97mSuccesfully Renew The IP Address${NC}"
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
-   echo ""
+    echo ""
     echo -e "  ${YELL}Username${NC}   : $name"
-    echo -e "  ${YELL}IP Address${NC} : $ipdel"
+    echo -e "  ${YELL}IP Address${NC} : ${ipnew}"
     echo -e "  ${YELL}Expired On${NC} : $exp4"
-    echo ""    
+    echo ""
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
 
@@ -277,15 +272,15 @@ curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$T
 clear
 
 echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "  [ REGISTER IP MENU ]${NC}"
-echo -e "   SELLER NAME : $SELLER "
+echo -e "   [ REGISTER IP MENU ]${NC}"
+echo -e "   SELLER NAME   : $SELLER "
 echo -e "   SELLER STATUS : $AKTIF "
 echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""
-echo -e "  ${grenbo}[1]$NC  ${YELL}Add IP VPS"$NC     
-echo -e "  ${grenbo}[2]$NC  ${YELL}Delete IP VPS"$NC
-echo -e "  ${grenbo}[3]$NC  ${YELL}Renew IP VPS"$NC
-echo -e "  ${grenbo}[4]$NC  ${YELL}EXIT ADD IP"$NC
+echo -e "  ${grenbo}[01]$NC  ${YELL}Add IP VPS"$NC
+echo -e "  ${grenbo}[02]$NC  ${YELL}Delete IP VPS"$NC
+echo -e "  ${grenbo}[03]$NC  ${YELL}Renew IP VPS"$NC
+echo -e "  ${grenbo}[04]$NC  ${YELL}Exit"$NC
 echo -e ""
 echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
@@ -303,7 +298,6 @@ del-ip
 clear
 renew-ip
 ;;
-
 4 | 04)
 clear
 exit
@@ -312,6 +306,7 @@ exit
 *)
 echo "Please Input An Correct Menu !"
 sleep 1
-menu
+add-ip
 ;;
 esac
+
