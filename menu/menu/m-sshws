@@ -36,7 +36,7 @@ case $menu in
     delssh
     ;;
 5|05)
-    cekssh
+    loginssh
     ;;
 6|06)
     clear
