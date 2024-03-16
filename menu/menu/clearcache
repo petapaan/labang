@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# // LUNATIC | PROJECT
-# // 082240074362 >> whatsapp 
-# // t.me/LunaticTunnrl >> Telegram
-# // Dean >> Fb
-
-
 MYIP=$(wget -qO- ipinfo.io/ip);
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -13,7 +7,7 @@ export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 function notif_clearcache() {
-    green "Notif AddHost Tele"
+    echo "Notif AddHost Tele"
     sleep 2
     CHATID="$CHATID"
 KEY="$KEY"
