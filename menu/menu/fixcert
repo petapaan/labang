@@ -12,9 +12,8 @@ export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 function notif_ssl() {
-    green "Notif AddHost Tele"
-    sleep 2
-    CHATID="$CHATID"
+green "Notif AddHost Tele"
+CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
 URL="$URL"
@@ -56,5 +55,5 @@ function pasang_ssl() {
 }
 pasang_ssl
 notif_ssl
-echo ""
+sleep 3
 menu

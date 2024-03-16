@@ -101,13 +101,13 @@ apt install ruby -y
 gem install lolcat
 apt install wondershaper -y
 clear
-# REPO    
-    REPO="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/"
+# REPO
+REPO="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/"
 
 ####
 start=$(date +%s)
 secs_to_human() {
-    echo " ➣ Installation time: $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
+    echo " ➣ Waktu instalasi script: $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
 }
 ### Status
 function print_ok() {
@@ -199,7 +199,6 @@ else
 fi
 }
 
-# GEO PROJECT
 clear
 function nginx_install() {
     # // Checking System
@@ -245,7 +244,6 @@ function base_package() {
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
     sudo apt-get install -y speedtest-cli vnstat libnss3-dev libnspr4-dev pkg-config libpam0g-dev libcap-ng-dev libcap-ng-utils libselinux1-dev libcurl4-nss-dev flex bison make libnss3-tools libevent-dev bc rsyslog dos2unix zlib1g-dev libssl-dev libsqlite3-dev sed dirmngr libxml-parser-perl build-essential gcc g++ python htop lsof tar wget curl ruby zip unzip p7zip-full python3-pip libc6 util-linux build-essential msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent net-tools openssl ca-certificates gnupg gnupg2 ca-certificates lsb-release gcc shc make cmake git screen socat xz-utils apt-transport-https gnupg1 dnsutils cron bash-completion ntpdate chrony jq openvpn easy-rsa
     print_success "Packet Yang Dibutuhkan"
-    
 }
 clear
 # Fungsi input domain
@@ -268,7 +266,7 @@ read -rp " $(echo -e "Silahkan pilih ${gr}1${NC}/${gr}2${NC} atau ${grs}[ ${gr}e
 if [[ $host == "1" ]]; then
     echo -e " ${gr}Masukkan Domain kamu...!$NC"
     read -p " Domain: " host1
-    echo "IP=" > /var/lib/kyt/ipvps.conf
+    echo "IP=${host1}" > /var/lib/kyt/ipvps.conf
     echo $host1 > /etc/xray/domain
     echo $host1 > /root/domain
     echo ""
@@ -362,7 +360,8 @@ clear
 print_install "Memasang SSL Pada Domain"
     rm -rf /etc/xray/xray.key
     rm -rf /etc/xray/xray.crt
-    domain=$(cat /root/domain)
+    domain=$(cat /etc/xray/domain)
+    #domain=$(cat /root/domain)
     STOPWEBSERVER=$(lsof -i:80 | cut -d' ' -f1 | awk 'NR==2 {print $1}')
     rm -rf /root/.acme.sh
     mkdir /root/.acme.sh
@@ -854,18 +853,17 @@ mesg n || true
 menu
 EOF
 
-cat >/etc/cron.d/xp_all <<-END
+    cat >/etc/cron.d/xp_all <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		2 0 * * * root /usr/local/sbin/xp
 	END
-	cat >/etc/cron.d/logclean <<-END
+    cat >/etc/cron.d/logclean <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		*/20 * * * * root /usr/local/sbin/clearlog
-		END
+	END
     chmod 644 /root/.profile
-	
     cat >/etc/cron.d/daily_reboot <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
@@ -916,7 +914,7 @@ exit 0
 EOF
 
     chmod +x /etc/rc.local
-    
+
     AUTOREB=$(cat /home/daily_reboot)
     SETT=11
     if [ $AUTOREB -gt $SETT ]; then
@@ -1043,7 +1041,8 @@ fun_bar() {
     ) >/dev/null 2>&1 &
     tput civis
     echo -ne " ${grs}Sedang memasang ${gry}- ${grs}["
-    while true; do                                                      for ((i = 0; i < 18; i++)); do
+    while true; do
+        for ((i = 0; i < 18; i++)); do
             echo -ne "${gr}➣"
             sleep 0.1s
         done
@@ -1097,7 +1096,6 @@ fun_bar 'restart_system'
 echo -e " ${gr}DELETING TEMPORARY FILE${NC}"
 fun_bar 'deleting_tmp'
 echo -e ""
-#sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
 read -rp "$(echo -e " Script ${gr}Selesai ${NC}dipasang. Klik [ ${gr}enter ${NC}] untuk reboot: ")"
 reboot
