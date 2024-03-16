@@ -19,7 +19,8 @@ fun_bar() {
     ) >/dev/null 2>&1 &
     tput civis
     echo -ne " ${grs}Sedang memasang ${gry}- ${grs}["
-    while true; do                                                      for ((i = 0; i < 18; i++)); do
+    while true; do
+        for ((i = 0; i < 11; i++)); do
             echo -ne "${gr}➣"
             sleep 0.1s
         done
