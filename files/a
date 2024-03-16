@@ -1,0 +1,288 @@
+#!/bin/bash
+
+# functions
+update() {
+    git add REGISTRASI
+    git commit -m "izinip"
+    git push
+}
+
+# tambah izin ip
+tambah() {
+    pointing() {
+# Mengambil tanggal sekarang
+current_date=$(date +"%Y-%m-%d")
+# warna
+cyan='\033[1;36m'
+green='\e[1;32m'
+NC='\e[0m'
+clear
+echo -e ""
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e "  \e[1;97;101m            ADD IP IZIN SCRIPT            ${NC}"
+echo -e "  \e[1;97;101m            CODE BY: ALAWI-VPN            ${NC}"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e ""
+
+while true; do
+read -rp "  Masukkan username : " user
+    if [ -z "$user" ]; then     echo ""
+    else
+        break
+    fi
+done
+while true; do
+read -rp "  Expired SC (hari) : " tgl
+    if [ -z "$tgl" ]; then echo ""
+    else
+        break
+    fi
+done
+while true; do
+read -rp "  Masukkan IP VPS   : " ip
+    if [ -z "$ip" ]; then echo ""
+    else
+        break
+    fi
+done
+tanggal=$(date -d "$current_date +${tgl} days" +"%Y-%m-%d")
+echo  "### ${user} ${tanggal} ${ip}" >> REGISTRASI
+    }
+# function bot notif
+    notiftelebot() {
+export CHATID="6331389328"
+export KEY="7097156228:AAF4Qav6b_8ag9iaKwhdIF1E9tOpSDiQUzI"
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
+export user="${user}"
+export tanggal="${tanggal}"
+export ip="${ip}"
+
+python3 - <<END
+import os
+import requests
+# Mendapatkan nilai variabel bash menggunakan os.getenv()
+CHATID = os.getenv('CHATID')
+KEY = os.getenv('KEY')
+TIME = os.getenv('TIME')
+URL = os.getenv('URL')
+user = os.getenv('user')
+tanggal = os.getenv('tanggal')
+ip = os.getenv('ip')
+
+# Fungsi untuk mengirim pesan ke bot Telegram
+def kirim_pesan(pesan):
+    TOKEN = KEY  # Ganti dengan token API bot Telegram Anda
+    chat_id = CHATID  # Ganti dengan ID obrolan atau username penerima pesan
+
+    url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
+    params = {
+        'chat_id': chat_id,
+        'text': pesan,
+        'parse_mode': 'HTML'  # Menggunakan HTML untuk formatting teks
+    }
+
+    response = requests.post(url, params=params)
+    return response.json()
+#proses kirim teks/pesan ken bot
+pesan = f"""
+━━━━━━━━━━━━━━━━━━━━━
+<b>IZIN SCRIPT ALAWI-VPN PREM</b>
+━━━━━━━━━━━━━━━━━━━━━
+<code>Username   :</code> <code>{user}</code>
+<code>IP VPS     :</code> <code>{ip}</code>
+<code>Exp SCRIPT :</code> <code>{tanggal}</code>
+━━━━━━━━━━━━━━━━━━━━━
+➣ <b>REPOSITORY INDONESIA</b>
+<code>wget https://raw.githubusercontent.com/ALAWI-VPN/repoindo/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
+
+➣ <b>CMD INSTALL SCRIPT:</b>
+<code>apt install -y && wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
+
+➣ <b>Jika terjadi lost signal ketik saja</b> <code>screen -r update</code> <b>atau</b> <code>screen -r alawi</code>
+"""
+kirim_pesan(pesan)
+END
+    }
+    pointing
+    notiftelebot
+}
+# perbarui izin ip
+perbarui() {
+    hasil_penemuan() {
+mapfile -t lines < REGISTRASI
+found=0
+tgl_lama=""
+wkwk=""
+for (( i=0; i<${#lines[@]}; i++ )); do
+    line="${lines[$i]}"
+    # Mengekstrak nama, tanggal, dan IP dari baris
+    name=$(echo "$line" | awk '{print $2}')
+    date_lama=$(echo "$line" | awk '{print $3}')
+    ip_lama=$(echo "$line" | awk '{print $4}')
+    if [[ "$ip_lama" == "$ip" ]]; then
+        wkwk=$(date -d "$date_lama + 0 days" +%Y-%m-%d)
+        found=1
+        tgl_lama=$date_lama
+        break
+    fi
+don
+echo -e ""
+echo -e "### $name $wkwk $ip_lama"
+echo -e ""
+    }
+
+# Membaca IP dari pengguna
+echo -e ""
+echo -e "MENU RENEW IZIN IP"
+echo -e ""
+read -p "Masukkan IP: " ip
+hasil_penemuan
+read -p "Masukkan jumlah hari tambahan: " days
+
+# Menyimpan konten file ke dalam array
+mapfile -t lines < REGISTRASI
+
+# Menandai apakah IP ditemukan atau tidak
+found=0
+old_date=""
+new_date=""
+
+# Loop melalui setiap baris dalam array
+for (( i=0; i<${#lines[@]}; i++ )); do
+    line="${lines[$i]}"
+    # Mengekstrak nama, tanggal, dan IP dari baris
+    name=$(echo "$line" | awk '{print $2}')
+    current_date=$(echo "$line" | awk '{print $3}')
+    current_ip=$(echo "$line" | awk '{print $4}')
+
+    # Memeriksa apakah IP cocok dengan IP yang diberikan
+    if [[ "$current_ip" == "$ip" ]]; then
+        # Mengubah tanggal dengan menambahkan jumlah hari
+        new_date=$(date -d "$current_date + $days days" +%Y-%m-%d)
+        # Mengganti tanggal pada baris
+        lines[$i]="${lines[$i]/$current_date/$new_date}"
+        found=1
+        old_date=$current_date
+        break
+    fi
+done
+
+# Menulis kembali konten yang telah diubah ke file
+printf "%s\n" "${lines[@]}" > REGISTRASI
+
+if [[ $found -eq 1 ]]; then
+    echo "Tanggal berhasil diubah untuk IP $ip."
+    echo "Tanggal lama: $old_date"
+    echo "Tanggal baru: $new_date"
+else
+    echo "IP $ip tidak ditemukan dalam file."
+fi
+}
+
+kurangi() {
+    hasil_penemuan() {
+mapfile -t lines < REGISTRASI
+found=0
+tgl_lama=""
+wkwk=""
+for (( i=0; i<${#lines[@]}; i++ )); do
+    line="${lines[$i]}"
+    # Mengekstrak nama, tanggal, dan IP dari baris
+    name=$(echo "$line" | awk '{print $2}')
+    date_lama=$(echo "$line" | awk '{print $3}')
+    ip_lama=$(echo "$line" | awk '{print $4}')
+    if [[ "$ip_lama" == "$ip" ]]; then
+        wkwk=$(date -d "$date_lama + 0 days" +%Y-%m-%d)
+        found=1
+        tgl_lama=$date_lama
+        break
+    fi
+done
+echo -e ""
+echo -e "### $name $wkwk $ip_lama"
+echo -e ""
+}
+
+# Membaca IP dari pengguna
+echo -e ""
+echo -e "MENU KURANGI WAKTU IZIN IP"
+echo -e ""
+read -p "Masukkan IP: " ip
+hasil_penemuan
+read -p "Masukkan jumlah hari pengurangan: " days
+
+# Menyimpan konten file ke dalam array
+mapfile -t lines < REGISTRASI
+
+# Menandai apakah IP ditemukan atau tidak
+found=0
+old_date=""
+new_date=""
+
+# Loop melalui setiap baris dalam array
+for (( i=0; i<${#lines[@]}; i++ )); do
+    line="${lines[$i]}"
+    # Mengekstrak nama, tanggal, dan IP dari baris
+    name=$(echo "$line" | awk '{print $2}')
+    current_date=$(echo "$line" | awk '{print $3}')
+    current_ip=$(echo "$line" | awk '{print $4}')
+
+    # Memeriksa apakah IP cocok dengan IP yang diberikan
+    if [[ "$current_ip" == "$ip" ]]; then
+        # Mengubah tanggal dengan menambahkan jumlah hari
+        new_date=$(date -d "$current_date - $days days" +%Y-%m-%d)
+        # Mengganti tanggal pada baris
+        lines[$i]="${lines[$i]/$current_date/$new_date}"
+        found=1
+        old_date=$current_date
+        break
+    fi
+done
+
+# Menulis kembali konten yang telah diubah ke file
+printf "%s\n" "${lines[@]}" > REGISTRASI
+
+if [[ $found -eq 1 ]]; then
+    echo "Tanggal berhasil diubah untuk IP $ip."
+    echo "Tanggal lama: $old_date"
+    echo "Tanggal baru: $new_date"
+else
+    echo "IP $ip tidak ditemukan dalam file."
+fi
+}
+
+hapus() {
+# bismillah bisa buat
+# variable
+file=REGISTRASI
+
+# perintah masukan
+echo -e ""
+echo -e "MENU DELETE IZIN IP BY ALAWIVPN"
+echo -e ""
+read -rp "Masukkan ip: " ip
+echo -e ""
+
+# proses deleting
+sed -i "/$ip/d" $file
+echo -e "Ip $ip berhasil dihapus"
+}
+
+# menu
+echo -e ""
+echo -e " [01] Tambah izin ip"
+echo -e " [02] Perbarui izin ip"
+echo -e " [03] Kurangi izin ip"
+echo -e " [04] Hapus izin ip"
+echo -e " [00] Keluar"
+echo -e ""
+read -rp " Silahkan pilih 1-4 atau 0: " jwb
+case $jwb in
+    1 | 01) clear ; tambah ; update ;;
+    2 | 02) clear ; perbarui ; update ;;
+    3 | 03) clear ; kurangi ; update ;;
+    4 | 04) clear ; hapus ; update ;;
+    0 | 00) clear ; exit ;;
+    *) clear ; bash a ;;
+esac
