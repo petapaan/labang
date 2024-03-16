@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Cloudflare API credentials
+email="vpsvpsku@gmail.com"
+api_key="cb9b858e75a955df979cf4bff74839df1943d"
+clear
+# SCRIPT HAPUS ALL RECORD A CLOUDFLARE
+echo -e ""
+echo -e "  SCRIPT HAPUS ALL RECORD TYPE A CLOUDFLARE"
+echo -e "             Masukkan domain saja          "
+echo -e "                BY : ALAWI VPN             "
+echo -e ""
+read -rp "$(echo -e "  Masukkan domain yang akan dihapus recordnya : ")" host
+# Domain and record type
+domain="$host"
+record_type="A"
+
+# Get zone ID for the domain
+zone_id=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=$domain" \
+     -H "X-Auth-Email: $email" \
+     -H "X-Auth-Key: $api_key" \
+     -H "Content-Type: application/json" | jq -r '.result[0].id')
+
+# Get all DNS records for the domain
+records=$(curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records?type=$record_type" \
+     -H "X-Auth-Email: $email" \
+     -H "X-Auth-Key: $api_key" \
+     -H "Content-Type: application/json" | jq -r '.result[] | .id')
+
+# Loop through each record and delete it
+for record_id in $records; do
+    curl -s -X DELETE "https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records/$record_id" \
+         -H "X-Auth-Email: $email" \
+         -H "X-Auth-Key: $api_key" \
+         -H "Content-Type: application/json"
+done
+
+echo "All A records for domain $domain have been deleted."
