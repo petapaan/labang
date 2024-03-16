@@ -1,0 +1,71 @@
+#!/bin/bash
+clear
+# Warna ANSI
+light_cyan="\e[96m"
+reset_color="\e[0m"
+blue_bg="\e[44m"
+white="\e[97m"
+bold='\033[1m'
+YELLOW='\033[0;33m'
+
+# Menentukan lebar layar
+screen_width=$(tput cols)
+
+# Menampilkan garis pembungkus
+printf "${light_cyan}"
+printf '%*s\n' "${screen_width}" '' | tr ' ' '-'
+
+# Menampilkan judul
+title="MENU SETTING AUTOBACKUP"
+title_length=${#title}
+padding_length=$(( (screen_width - title_length) / 2 ))
+
+padding=""
+for ((i=0; i<padding_length; i++)); do
+    padding+=" "
+done
+
+printf "${blue_bg}${bold}${white}%s%s%s%s${reset_color}\n" "$padding" "$title" "$padding" " "
+
+# Menampilkan garis pembungkus
+printf "${light_cyan}"
+printf '%*s\n' "${screen_width}" '' | tr ' ' '-'
+printf "${reset_color}\n"
+
+# Menampilkan pilihan menu
+echo -e " ${YELLOW}${bold}Pilih interval autobackup:${reset_color}"
+echo -e " ${light_cyan}1. Setiap 1 jam${reset_color}"
+echo -e " ${light_cyan}2. Setiap 4 jam${reset_color}"
+echo -e " ${light_cyan}3. Setiap 6 jam${reset_color}"
+echo -e " ${light_cyan}4. Setiap 12 jam${reset_color}"
+echo -e " ${light_cyan}5. Satu hari${reset_color}"
+
+read -p " Masukkan pilihan (1/2/3/4/5): " choice
+
+# Menambahkan jadwal autobackup ke crontab
+case $choice in
+    1)
+        cron_schedule="0 * * * *"
+        ;;
+    2)
+        cron_schedule="0 */4 * * *"
+        ;;
+    3)
+        cron_schedule="0 */6 * * *"
+        ;;
+    4)
+        cron_schedule="0 */12 * * *"
+        ;;
+    5)
+        cron_schedule="0 0 * * *"
+        ;;
+    *)
+        echo "Pilihan tidak valid. Silakan pilih 1, 2, 3, 4, atau 5."
+        exit 1
+        ;;
+esac
+
+# Menambahkan jadwal autobackup ke crontab
+(crontab -l ; echo "$cron_schedule /usr/local/sbin/backup.sh") | crontab -
+
+echo "Autobackup telah diatur untuk interval yang dipilih."
