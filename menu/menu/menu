@@ -292,46 +292,16 @@ echo -e ""
 read -p " Pilih 1 sampai 12 : " opt
 echo -e ""
 case $opt in
-1 | 01)
-clear
-m-sshws
-;;
-2 | 02)
-clear
-m-vmess
-;;
-3 | 03)
-clear
-m-vless
-;;
-4 | 04)
-clear
-m-trojan
-;;
-5 | 05)
-clear
-m-ssws
-;;
-6 | 06)
-clear
-m-bot
-;;
-7 | 07)
-clear
-menu-backup
-;;
-8 | 08)
-clear
-m-system
-;;
-9 | 09)
-clear
-gotop
-;;
-10)
-clear
-reset
-;;
+1 | 01) clear ; m-sshws ;;
+2 | 02) clear ; m-vmess ;;
+3 | 03) clear ; m-vless ;;
+4 | 04) clear ; m-trojan ;;
+5 | 05) clear ; m-ssws ;;
+6 | 06) clear ; m-bot ;;
+7 | 07) clear ; menu-backup ;;
+8 | 08) clear ; m-system ;;
+9 | 09) clear ; gotop ;;
+10) clear ; reset ;;
 11)
 clear
 https://raw.githubusercontent.com/gemilangvip/autoscript/main/files/udp-custom.sh
@@ -342,14 +312,9 @@ wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/update.sh
 chmod +x update.sh
 ./update.sh
 ;;
-13)
-clear
-pointing
-;;
-14)
-clear
-barupo
-;;
+13) clear ; pointing ;;
+14) clear ; barupo ;;
+15) clear ; m-autobackup ;;
 0 | 00)
 exit
 ;;
