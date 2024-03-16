@@ -275,6 +275,7 @@ echo -e " [01] Tambah izin ip"
 echo -e " [02] Perbarui izin ip"
 echo -e " [03] Kurangi izin ip"
 echo -e " [04] Hapus izin ip"
+echo -e " [05] Update Github"
 echo -e " [00] Keluar"
 echo -e ""
 read -rp " Silahkan pilih 1-4 atau 0: " jwb
@@ -283,6 +284,7 @@ case $jwb in
     2 | 02) clear ; perbarui ; update ;;
     3 | 03) clear ; kurangi ; update ;;
     4 | 04) clear ; hapus ; update ;;
+    5 | 05) update ;;
     0 | 00) clear ; exit ;;
-    *) clear ; bash a ;;
+    *) clear ; bash news ;;
 esac
