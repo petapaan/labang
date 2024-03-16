@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if [ -e "/var/log/auth.log" ]; then
+    LOG="/var/log/auth.log"
+fi
+
+if [ -e "/var/log/secure" ]; then
+    LOG="/var/log/secure"
+fi
+
+data=( $(ps aux | grep -i dropbear | awk '{print $2}') )
+cat "$LOG" | grep -i dropbear | grep -i "Password auth succeeded" > /tmp/login-db.txt
+total_pid=0
+declare -A user_counts
+while IFS= read -r line
+do
+    PID=$(echo "$line" | awk '{print $6}' | cut -d "[" -f2)
+    USER=$(echo "$line" | awk '{print $10}' | sed "s/'//g")
+    IP=$(echo "$line" | awk '{print $12}')
+    echo "$PID - $USER - $IP"
+    ((total_pid++))
+    if [[ -v user_counts["$USER"] ]]; then
+        ((user_counts["$USER"]++))
+    else
+        user_counts["$USER"]=1
+    fi
+done < <(grep "dropbear\[" /tmp/login-db.txt)
+#echo "Jumlah PID yang ditampilkan: $total_pid"
+#echo "Jumlah kemunculan setiap pengguna:"
+for user in "${!user_counts[@]}"; do
+    count=${user_counts["$user"]}
+    #echo "Pengguna $user: $count"
+done
+user="{$user}"
+jumlah="{$count}"
+nama="USER ONLINE"
+total="TOTAL LOGIN"
+printf "%-10s %-10s\n" "$nama" "$total"
+printf "%-10s %-10s\n" "$user" "$jumlah"
