@@ -25,7 +25,7 @@ for ((i=0; i<padding_length; i++)); do
     padding+=" "
 done
 
-printf "${blue_bg}${bold}${white}%s%s%s%s${reset_color}\n" "$padding" "$title" "$padding" " "
+printf "${blue_bg}${bold}${white}%s%s%s%s${reset_color}\n" "$padding" "$title" "$padding"
 
 # Menampilkan garis pembungkus
 printf "${light_cyan}"
