@@ -66,6 +66,6 @@ case $choice in
 esac
 
 # Menambahkan jadwal autobackup ke crontab
-(crontab -l ; echo "$cron_schedule /usr/local/sbin/backup.sh") | crontab -
-
+echo "$cron_schedule /usr/local/sbin/backup" > /etc/cron.d/autobackup
 echo "Autobackup telah diatur untuk interval yang dipilih."
+menu 3
