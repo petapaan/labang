@@ -9,7 +9,7 @@ clear
 IP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /etc/xray/domain)
 date=$(date +"%Y-%m-%d")
-email=$(cat /root/email)
+email=$(cat /etc/xray/email)
 if [[ "$email" = "" ]]; then
 echo -e ""
 clear
@@ -18,7 +18,7 @@ echo -e "\033[1;92m               INPUT YOUR EMAIL\033[0m"
 echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
 echo -e ""
 read -rp "Email : " -e email
-cat <<EOF>>/root/email
+cat <<EOF>>/etc/xray/email
 $email
 EOF
 fi
@@ -27,6 +27,7 @@ echo -e ""
 echo -e ""
 echo -e ""
 echo -e "Wait , Backup Procces...................." | lolcat
+cd
 rm -rf /root/backup
 mkdir /root/backup
 cp /etc/passwd backup/
@@ -34,7 +35,7 @@ cp /etc/group backup/
 cp /etc/shadow backup/
 cp /etc/gshadow backup/
 cp /etc/crontab backup/
-cp -r /var/lib/kyt/ backup/kyt 
+cp -r /var/lib/kyt/ backup/kyt
 cp -r /etc/xray backup/xray
 cp -r /etc/bot backup/bot
 cp -r /etc/bottrx backup/bottrx
@@ -46,7 +47,7 @@ url=$(rclone link dr:backup/$IP-$date.zip)
 id=(`echo $url | grep '^https' | cut -d'=' -f2`)
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
 echo -e "
-Detail Backup 
+Detail Backup
 ==================================
 IP VPS        : $IP
 Link Backup   : $link
@@ -58,7 +59,7 @@ rm -r /root/$IP-$date.zip
 
 clear
 echo -e "
-Detail Backup 
+Detail Backup
 ==================================
 IP VPS        : $IP
 Link Backup   : $link
