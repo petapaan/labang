@@ -68,4 +68,5 @@ esac
 # Menambahkan jadwal autobackup ke crontab
 echo "$cron_schedule /usr/local/sbin/backup" > /etc/cron.d/autobackup
 echo "Autobackup telah diatur untuk interval yang dipilih."
-menu 3
+sleep 3
+menu
