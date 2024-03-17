@@ -30,7 +30,7 @@ case $menu in
 	4|04) clear ; delvless ;;
 	5|05) clear ; cekvless ;;
 	6|06) clear ; user-vless ;;
-	0|00) menu ;;
-	*) m-vless ;;
+	0|00) clear ; menu ;;
+	*) clear ; m-vless ;;
 esac
 
