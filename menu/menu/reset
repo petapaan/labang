@@ -86,25 +86,25 @@ echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━
 echo -e "  ${bg}                 RESTART ALL SERVICE               ${NC}"
 echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}━━━━━━━━"
 echo -e ""
-echo -e "  ${gr}service daemon-reload\033[1;37m"
+echo -e "  ${gr}SERVICE DAEMON-RELOAD\033[1;37m"
 fun_bar 'res1'
-echo -e "  ${gr}service restart nginx\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART NGINX\033[1;37m"
 fun_bar 'res2'
-echo -e "  ${gr}service restart xray\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART XRAU\033[1;37m"
 fun_bar 'res3'
-echo -e "  ${gr}service restart rc-local\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART RC-LOCAL\033[1;37m"
 fun_bar 'res4'
-echo -e "  ${gr}service restart dropbear\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART DROPBEAR\033[1;37m"
 fun_bar 'res7'
-echo -e "  ${gr}service restart websocket\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART WEBSOCKET\033[1;37m"
 fun_bar 'res8'
-echo -e "  ${gr}service restart openvpn\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART OPENVPN\033[1;37m"
  fun_bar 'res9'
-echo -e "  ${gr}service restart cron\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART CRON\033[1;37m"
 fun_bar 'res10'
-echo -e "  ${gr}service restart squid\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART SQUID\033[1;37m"
 fun_bar 'res13'
-echo -e "  ${gr}service restart badvpn\033[1;37m"
+echo -e "  ${gr}SERVICE RESTART BADVPN\033[1;37m"
 fun_bar 'res14'
 echo -e ""
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000
