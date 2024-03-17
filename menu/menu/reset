@@ -82,9 +82,9 @@ res14() {
 netfilter-persistent
 clear
 echo -e ""
-echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$l"
-echo -e "  ${bg}             RESTART ALL SERVICE           ${NC}"
-echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$l"
+echo -e "  ${bg}                 RESTART ALL SERVICE               ${NC}"
+echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}━━━━━━━━"
 echo -e ""
 echo -e "  ${gr}service daemon-reload\033[1;37m"
 fun_bar 'res1'
