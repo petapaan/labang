@@ -11,42 +11,26 @@ echo -e "${grs}┌────────────────────�
 echo -e "${grs}│${bg}                MENU MANAGER VLESS               ${NC}${grs}│${NC}"
 echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
 echo -e "${grs}┌───────────────────────┐ ┌───────────────────────┐${NC}"
-echo -e "${grs}│ [${gr}01${NC}] • ADD AKUN       ${grs}│ │ [${gr}04${NC}] • DELETE AKUN    ${grs}│${NC}"
+echo -e "${grs}│ $NC[${gr}01${NC}] • ADD AKUN       ${grs}│ │ $NC[${gr}04${NC}] • DELETE AKUN    ${grs}│${NC}"
 echo -e "${grs}│                       │ │                   ${NC}    │${NC}"
-echo -e "${grs}│ [${gr}02${NC}] • TRIAL AKUN     ${grs}│ │ [${gr}05${NC}] • USER ONLINE    ${grs}│${NC}"
+echo -e "${grs}│ $NC[${gr}02${NC}] • TRIAL AKUN     ${grs}│ │ $NC[${gr}05${NC}] • USER ONLINE    ${grs}│${NC}"
 echo -e "${grs}│                       │ │                       │${NC}"
-echo -e "${grs}│ [${gr}03${NC}] • RENEW AKUN     ${grs}│ │ [${gr}06${NC}] • USER CONFIG    ${grs}│${NC}"
+echo -e "${grs}│ $NC[${gr}03${NC}] • RENEW AKUN     ${grs}│ │ $NC[${gr}06${NC}] • USER CONFIG    ${grs}│${NC}"
 echo -e "${grs}└───────────────────────┘ └───────────────────────┘${NC}"
 echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${grs}│                [${gr}00${NC}] BACK TO MENU                ${grs}│${NC}"
+echo -e "${grs}│                $NC[${gr}00${NC}] BACK TO MENU                ${grs}│${NC}"
 echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${NC} ] : ")" menu
 echo -e ""
 case $menu in
-1|01) clear ;
-    addvless
-    ;;
-2|02) clear ;
-    trialvless
-    ;;
-3|03) clear ;
-    renewvless
-    ;;
-4|04) clear ;
-    delvless
-    ;;
-5|05) clear ;
-    cekvless
-    ;;
-6|06) clear ;
-    user-vless
-    ;;
-0|00)
-    menu
-    ;;
-*)
-    menu
-    ;;
+    1|01) clear ; addvless ;;
+	2|02) clear ; trialvless ;;
+	3|03) clear ; renewvless ;;
+	4|04) clear ; delvless ;;
+	5|05) clear ; cekvless ;;
+	6|06) clear ; user-vless ;;
+	0|00) menu ;;
+	*) m-vless ;;
 esac
 
