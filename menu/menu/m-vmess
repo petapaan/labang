@@ -18,7 +18,7 @@ echo -e "${grs}│                       │ │                       │${NC}"
 echo -e "${grs}│ $NC[${gr}03${NC}] • RENEW AKUN     ${grs}│ │ $NC[${gr}06${NC}] • USER CONFIG    ${grs}│${NC}"
 echo -e "${grs}└───────────────────────┘ └───────────────────────┘${NC}"
 echo -e "${grs}┌─────────────────────────────────────────────────┐${NC}"
-echo -e "${grs}│                [${gr}00${NC}] BACK TO MENU                ${grs}│${NC}"
+echo -e "${grs}│                $NC[${gr}00${NC}] BACK TO MENU                ${grs}│${NC}"
 echo -e "${grs}└─────────────────────────────────────────────────┘${NC}"
 echo -e ""
 read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${NC} ] : ")" menu
