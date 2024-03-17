@@ -35,7 +35,7 @@ CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
-
+clear
 # getting notif trx
 CHATID2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 3)
 KEY2=$(grep -E "^#bot# " "/etc/bottrx/.bot.db" | cut -d ' ' -f 2)
@@ -145,9 +145,8 @@ Berakhir Pada    : $expe
 END
 
 # Function to send notification to Telegram Bot
-function notiftelebot() {
-    sleep 0
-    CHATID="$CHATID"
+bot_telegram() {
+CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
 URL="$URL"
@@ -156,7 +155,8 @@ TEXT="
 <b>    Succes Create SSH Ovpn Account</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <code>Username    :</code> <code>$Login</code>
-<code>Password    :</code> <code>$Pass</code
+<code>Password    :</code> <code>$Pass</code>
+<code>Limit User  :</code> <code>$iplimit User</code>
 <code>Host        :</code> <code>$domain</code>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <b>                   INFORMASI PORT</b>
@@ -190,10 +190,13 @@ https://$domain:81/ssh-$Login.txt
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <code>Dibuat Pada  :</code> <b>$tnggl</b>
 <code>Berakhir Pada:</code> <b>$expe</b>
+<code>Masa Aktif   :</code> <b>$masaaktif Hari</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
+bot_telegram
+clear
 
 # function notif transaksi
 function notiftrx() {
@@ -218,7 +221,6 @@ TEXT="
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
-notiftelebot
 notiftrx
 echo ""
 echo -e "◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇" | tee -a /etc/user-create/user.log
