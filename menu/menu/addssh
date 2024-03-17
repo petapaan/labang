@@ -77,11 +77,11 @@ clear
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
-expe="$tgl $bln, $thn"
+expe="$tgl-$bln-$thn"
 tgl2=$(date +"%d")
 bln2=$(date +"%b")
 thn2=$(date +"%Y")
-tnggl="$tgl2 $bln2, $thn2"
+tnggl="$tgl2-$bln2-$thn2"
 useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 expi="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
@@ -106,7 +106,7 @@ DATADB=$(cat /etc/ssh/.ssh.db | grep "^#ssh#" | grep -w "${Login}" | awk '{print
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${Login}\b/d" /etc/ssh/.ssh.db
 fi
-echo "#ssh# $Login $Pass $iplimit $domain $masaaktif $tnggl $expe" > /etc/ssh/.ssh.db
+echo "#ssh# $Login $Pass $iplimit $domain $masaaktif $tnggl $expe" >> /etc/ssh/.ssh.db
 clear
 
 cat > /var/www/html/ssh-$Login.txt <<-END

@@ -33,9 +33,9 @@ masaaktif=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 6 | sed -n "${CL
 tnggl=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 7 | sed -n "${CLIENT_NUMBER}"p)
 expe=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 8 | sed -n "${CLIENT_NUMBER}"p)
 
-hari_ini=$(date +"%Y-%m-%d")
-tanggal_kadaluarsa=$(date -d "$tnggl +$masaaktif days" +"%Y-%m-%d")
-selisih=$(( ($(date -ud $tanggal_kadaluarsa +'%s') - $(date -ud $hari_ini +'%s')) / (60*60*24) ))
+#hari_ini=$(date +"%Y-%m-%d")
+#tanggal_kadaluarsa=$(date -d "$tnggl +$masaaktif days" +"%Y-%m-%d")
+#selisih=$(( ($(date -ud $tanggal_kadaluarsa +'%s') - $(date -ud $hari_ini +'%s')) / (60*60*24) ))
 
 clear
 echo ""
@@ -74,8 +74,8 @@ echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $exp"
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e "Sisa aktif Akun  : $selisih hari"
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
+#echo -e "Sisa aktif Akun  : $selisih hari"
+#echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
