@@ -24,7 +24,7 @@ echo -e ""
 read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${NC} ] : ")" menu
 echo -e ""
 case $menu in
-    1|01) clear ; addvless ;;
+	1|01) clear ; addvless ;;
 	2|02) clear ; trialvless ;;
 	3|03) clear ; renewvless ;;
 	4|04) clear ; delvless ;;
