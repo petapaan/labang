@@ -84,7 +84,7 @@ clear
 echo -e ""
 echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$l"
 echo -e "  ${bg}                 RESTART ALL SERVICE               ${NC}"
-echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}━━━━━━━━"
+echo -e "  ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""
 echo -e "  ${gr}SERVICE DAEMON-RELOAD\033[1;37m"
 fun_bar 'res1'
