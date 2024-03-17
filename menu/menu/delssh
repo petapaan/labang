@@ -26,8 +26,12 @@ while read expired
 do
 AKUN="$(echo $expired | cut -d: -f1)"
 ID="$(echo $expired | grep -v nobody | cut -d: -f3)"
+
 exp="$(chage -l $AKUN | grep "Account expires" | awk -F": " '{print $2}')"
-status="$(passwd -S $AKUN | awk '{print $2}' )"
+if [ "$exp" != "never" ]; then
+  exp="$(date -d "$exp" +'%d-%m-%Y')"
+fi
+
 if [[ $ID -ge 1000 ]]; then
 if [[ "$status" = "L" ]]; then
 printf "%-17s %2s %-17s %2s \n" "$AKUN" "$exp     "
@@ -75,4 +79,3 @@ echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
 echo -e ""
 read -p "Tekan [ enter ] untuk kembali "
 m-sshws
-
