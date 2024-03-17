@@ -50,6 +50,9 @@ else
 clear
 delssh
 fi
+# hapus juga di .ssh.db
+file=/etc/ssh/.ssh.db
+sed -i "/$Pengguna/d" $file
 # kirim notifikasi ke bot telegram
 function notiftelebot() {
 CHATID="$CHATID"
