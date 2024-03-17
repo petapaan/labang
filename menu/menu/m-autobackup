@@ -39,30 +39,19 @@ echo -e " ${light_cyan}2. Setiap 4 jam${reset_color}"
 echo -e " ${light_cyan}3. Setiap 6 jam${reset_color}"
 echo -e " ${light_cyan}4. Setiap 12 jam${reset_color}"
 echo -e " ${light_cyan}5. Satu hari${reset_color}"
-
+echo -e " ${light_cyan}0. Kembali${reset_color}"
+echo -e ""
 read -p " Masukkan pilihan (1/2/3/4/5): " choice
 
 # Menambahkan jadwal autobackup ke crontab
 case $choice in
-    1)
-        cron_schedule="0 * * * *"
-        ;;
-    2)
-        cron_schedule="0 */4 * * *"
-        ;;
-    3)
-        cron_schedule="0 */6 * * *"
-        ;;
-    4)
-        cron_schedule="0 */12 * * *"
-        ;;
-    5)
-        cron_schedule="0 0 * * *"
-        ;;
-    *)
-        echo "Pilihan tidak valid. Silakan pilih 1, 2, 3, 4, atau 5."
-        exit 1
-        ;;
+    1) cron_schedule="0 * * * *" ;;
+    2) cron_schedule="0 */4 * * *" ;;
+    3) cron_schedule="0 */6 * * *" ;;
+    4) cron_schedule="0 */12 * * *" ;;
+    5) cron_schedule="0 0 * * *" ;;
+    0) echo "Kembali ke menu" ; sleep 2 ; menu ;;
+    *) echo "Pilihan tidak valid. Silakan pilih 1, 2, 3, 4, atau 5." ; sleep 2 ; m-autobackup ;;
 esac
 
 # Menambahkan jadwal autobackup ke crontab
