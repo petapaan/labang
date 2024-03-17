@@ -22,7 +22,7 @@ CF_KEY="cb9b858e75a955df979cf4bff74839df1943d"
 DOMAIN1="udpserver.my.id"
 SUB_DOMAIN1="${sub}.${DOMAIN1}"
 SUB_DOMAIN01="*.${SUB_DOMAIN1}"
-IP=$(curl -sS ifconfig.me)
+IP=$(curl -sS ipv4.icanhazip.com)
 
 # SUB 1
 set -euo pipefail
