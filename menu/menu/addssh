@@ -108,7 +108,7 @@ DATADB=$(cat /etc/ssh/.ssh.db | grep "^#ssh#" | grep -w "${Login}" | awk '{print
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${Login}\b/d" /etc/ssh/.ssh.db
 fi
-echo "#ssh# ${Login} ${Pass} ${Quota} ${iplimit} ${expe}" >>/etc/ssh/.ssh.db
+echo "#ssh# $Login $Pass $iplimit $domain $tnggl $expe" > /etc/ssh/.ssh.db
 clear
 
 cat > /var/www/html/ssh-$Login.txt <<-END
@@ -118,6 +118,7 @@ Format SSH OVPN Account
 Username         : $Login
 Password         : $Pass
 ◇━━━━━━━━━━━━━━━━━◇
+Limit Ip         : ${iplimit}
 Host             : $domain
 Port OpenSSH     : 443, 80, 22
 Port Dropbear    : 443, 109
@@ -157,7 +158,8 @@ TEXT="
 <b>    Succes Create SSH Ovpn Account</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <code>Username    :</code> <code>$Login</code>
-<code>Password    :</code> <code>$Pass</code>
+<code>Password    :</code> <code>$Pass</code
+<code>Limit Ip    :</code> <code>${iplimit}</code>
 <code>Host        :</code> <code>$domain</code>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <b>                   INFORMASI PORT</b>
