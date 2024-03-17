@@ -304,23 +304,14 @@ case $opt in
 10) clear ; reset ;;
 11)
 clear
-https://raw.githubusercontent.com/gemilangvip/autoscript/main/files/udp-custom.sh
-;;
-12)
-clear
-update
-;;
+echo -e "${grenbo}Udp custom sudah dipasang saat instalasi script!"
+sleep 2
+menu;;
+12) clear ; update ;;
 13) clear ; pointing ;;
 14) clear ; barupo ;;
 15) clear ; m-autobackup ;;
-0 | 00)
-exit
-;;
-x)
-menu
-;;
-*)
-clear
-menu
-;;
+0) clear ; exit ;;
+x) clear ; menu ;;
+*) clear ; menu ;;
 esac
