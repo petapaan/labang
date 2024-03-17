@@ -108,7 +108,7 @@ DATADB=$(cat /etc/ssh/.ssh.db | grep "^#ssh#" | grep -w "${Login}" | awk '{print
 if [[ "${DATADB}" != '' ]]; then
   sed -i "/\b${Login}\b/d" /etc/ssh/.ssh.db
 fi
-echo "#ssh# $Login $Pass $iplimit $domain $tnggl $expe" > /etc/ssh/.ssh.db
+echo "#ssh# $Login $Pass $iplimit $domain $masaaktif $tnggl $expe" > /etc/ssh/.ssh.db
 clear
 
 cat > /var/www/html/ssh-$Login.txt <<-END

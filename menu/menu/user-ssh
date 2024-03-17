@@ -26,21 +26,26 @@ NUMBER_OF_CLIENTS=$(grep -c -E "#ssh# " "/etc/ssh/.ssh.db")
                 fi
         done
 user=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
-domain=$(cat /etc/xray/domain)
-Pass=$(grep "$Pass" /etc/ssh/.ssh.db | cut -b 21-56 | sed -n "${CLIENT_NUMBER}"p)
-exp=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
-hariini=`date -d "0 days" +"%Y-%m-%d"`
+Pass=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+iplimit=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
+domain=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
+masaaktif=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 6 | sed -n "${CLIENT_NUMBER}"p)
+tnggl=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 7 | sed -n "${CLIENT_NUMBER}"p)
+expe=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 8 | sed -n "${CLIENT_NUMBER}"p)
+
+hari_ini=$(date +"%Y-%m-%d")
+tanggal_kadaluarsa=$(date -d "$tnggl +$masaaktif days" +"%Y-%m-%d")
+selisih=$(( ($(date -ud $tanggal_kadaluarsa +'%s') - $(date -ud $hari_ini +'%s')) / (60*60*24) ))
 
 clear
 echo ""
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " SSH OVPN Account    "
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Username         : $user"
 echo -e "Password         : $Pass"
 echo -e "Host             : $domain"
-echo -e "Limit IP         : ${iplim} IP"
-echo -e "Location         : $CITY"
+echo -e "Limit IP         : ${iplimit} IP"
 echo -e "Port OpenSSH     : 443, 80, 22"
 echo -e "Port DNS         : 443, 53 ,22 "
 echo -e "Port SSH UDP     : 1-65535"
@@ -53,22 +58,24 @@ echo -e "Port OVPN SSL    : 443"
 echo -e "Port OVPN TCP    : 443, 1194"
 echo -e "Port OVPN UDP    : 2200"
 echo -e "BadVPN UDP       : 7100, 7300, 7300"
-echo -e "\033[1;93m====================\033[0m"
-echo -e "Tinggal Copy Port 80  : ${domain}:80@$user:${Pass}"
-echo -e "Tinggal Copy Port 443 : ${domain}:443@$user:${Pass}"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "Akun Port 80  : ${domain}:80@$user:${Pass}"
+echo -e "Akun Port 443 : ${domain}:443@$user:${Pass}"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " UDP Account : ${domain}:1-65535@$user:${Pass}"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Ovpn Download : https://$domain:81/"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Payload WSS      : GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link Txt : https://${domain}:81/ssh-$user.txt"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Aktif Selama     : $masaaktif Hari"
 echo -e "Dibuat Pada      : $tnggl"
 echo -e "Berakhir Pada    : $exp"
-echo -e "\033[1;93m====================\033[0m"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
+echo -e "Sisa aktif Akun  : $selisih hari"
+echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
