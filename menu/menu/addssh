@@ -157,7 +157,6 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <code>Username    :</code> <code>$Login</code>
 <code>Password    :</code> <code>$Pass</code
-<code>Limit IP    :</code> <code>$iplimit</code>
 <code>Host        :</code> <code>$domain</code>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <b>                   INFORMASI PORT</b>
