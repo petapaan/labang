@@ -1,11 +1,11 @@
 #!/bin/bash
 NC='\e[0m'
 clear
-Repo1="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
+Repo1="https://raw.githubusercontent.com/sosohrajeh/nyaman/main/izin"
 export MYIP=$(curl -sS ipv4.icanhazip.com)
 SELLER=$(curl -sS ${Repo1} | grep $MYIP | awk '{print $2}')
 Exp100=$(curl -sS ${Repo1} | grep $MYIP | awk '{print $3}')
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
+data_ip="https://raw.githubusercontent.com/sosohrajeh/nyaman/main/izin"
 d2=$(date -d "$date_list" +"+%s")
 d1=$(date -d "$Exp" +"+%s")
 dayleft=$(( ($d1 - $d2) / 86400 ))
@@ -43,7 +43,7 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     echo -e ""
     echo -e ""
     read -p "  Input IP Address : " ip
-    CLIENT_EXISTS=$(grep -w $ip /root/ipvps/REGISTRASI | wc -l)
+    CLIENT_EXISTS=$(grep -w $ip /root/ipvps/izin | wc -l)
     if [[ ${CLIENT_EXISTS} == '1' ]]; then
         echo "IP Already Exist !"
         exit 0
@@ -64,20 +64,20 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     read -p "  Input Menu Number : " exp
     if [[ ${exp} == '1' ]]; then
         exp2=`date -d "30 days" +"%Y-%m-%d"`
-        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/izin
     elif [[ ${exp} == '2' ]]; then
         exp2=`date -d "60 days" +"%Y-%m-%d"`
-        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/izin
     elif [[ ${exp} == '3' ]]; then
         exp2=`date -d "90 days" +"%Y-%m-%d"`
-        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/izin
     elif [[ ${exp} == '4' ]]; then
         exp2="Lifetime"
-        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/izin
     elif [[ ${exp} == '5' ]]; then
         read -p "Input Expired Days : " exp11
         exp2=`date -d "${exp11} days" +"%Y-%m-%d"`
-        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/REGISTRASI
+        echo "### ${name} ${exp2} ${ip}" >> /root/ipvps/izin
     fi
     cd /root/ipvps/
     git config --global user.email "${EMAIL}" &> /dev/null
@@ -87,8 +87,8 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     git add * &> /dev/null
     git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/ALAWI-VPN/autoscript.git
-    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript.git &> /dev/null
+    git remote add origin https://github.com/sosohrajeh/autoscript.git
+    git push -f https://${TOKEN}@github.com/sosohrajeh/autoscript.git &> /dev/null
     rm -rf /root/ipvps/
     clear
     sleep 1
@@ -138,14 +138,14 @@ URL="${URL}"
     echo -e "          \e[1;97mList IP Address Have Bee.n Registered${NC}"
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
-    grep -E "^###"    "/root/ipvps/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
-    grep -E "^#&"    "/root/ipvps/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
+    grep -E "^###"    "/root/ipvps/izin" | cut -d ' ' -f 2-6 | column -t | sort | uniq
+    grep -E "^#&"    "/root/ipvps/izin" | cut -d ' ' -f 2-6 | column -t | sort | uniq
     echo ""
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
     read -p "   Input IP Address To Delete : " ipdel
-    name=$(cat /root/ipvps/REGISTRASI | grep $ipdel | awk '{print $2}')
-    exp=$(cat /root/ipvps/REGISTRASI | grep $ipdel | awk '{print $3}')
+    name=$(cat /root/ipvps/izin | grep $ipdel | awk '{print $2}')
+    exp=$(cat /root/ipvps/izin | grep $ipdel | awk '{print $3}')
     if [[ ${exp} == 'Lifetime' ]]; then
         sed -i "/^#&   $name   $exp $ipdel/,/^},{/d" /root/ipvps/ip
     else
@@ -159,8 +159,8 @@ URL="${URL}"
     git add * &> /dev/null
     git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/ALAWI-VPN/autoscript.git
-    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript.git &> /dev/null
+    git remote add origin https://github.com/sosohrajeh/autoscript.git
+    git push -f https://${TOKEN}@github.com/sosohrajeh/autoscript.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
@@ -207,21 +207,21 @@ URL="${URL}"
     echo -e "          \e[1;97mList IP Address Have Been Registered${NC}"
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
-    grep -E "^###" "/root/ipvps/REGISTRASI" | cut -d ' ' -f 2-6 | column -t | sort | uniq
+    grep -E "^###" "/root/ipvps/izin" | cut -d ' ' -f 2-6 | column -t | sort | uniq
     echo ""
     echo -e "\033[96m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
     read -p "  Input IP Address To Renew : " ipnew
     read -p "  Input Days  : " days
-    name=$(cat /root/ipvps/REGISTRASI | grep ${ipnew} | awk '{print $2}')
-    exp=$(cat /root/ipvps/REGISTRASI | grep ${ipnew} | awk '{print $3}')
+    name=$(cat /root/ipvps/izin | grep ${ipnew} | awk '{print $2}')
+    exp=$(cat /root/ipvps/izin | grep ${ipnew} | awk '{print $3}')
     now=$(date +%Y-%m-%d)
     d1=$(date -d "$exp" +%s)
     d2=$(date -d "$now" +%s)
     exp2=$(( (d1 - d2) / 86400 ))
     exp3=$(($exp2 + $days))
     exp4=`date -d "$exp3 days" +"%Y-%m-%d"`
-    sed -i "s/### $name $exp ${ipnew}/### $name $exp4 ${ipnew}/g" /root/ipvps/REGISTRASI
+    sed -i "s/### $name $exp ${ipnew}/### $name $exp4 ${ipnew}/g" /root/ipvps/izin
     cd /root/ipvps
     git config --global user.email "${EMAIL}" &> /dev/null
     git config --global user.name "${USER}" &> /dev/null
@@ -230,8 +230,8 @@ URL="${URL}"
     git add * &> /dev/null
     git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://ALAWI-VPN/autoscript.git
-    git push -f https://${TOKEN}@github.com/ALAWI-VPN/autoscript.git &> /dev/null
+    git remote add origin https://sosohrajeh/autoscript.git
+    git push -f https://${TOKEN}@github.com/sosohrajeh/autoscript.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
