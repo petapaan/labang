@@ -51,7 +51,7 @@ ipsaya=$(curl -sS ipv4.icanhazip.com)
 
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
+data_ip="https://raw.githubusercontent.com/sosohrajeh/nyaman/main/izin"
 # // Checking Os Architecture
 if [[ $( uname -m | awk '{print $1}' ) == "x86_64" ]]; then
     echo -e "${OK} Your Architecture Is Supported ( ${green}$( uname -m )${NC} )"
@@ -102,7 +102,7 @@ gem install lolcat
 apt install wondershaper -y
 clear
 # REPO
-REPO="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/"
+REPO="https://raw.githubusercontent.com/sosohrajeh/nyaman/main/"
 
 ####
 start=$(date +%s)
@@ -290,7 +290,7 @@ restart_system(){
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m" 
 clear
-izinsc="${REPO}REGISTRASI"
+izinsc="${REPO}izin"
 # USERNAME
 rm -f /usr/bin/user
 username=$(curl $izinsc | grep $MYIP | awk '{print $2}')

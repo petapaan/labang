@@ -3,7 +3,7 @@ clear
 
 # bismillah bisa buat
 # variable
-file=REGISTRASI
+file=izin
 
 # perintah masukan
 echo -e ""

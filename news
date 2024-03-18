@@ -2,7 +2,7 @@
 clear
 # functions
 update() {
-    git add REGISTRASI
+    git add izin
     git commit -m "izinip"
     git push
 }
@@ -20,7 +20,7 @@ clear
 echo -e ""
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e "  \e[1;97;101m            ADD IP IZIN SCRIPT            ${NC}"
-echo -e "  \e[1;97;101m            CODE BY: ALAWI-VPN            ${NC}"
+echo -e "  \e[1;97;101m            CODE BY: sosohrajeh            ${NC}"
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
 
@@ -46,7 +46,7 @@ read -rp "  Masukkan IP VPS   : " ip
     fi
 done
 tanggal=$(date -d "$current_date +${tgl} days" +"%Y-%m-%d")
-echo  "### ${user} ${tanggal} ${ip}" >> REGISTRASI
+echo  "### ${user} ${tanggal} ${ip}" >> izin
 }
 # function bot notif
 notiftelebot() {
@@ -87,17 +87,17 @@ def kirim_pesan(pesan):
 #proses kirim teks/pesan ken bot
 pesan = f"""
 ━━━━━━━━━━━━━━━━━━━━━
-<b>IZIN SCRIPT ALAWI-VPN PREM</b>
+<b>IZIN SCRIPT sosohrajeh PREM</b>
 ━━━━━━━━━━━━━━━━━━━━━
 <code>Username   :</code> <code>{user}</code>
 <code>IP VPS     :</code> <code>{ip}</code>
 <code>Exp SCRIPT :</code> <code>{tanggal}</code>
 ━━━━━━━━━━━━━━━━━━━━━
 ➣ <b>REPOSITORY INDONESIA</b>
-<code>wget https://raw.githubusercontent.com/ALAWI-VPN/repoindo/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
+<code>wget https://raw.githubusercontent.com/sosohrajeh/repoindo/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
 
 ➣ <b>CMD INSTALL SCRIPT:</b>
-<code>apt install -y && wget -q https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
+<code>apt install -y && wget -q https://raw.githubusercontent.com/sosohrajeh/nyaman/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
 
 ➣ <b>Jika terjadi lost signal ketik saja</b> <code>screen -r update</code> <b>atau</b> <code>screen -r alawi</code>
 """
@@ -110,7 +110,7 @@ notiftelebot
 # perbarui izin ip
 perbarui() {
 hasil_penemuan() {
-mapfile -t lines < REGISTRASI
+mapfile -t lines < izin
 found=0
 tgl_lama=""
 wkwk=""
@@ -141,7 +141,7 @@ hasil_penemuan
 read -p "Masukkan jumlah hari tambahan: " days
 
 # Menyimpan konten file ke dalam array
-mapfile -t lines < REGISTRASI
+mapfile -t lines < izin
 
 # Menandai apakah IP ditemukan atau tidak
 found=0
@@ -169,7 +169,7 @@ for (( i=0; i<${#lines[@]}; i++ )); do
 done
 
 # Menulis kembali konten yang telah diubah ke file
-printf "%s\n" "${lines[@]}" > REGISTRASI
+printf "%s\n" "${lines[@]}" > izin
 
 if [[ $found -eq 1 ]]; then
     echo "Tanggal berhasil diubah untuk IP $ip."
@@ -182,7 +182,7 @@ fi
 
 kurangi() {
 hasil_penemuan() {
-mapfile -t lines < REGISTRASI
+mapfile -t lines < izin
 found=0
 tgl_lama=""
 wkwk=""
@@ -213,7 +213,7 @@ hasil_penemuan
 read -p "Masukkan jumlah hari pengurangan: " days
 
 # Menyimpan konten file ke dalam array
-mapfile -t lines < REGISTRASI
+mapfile -t lines < izin
 
 # Menandai apakah IP ditemukan atau tidak
 found=0
@@ -241,7 +241,7 @@ for (( i=0; i<${#lines[@]}; i++ )); do
 done
 
 # Menulis kembali konten yang telah diubah ke file
-printf "%s\n" "${lines[@]}" > REGISTRASI
+printf "%s\n" "${lines[@]}" > izin
 
 if [[ $found -eq 1 ]]; then
     echo "Tanggal berhasil diubah untuk IP $ip."
@@ -255,7 +255,7 @@ fi
 hapus() {
 # bismillah bisa buat
 # variable
-file=REGISTRASI
+file=izin
 
 # perintah masukan
 echo -e ""
