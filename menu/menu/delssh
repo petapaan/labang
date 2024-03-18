@@ -17,46 +17,45 @@ export TIME="10"
 export URL="https://api.telegram.org/bot$KEY/sendMessage"
 clear
 # ==========================================
-echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "                MEMBER SSH                   "
-echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo "USERNAME          EXP DATE          "
-echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-while read expired
-do
-AKUN="$(echo $expired | cut -d: -f1)"
-ID="$(echo $expired | grep -v nobody | cut -d: -f3)"
-
-exp="$(chage -l $AKUN | grep "Account expires" | awk -F": " '{print $2}')"
-if [ "$exp" != "never" ]; then
-  exp="$(date -d "$exp" +'%d-%m-%Y')"
+NUMBER_OF_CLIENTS=$(grep -c -E "#ssh# " "/etc/ssh/.ssh.db")
+if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
+  echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  echo -e " \e[1;97;101m          CONFIG SSH ACCOUNT          \E[0m"
+  echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  echo ""
+  echo "You have no existing clients!"
+  clear
+  exit 1
 fi
 
-if [[ $ID -ge 1000 ]]; then
-if [[ "$status" = "L" ]]; then
-printf "%-17s %2s %-17s %2s \n" "$AKUN" "$exp     "
-else
-printf "%-17s %2s %-17s %2s \n" "$AKUN" "$exp     "
-fi
-fi
-done < /etc/passwd
-echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "                DELETE SSH                   "
-echo -e "${ORANGE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo ""
-read -p "Ketik Usernamenya : " Pengguna
+echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\e[1;97;101m        DELETE CONFIG SSH ACCOUNT         \E[0m"
+echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+printf "%-5s%-13s%-13s%s\n" "No" "User" "Pass" "Expired"
+echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 2-8 | nl -s ') ' | awk -v OFS="\t" '{ printf "%-5s%-13s%-13s%s\n", $1, $2, $3, $8 }'
+echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+until [[ ${CLIENT_NUMBER} -ge 0 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
+  if [[ ${CLIENT_NUMBER} == '1' ]]; then
+    read -rp "Select one client [1]: " CLIENT_NUMBER
+  if [[ ${CLIENT_NUMBER} == '0' ]]; then
+     echo "Kembali ke menu"
+     m-sshws
+  else
+    read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
+  fi
+done
 
-if getent passwd $Pengguna > /dev/null 2>&1; then
-        userdel $Pengguna > /dev/null 2>&1
-        echo -e "User $Pengguna Berhasil Dihapus Sayang."
-else
-        echo -e "Failure: User $Pengguna Tidak Ditemukan."
-clear
-delssh
-fi
-# hapus juga di .ssh.db
+user=$(grep -E "#ssh# " "/etc/ssh/.ssh.db" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+
+# hapus di .ssh.db
 file=/etc/ssh/.ssh.db
-sed -i "/$Pengguna/d" $file
+file2=/etc/passwd
+file3=/etc/shadow
+sed -i "/$user/d" $file
+sed -i "/$user/d" $file2
+sed -i "/$user/d" $file3
+echo -e "${GREEN}User ${ORANGE}$user ${GREEN}Berhasil ${RED}Dihapus ${GREEN}Sayang.${NC}"
 # kirim notifikasi ke bot telegram
 function notiftelebot() {
 CHATID="$CHATID"
@@ -67,7 +66,7 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
        <b>AKUN SSH SUKSES DIHAPUS</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
-<code>Nama    :</code> <b>$Pengguna</b>
+<code>Nama    :</code> <b>$user</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <b><i>Notifikasi otomatis dari server...</i></b>
 "
@@ -75,7 +74,7 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 }
 notiftelebot
 echo -e ""
-echo -e "NOTIF BERHASIL DIKIRIM KE TELEGRAM"
+echo -e "NOTIF ${GREEN}BERHASIL ${NC}DIKIRIM KE TELEGRAM"
 echo -e ""
 read -p "Tekan [ enter ] untuk kembali "
 m-sshws
