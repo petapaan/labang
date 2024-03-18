@@ -45,17 +45,19 @@ read -p " Masukkan pilihan (1/2/3/4/5): " choice
 
 # Menambahkan jadwal autobackup ke crontab
 case $choice in
-    1) cron_schedule="0 * * * *" ;;
-    2) cron_schedule="0 */4 * * *" ;;
-    3) cron_schedule="0 */6 * * *" ;;
-    4) cron_schedule="0 */12 * * *" ;;
-    5) cron_schedule="0 0 * * *" ;;
+    1) cron_schedule="10 */1 * * *" ;;
+    2) cron_schedule="10 */4 * * *" ;;
+    3) cron_schedule="10 */6 * * *" ;;
+    4) cron_schedule="10 */12 * * *" ;;
+    5) cron_schedule="10 0 * * *" ;;
     0) echo "Kembali ke menu" ; sleep 2 ; menu ;;
     *) echo "Pilihan tidak valid. Silakan pilih 1, 2, 3, 4, atau 5." ; sleep 2 ; m-autobackup ;;
 esac
 
 # Menambahkan jadwal autobackup ke crontab
-echo "$cron_schedule /usr/local/sbin/backup" > /etc/cron.d/autobackup
+echo "SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+$cron_schedule root /usr/local/sbin/backup" > /etc/cron.d/autobackup
 echo "Autobackup telah diatur untuk interval yang dipilih."
 sleep 3
 menu
