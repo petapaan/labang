@@ -20,7 +20,7 @@ fi
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   printf "%-5s%-13s%-13s%s\n" "No" "User" "Ip limit" "Expired"
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-6 | nl -s ') ' | awk -v OFS="\t" '{ printf "%-5s%-13s%-13s%s\n", $1, $2, $6, $3 }'
+  grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 2-8 | nl -s ') ' | awk -v OFS="\t" '{ printf "%-5s%-13s%-13s%s\n", $1, $2, $4, $8 }'
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
      if [[ ${CLIENT_NUMBER} == '1' ]]; then
@@ -30,13 +30,15 @@ fi
      fi
   done
 
-user=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+user=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+Quota=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+iplimit=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
+uuid=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
+masaaktif=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 6 | sed -n "${CLIENT_NUMBER}"p)
+tnggl=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 7 | sed -n "${CLIENT_NUMBER}"p)
+expe=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 8 | sed -n "${CLIENT_NUMBER}"p)
 domain=$(cat /etc/xray/domain)
-iplim=$(cat /etc/kyt/limit/vmess/ip/$user)
-Quota=$(cat /etc/vmess/$user)
-uuid=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 4 | sed -n "${CLIENT_NUMBER}"p)
-#Quota=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
-exp=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 vmtls=`cat<<EOF
       {
