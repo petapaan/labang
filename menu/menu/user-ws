@@ -153,9 +153,9 @@ ${vmesslink3}
 ◇━━━━━━━━━━━━━━━━━◇
 
 END
-vmesslink1="vmess://$(echo $asu | base64 -w 0)"
-vmesslink2="vmess://$(echo $ask | base64 -w 0)"
-vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
+vmesslink1="vmess://$(echo $vmtls | base64 -w 0)"
+vmesslink2="vmess://$(echo $vmntls | base64 -w 0)"
+vmesslink3="vmess://$(echo $vmgrpc | base64 -w 0)"
 
 clear
 echo -e ""
