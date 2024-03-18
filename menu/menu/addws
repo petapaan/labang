@@ -63,7 +63,10 @@ echo -e "${grs}┌────────────────────�
 echo -e "${grs}│${bg}                ADD ACCOUNT VMESS              ${NC}${grs}│${NC}"
 echo -e "${grs}└───────────────────────────────────────────────┘${NC}"
 echo -e ""
-read -rp "User           : " -e user
+while true; do
+    read -rp "User           : " -e user
+    [[ -n "${user}" ]] && break
+done
 CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 	if [[ ${CLIENT_EXISTS} == '1' ]]; then
 		clear
@@ -75,10 +78,22 @@ done
 ISP=$(cat /etc/xray/isp)
 CITY=$(cat /etc/xray/city)
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days) : " masaaktif
-read -p "Limit User (GB): " Quota
-read -p "Limit User (IP): " iplimit
-read -p "Username Buyer : " pembeli
+while true; do
+    read -p "Expired (days) : " masaaktif
+    [[ -n "${masaaktif}" ]] && break
+done
+while true; do
+    read -p "Limit User (GB): " Quota
+    [[ -n "${Quota}" ]] && break
+done
+while true; do
+    read -p "Limit User (IP): " iplimit
+    [[ -n "${iplimit}" ]] && break
+done
+while true; do
+    read -p "Username Buyer : " pembeli
+    [[ -n "${pembeli}" ]] && break
+done
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
