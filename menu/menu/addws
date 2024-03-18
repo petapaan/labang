@@ -63,22 +63,14 @@ echo -e "${grs}┌────────────────────�
 echo -e "${grs}│${bg}                ADD ACCOUNT VMESS              ${NC}${grs}│${NC}"
 echo -e "${grs}└───────────────────────────────────────────────┘${NC}"
 echo -e ""
-		read -rp "User           : " -e user
-		CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
-
-		if [[ ${CLIENT_EXISTS} == '1' ]]; then
-clear
-    echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-    echo -e "                                      WARNING ❗❗ "
-    echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
-			echo ""
-			echo "Username or Name is Ready !!"
-			echo ""
-			echo -e "\033[1;93m──────────────────────────────────────────\033[0m"
-  echo -e ""
-			read -n 1 -s -r -p "Press any key to back on menu"
-			menu
-		fi
+read -rp "User           : " -e user
+CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
+	if [[ ${CLIENT_EXISTS} == '1' ]]; then
+		clear
+		echo -e "${gr}Username sudah ada... Pakai yang lain!$NC"
+		read -n 1 -s -r -p "Kembali tekan [enter] "
+		addws
+	fi
 done
 ISP=$(cat /etc/xray/isp)
 CITY=$(cat /etc/xray/city)
@@ -90,11 +82,11 @@ read -p "Username Buyer : " pembeli
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
-expe="$tgl $bln, $thn"
+expe="$tgl-$bln-$thn"
 tgl2=$(date +"%d")
 bln2=$(date +"%b")
 thn2=$(date +"%Y")
-tnggl="$tgl2 $bln2, $thn2"
+tnggl="$tgl2-$bln2-$thn2"
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmess$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
@@ -102,7 +94,7 @@ exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 
-asu=`cat<<EOF
+vmtls=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -117,7 +109,7 @@ asu=`cat<<EOF
       "tls": "tls"
 }
 EOF`
-ask=`cat<<EOF
+vmntls=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -132,7 +124,7 @@ ask=`cat<<EOF
       "tls": "none"
 }
 EOF`
-grpc=`cat<<EOF
+vmgrpc=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -150,9 +142,9 @@ EOF`
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmess_base643=$( base64 -w 0 <<< $vmess_json3)
-vmesslink1="vmess://$(echo $asu | base64 -w 0)"
-vmesslink2="vmess://$(echo $ask | base64 -w 0)"
-vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
+vmesslink1="vmess://$(echo $vmtls | base64 -w 0)"
+vmesslink2="vmess://$(echo $vmntls | base64 -w 0)"
+vmesslink3="vmess://$(echo $vmgrpc | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 

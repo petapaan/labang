@@ -270,6 +270,40 @@ echo -e "Ip $ip berhasil dihapus"
 }
 
 # menu
+
+kclear
+# Warna ANSI
+light_cyan="\e[96m"
+reset_color="\e[0m"
+blue_bg="\e[44m"
+white="\e[97m"
+bold='\033[1m'
+YELLOW='\033[0;33m'
+
+# Menentukan lebar layar
+screen_width=$(tput cols)
+
+# Menampilkan garis pembungkus
+printf "${light_cyan}"
+printf '%*s\n' "${screen_width}" '' | tr ' ' '-'
+
+# Menampilkan judul
+title="MENU SETTING IZIN IP"
+title_length=${#title}
+padding_length=$(( (screen_width - title_length) / 2 ))
+
+padding=""
+for ((i=0; i<padding_length; i++)); do
+    padding+=" "
+done
+
+printf "${blue_bg}${bold}${white}%s%s%s%s${reset_color}\n" "$pa>
+
+# Menampilkan garis pembungkus
+printf "${light_cyan}"
+printf '%*s\n' "${screen_width}" '' | tr ' ' '-'
+printf "${reset_color}\n"
+
 echo -e ""
 echo -e " [01] Tambah izin ip"
 echo -e " [02] Perbarui izin ip"
