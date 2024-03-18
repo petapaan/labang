@@ -18,15 +18,18 @@ fi
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   echo -e "  \e[1;97;101m        CONFIG VMESS ACCOUNT         \E[0m"
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-        echo "     No  Expired   User"
-        grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-3 | nl -s ') '
-        until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
-                if [[ ${CLIENT_NUMBER} == '1' ]]; then
-                        read -rp "Select one client [1]: " CLIENT_NUMBER
-                else
-                        read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
-                fi
-        done
+  printf "%-5s%-13s%-13s%s\n" "No" "User" "Ip limit" "Expired"
+  echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2-6 | nl -s ') ' | awk -v OFS="\t" '{ printf "%-5s%-13s%-13s%s\n", $1, $2, $6, $3 }'
+  echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+  until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
+     if [[ ${CLIENT_NUMBER} == '1' ]]; then
+         read -rp "Select one client [1]: " CLIENT_NUMBER
+     else
+         read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
+     fi
+  done
+
 user=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
 domain=$(cat /etc/xray/domain)
 iplim=$(cat /etc/kyt/limit/vmess/ip/$user)
@@ -35,7 +38,7 @@ uuid=$(grep -E "^### " "/etc/vmess/.vmess.db" | cut -d ' ' -f 4 | sed -n "${CLIE
 #Quota=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 5 | sed -n "${CLIENT_NUMBER}"p)
 exp=$(grep -E "^### " "/etc/xray/config.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
 hariini=`date -d "0 days" +"%Y-%m-%d"`
-asu=`cat<<EOF
+vmtls=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -50,7 +53,7 @@ asu=`cat<<EOF
       "tls": "tls"
 }
 EOF`
-ask=`cat<<EOF
+vmntls=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -65,7 +68,7 @@ ask=`cat<<EOF
       "tls": "none"
 }
 EOF`
-grpc=`cat<<EOF
+vmgrpc=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -82,9 +85,6 @@ grpc=`cat<<EOF
 EOF`
 cat >/var/www/html/vmess-$user.txt <<-END
 
-◇━━━━━━━━━━━━━━━━━◇
- Lunatic Tunneling 
-◇━━━━━━━━━━━━━━━━━◇
 # Format Vmess WS TLS
 
 - name: Vmess-$user-WS TLS
@@ -140,15 +140,15 @@ cat >/var/www/html/vmess-$user.txt <<-END
     grpc-service-name: vmess-grpc
 
 ◇━━━━━━━━━━━━━━━━━◇
- Link Akun Vmess                   
+ Link Akun Vmess
 ◇━━━━━━━━━━━━━━━━━◇
-Link TLS         : 
+Link TLS         :
 ${vmesslink1}
 ◇━━━━━━━━━━━━━━━━━◇
-Link none TLS    : 
+Link none TLS    :
 ${vmesslink2}
 ◇━━━━━━━━━━━━━━━━━◇
-Link GRPC        : 
+Link GRPC        :
 ${vmesslink3}
 ◇━━━━━━━━━━━━━━━━━◇
 
@@ -165,21 +165,16 @@ echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033
 echo -e "Remarks          : ${user}"
 echo -e "Domain           : ${domain}"
 echo -e "User Quota       : ${Quota} GB"
-echo -e "User Ip            : ${iplimit} IP"
+echo -e "User Ip          : ${iplimit} IP"
 echo -e "Port TLS         : 400-900"
 echo -e "Port none TLS    : 80, 8080, 8081-9999"
 echo -e "id               : ${uuid}"
-echo -e "Xray Dns      : ${NS}"
-echo -e "Pubkey        : ${PUB}"
 echo -e "alterId          : 0"
 echo -e "Security         : auto"
 echo -e "Network          : ws"
 echo -e "Path             : /Multi-Path"
 echo -e "Dynamic          : https://bugmu.com/path"
 echo -e "ServiceName      : vmess-grpc"
-#echo -e "Host XrayDNS : ${NS}"
-#echo -e "Location         : $CITY"
-#echo -e "Pub Key          : ${PUB}"
 echo -e "\033[0;34m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e "Link TLS         : ${vmesslink1}"
 echo -e "\033[0;34m◇━━━━━━━━━━━━━━━━━◇\033[0m"

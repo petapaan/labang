@@ -25,7 +25,7 @@ read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${N
 echo -e ""
 case $menu in
     1|01) clear ; addws ;;
-    2|02) clear ; trialws
+    2|02) clear ; trialws ;;
     3|03) clear ; renewws ;;
     4|04) clear ; delws ;;
     5|05) clear ; cekws ;;
