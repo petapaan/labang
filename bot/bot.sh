@@ -7,13 +7,13 @@ NC='\e[0m'
 apt update -y && apt upgrade -y
 apt install python3 python3-pip git -y
 cd /usr/bin
-wget https://raw.githubusercontent.com/petapan/VPN/vip/umdah/bot.zip
+wget https://raw.githubusercontent.com/petapaan/VPN/vip/umdah/bot.zip
 unzip bot.zip
 mv bot/* /usr/bin
 chmod +x /usr/bin/*
 rm -rf bot.zip
 clear
-wget https://raw.githubusercontent.com/petapan/VPN/vip/umdah/kyt.zip
+wget https://raw.githubusercontent.com/petapaan/VPN/vip/umdah/kyt.zip
 unzip kyt.zip
 pip3 install -r kyt/requirements.txt
 

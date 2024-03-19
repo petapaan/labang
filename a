@@ -38,7 +38,7 @@ clear
 echo -e ""
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e "  \e[1;97;101m            ADD IP IZIN SCRIPT            ${NC}"
-echo -e "  \e[1;97;101m            CODE BY: petapan            ${NC}"
+echo -e "  \e[1;97;101m            CODE BY: petapaan            ${NC}"
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
 
@@ -110,17 +110,17 @@ def kirim_pesan(pesan):
 #proses kirim teks/pesan ken bot
 pesan = f"""
 ━━━━━━━━━━━━━━━━━━━━━
-<b>IZIN SCRIPT petapan PREM</b>
+<b>IZIN SCRIPT petapaan PREM</b>
 ━━━━━━━━━━━━━━━━━━━━━
 <code>Username   :</code> <code>{user}</code>
 <code>IP VPS     :</code> <code>{ip}</code>
 <code>Exp SCRIPT :</code> <code>{tanggal}</code>
 ━━━━━━━━━━━━━━━━━━━━━
 ➣ <b>REPOSITORY INDONESIA</b>
-<code>wget https://raw.githubusercontent.com/petapan/repoindo/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
+<code>wget https://raw.githubusercontent.com/petapaan/repoindo/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
 
 ➣ <b>CMD INSTALL SCRIPT:</b>
-<code>apt install -y && wget -q https://raw.githubusercontent.com/petapan/labang/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
+<code>apt install -y && wget -q https://raw.githubusercontent.com/petapaan/labang/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
 
 ➣ <b>Jika terjadi lost signal ketik saja</b> <code>screen -r update</code> <b>atau</b> <code>screen -r alawi</code>
 """

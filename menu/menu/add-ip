@@ -1,11 +1,11 @@
 #!/bin/bash
 NC='\e[0m'
 clear
-Repo1="https://raw.githubusercontent.com/petapan/labang/main/bangkalan"
+Repo1="https://raw.githubusercontent.com/petapaan/labang/main/bangkalan"
 export MYIP=$(curl -sS ipv4.icanhazip.com)
 SELLER=$(curl -sS ${Repo1} | grep $MYIP | awk '{print $2}')
 Exp100=$(curl -sS ${Repo1} | grep $MYIP | awk '{print $3}')
-data_ip="https://raw.githubusercontent.com/petapan/labang/main/bangkalan"
+data_ip="https://raw.githubusercontent.com/petapaan/labang/main/bangkalan"
 d2=$(date -d "$date_list" +"+%s")
 d1=$(date -d "$Exp" +"+%s")
 dayleft=$(( ($d1 - $d2) / 86400 ))
@@ -87,8 +87,8 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
     git add * &> /dev/null
     git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/petapan/autoscript.git
-    git push -f https://${TOKEN}@github.com/petapan/autoscript.git &> /dev/null
+    git remote add origin https://github.com/petapaan/autoscript.git
+    git push -f https://${TOKEN}@github.com/petapaan/autoscript.git &> /dev/null
     rm -rf /root/ipvps/
     clear
     sleep 1
@@ -159,8 +159,8 @@ URL="${URL}"
     git add * &> /dev/null
     git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://github.com/petapan/autoscript.git
-    git push -f https://${TOKEN}@github.com/petapan/autoscript.git &> /dev/null
+    git remote add origin https://github.com/petapaan/autoscript.git
+    git push -f https://${TOKEN}@github.com/petapaan/autoscript.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1
@@ -230,8 +230,8 @@ URL="${URL}"
     git add * &> /dev/null
     git commit -m "m" &> /dev/null
     git branch -M main &> /dev/null
-    git remote add origin https://petapan/autoscript.git
-    git push -f https://${TOKEN}@github.com/petapan/autoscript.git &> /dev/null
+    git remote add origin https://petapaan/autoscript.git
+    git push -f https://${TOKEN}@github.com/petapaan/autoscript.git &> /dev/null
     rm -rf /root/ipvps
     clear
     sleep 1

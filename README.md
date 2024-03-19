@@ -7,7 +7,7 @@
  
 
 ### INSTALL SCRIPT 
-<pre><code>apt install -y && wget -q https://raw.githubusercontent.com/petapan/labang/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code></pre>
+<pre><code>apt install -y && wget -q https://raw.githubusercontent.com/petapaan/labang/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code></pre>
 
 ### WORK DI OS
 - UBUNTU 18 / 20

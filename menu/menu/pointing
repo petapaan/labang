@@ -18,7 +18,7 @@ echo -e "${biru}│${NC} [${biru}01${NC}] domain ${biru}xxx.alawistore.my.id    
 echo -e "${biru}│${NC} [${biru}02${NC}] domain ${biru}xxx.alawistore.biz.id        ${biru}│${NC}"
 echo -e "${biru}│${NC} [${biru}03${NC}] domain ${biru}xxx.alawivpn.cloud           ${biru}│${NC}"
 echo -e "${biru}│${NC} [${biru}04${NC}] domain ${biru}xxx.cakdayat.my.id           ${biru}│${NC}"
-echo -e "${biru}│${NC} [${biru}05${NC}] domain ${biru}xxx.petapan.my.id            ${biru}│${NC}"
+echo -e "${biru}│${NC} [${biru}05${NC}] domain ${biru}xxx.petapaan.my.id            ${biru}│${NC}"
 echo -e "${biru}│${NC} [${biru}06${NC}] domain ${biru}xxx.sayasantri.my.id         ${biru}│${NC}"
 echo -e "${biru}│${NC} [${biru}07${NC}] domain ${biru}xxx.serverssh.biz.id         ${biru}│${NC}"
 echo -e "${biru}│${NC} [${biru}08${NC}] domain ${biru}xxx.sshserver.my.id          ${biru}│${NC}"
@@ -379,13 +379,13 @@ pointing
 elif [ $host -eq 5 ]
 then
 clear
-DOMAIN5=petapan.my.id
+DOMAIN5=petapaan.my.id
 echo -e ""
 echo -e "${biru}┌──────────────────────────────────────────┐${NC}"
 echo -e "${biru}│${NC}       ${hijau}POINTING DOMAIN BY ALAWI VPN       ${biru}│${NC}"
 echo -e "${biru}└──────────────────────────────────────────${biru}┘${NC}"
 echo -e ""
-echo -e "${biru}------->      ${hijau}xxx.petapan.my.id      ${biru}<------$NC"
+echo -e "${biru}------->      ${hijau}xxx.petapaan.my.id      ${biru}<------$NC"
 echo -e ""
 read -rp "$( echo -e "${red}masukkan subdomain kamu :${NC}") " sub1
 read -rp "$( echo -e "${red}masukkan ip vps kamu    :${NC}") " ip1
