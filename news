@@ -1,4 +1,9 @@
 #!/bin/bash
+# warna
+bg="\e[1;97;101m"
+cyan='\033[1;36m'
+green='\e[1;32m'
+NC='\e[0m'
 clear
 # functions
 update() {
@@ -20,30 +25,21 @@ clear
 echo -e ""
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e "  \e[1;97;101m            ADD IP IZIN SCRIPT            ${NC}"
-echo -e "  \e[1;97;101m            CODE BY: sosohrajeh            ${NC}"
+echo -e "  \e[1;97;101m            CODE BY: ALAWI VPN            ${NC}"
 echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
 
 while true; do
-read -rp "  Masukkan username : " user
-    if [ -z "$user" ]; then     echo ""
-    else
-        break
-    fi
+    read -rp "  Masukkan username : " user
+    [[ -n "$user" ]] && break
 done
 while true; do
-read -rp "  Expired SC (hari) : " tgl
-    if [ -z "$tgl" ]; then echo ""
-    else
-        break
-    fi
+    read -rp "  Expired SC (hari) : " tgl
+    [[ -n "$tgl" ]] && break
 done
 while true; do
-read -rp "  Masukkan IP VPS   : " ip
-    if [ -z "$ip" ]; then echo ""
-    else
-        break
-    fi
+    read -rp "  Masukkan IP VPS   : " ip
+    [[ -n "$ip" ]] && break
 done
 tanggal=$(date -d "$current_date +${tgl} days" +"%Y-%m-%d")
 echo  "### ${user} ${tanggal} ${ip}" >> izin
@@ -87,7 +83,7 @@ def kirim_pesan(pesan):
 #proses kirim teks/pesan ken bot
 pesan = f"""
 ━━━━━━━━━━━━━━━━━━━━━
-<b>IZIN SCRIPT sosohrajeh PREM</b>
+<b>IZIN SCRIPT ALAWI VPN PREM</b>
 ━━━━━━━━━━━━━━━━━━━━━
 <code>Username   :</code> <code>{user}</code>
 <code>IP VPS     :</code> <code>{ip}</code>
@@ -108,6 +104,10 @@ pointing
 notiftelebot
 }
 # perbarui izin ip
+# warna
+cyan='\033[1;36m'
+green='\e[1;32m'
+NC='\e[0m'
 perbarui() {
 hasil_penemuan() {
 mapfile -t lines < izin
@@ -128,18 +128,27 @@ for (( i=0; i<${#lines[@]}; i++ )); do
     fi
 done
 echo -e ""
-echo -e "### $name $wkwk $ip_lama"
+echo -e " ${green}### $name $wkwk $ip_lama${NC}"
 echo -e ""
 }
 
 # Membaca IP dari pengguna
+bg="\e[1;97;101m"
 echo -e ""
-echo -e "MENU RENEW IZIN IP"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e "  ${bg}            MENU RENEW IZIN IP            ${NC}"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
-read -p "Masukkan IP: " ip
+while true; do
+    read -p "  Masukkan IP: " ip
+    [[ -n "$ip" ]] && break
+done
 hasil_penemuan
-read -p "Masukkan jumlah hari tambahan: " days
 
+while true; do
+    read -p "  Masukkan jumlah hari tambahan: " days
+    [[ -n "$days" ]] && break
+done
 # Menyimpan konten file ke dalam array
 mapfile -t lines < izin
 
@@ -172,16 +181,21 @@ done
 printf "%s\n" "${lines[@]}" > izin
 
 if [[ $found -eq 1 ]]; then
-    echo "Tanggal berhasil diubah untuk IP $ip."
-    echo "Tanggal lama: $old_date"
-    echo "Tanggal baru: $new_date"
+    echo "  Tanggal berhasil diubah untuk IP ${green}$ip.${NC}"
+    echo "  Tanggal lama: ${green}$old_date${NC}"
+    echo "  Tanggal baru: ${green}$new_date${NC}"
 else
-    echo "IP $ip tidak ditemukan dalam file."
+    echo "  IP ${green}$ip tidak ditemukan dalam file.${NC}"
 fi
 }
 
 kurangi() {
 hasil_penemuan() {
+# warna
+cyan='\033[1;36m'
+green='\e[1;32m'
+NC='\e[0m'
+clear
 mapfile -t lines < izin
 found=0
 tgl_lama=""
@@ -200,18 +214,25 @@ for (( i=0; i<${#lines[@]}; i++ )); do
     fi
 done
 echo -e ""
-echo -e "### $name $wkwk $ip_lama"
+echo -e "  ${gren}### $name $wkwk $ip_lama${NC}"
 echo -e ""
 }
 
 # Membaca IP dari pengguna
 echo -e ""
-echo -e "MENU KURANGI WAKTU IZIN IP"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e "  ${bg}        MENU KURANGI WAKTU IZIN IP        ${NC}"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
-read -p "Masukkan IP: " ip
+while true; do
+    read -p "  Masukkan IP: " ip
+    [[ -n "$ip" ]] && break
+done
 hasil_penemuan
-read -p "Masukkan jumlah hari pengurangan: " days
-
+while true; do
+    read -p "  Masukkan jumlah hari pengurangan: " days
+    [[ -n "$days" ]] && break
+done
 # Menyimpan konten file ke dalam array
 mapfile -t lines < izin
 
@@ -244,11 +265,11 @@ done
 printf "%s\n" "${lines[@]}" > izin
 
 if [[ $found -eq 1 ]]; then
-    echo "Tanggal berhasil diubah untuk IP $ip."
-    echo "Tanggal lama: $old_date"
-    echo "Tanggal baru: $new_date"
+    echo "  Tanggal berhasil diubah untuk IP ${green}$ip.${NC}"
+    echo "  Tanggal lama: ${green}$old_date${NC}"
+    echo "  Tanggal baru: ${green}$new_date${NC}"
 else
-    echo "IP $ip tidak ditemukan dalam file."
+    echo " IP ${green}$ip tidak ditemukan dalam file.${NC}"
 fi
 }
 
@@ -259,14 +280,19 @@ file=izin
 
 # perintah masukan
 echo -e ""
-echo -e "MENU DELETE IZIN IP BY ALAWIVPN"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e "  ${bg}     MENU DELETE IZIN IP BY: ALAWIVPN     ${NC}"
+echo -e "  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
-read -rp "Masukkan ip: " ip
+while true; do
+    read -rp "  Masukkan ip: " ip
+    [[ -n "$ip" ]] && break
+done
 echo -e ""
 
 # proses deleting
 sed -i "/$ip/d" $file
-echo -e "Ip $ip berhasil dihapus"
+echo -e "  Ip ${green}$ip berhasil dihapus${NC}"
 }
 
 # menu
@@ -303,16 +329,18 @@ printf "${blue_bg}${bold}${white}%s%s%s%s${reset_color}\n" "$padding" "$title" "
 printf "${light_cyan}"
 printf '%*s\n' "${screen_width}" '' | tr ' ' '-'
 printf "${reset_color}\n"
+cyan='\033[1;36m'
+green='\e[1;32m'
+NC='\e[0m'
 
+echo -e " [${cyan}01${NC}] Tambah izin ip"
+echo -e " [${cyan}02${NC}] Perbarui izin ip"
+echo -e " [${cyan}03${NC}] Kurangi izin ip"
+echo -e " [${cyan}04${NC}] Hapus izin ip"
+echo -e " [${cyan}05${NC}] Update Github"
+echo -e " [${cyan}00${NC}] Keluar"
 echo -e ""
-echo -e " [01] Tambah izin ip"
-echo -e " [02] Perbarui izin ip"
-echo -e " [03] Kurangi izin ip"
-echo -e " [04] Hapus izin ip"
-echo -e " [05] Update Github"
-echo -e " [00] Keluar"
-echo -e ""
-read -rp " Silahkan pilih 1-4 atau 0: " jwb
+read -rp "$(echo -e " Silahkan pilih ${green}1${NC}-${green}4 ${NC}atau ${green}0${NC}: ")" jwb
 case $jwb in
     1 | 01) clear ; tambah ; update ;;
     2 | 02) clear ; perbarui ; update ;;
