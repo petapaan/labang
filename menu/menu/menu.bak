@@ -63,7 +63,7 @@ clear
 # // DAYS LEFT
 d1=$(date -d "$valid" +%s)
 d2=$(date -d "$today" +%s)
-certificate=$(((d1 - d2) / 86400))
+certifacate=$(((d1 - d2) / 86400))
 
 # // VPS INFORMATION
 DATE=$(date +'%Y-%m-%d')
@@ -83,9 +83,9 @@ Error="${RED}Expired ${NC}"
 today=`date -d "0 days" +"%Y-%m-%d"`
 Exp1=$(curl -sS https://raw.githubusercontent.com/sosohrajeh/nyaman/main/izin | grep $MYIP | awk '{print $3}')
 if [[ $today < $Exp1 ]]; then
-sts="Activated"
+sts="${Info}"
 else
-sts="Expired"
+sts="${Error}"
 fi
 echo -e "\e[32mloading...\e[0m"
 clear
@@ -237,22 +237,21 @@ yesterday_tx=NULL
 yesterday_txv=NULL
 fi
 clear
-garis="${grs}║${NC}"
 echo -e " ${grs}╔══════════════════════════════════════════════════════════╗${NC}"
 echo -e " ${grs}║$NC${bg}        WELCOME TO AUTOSCRIPT PREMIUM BY ALAWI VPN        $NC${grs}║${NC}"
 echo -e " ${grs}╚══════════════════════════════════════════════════════════╝${NC}"
 echo -e " ${grs}╔══════════════════════════════════════════════════════════╗${NC}"
-echo -e " ${grs}║$NC •  OS             : $(printf "%-36.36s %s\n" "$MODEL" "$garis")"
-echo -e " ${grs}║$NC •  RAM & USAGE    : $(printf "$gr%-5s $NC%s $gr%-5s $NC%-19s %s\n" "$tram" "MB |" "$uram" "MB" "$garis")"
-echo -e " ${grs}║$NC •  UPTIME SERVER  : $(printf "%-36.36s %s\n" "$uptime" "$garis")"
-echo -e " ${grs}║$NC •  DATE           : $(printf "%-36.36s %s\n" "$DATEVPS" "$garis")"
-echo -e " ${grs}║$NC •  TIME           : $(printf "%-36.36s %s\n" "$TIMEZONE" "$garis")"
-echo -e " ${grs}║$NC •  SERVER         : $(printf "%-36.36s %s\n" "$ISP" "$garis")"
-echo -e " ${grs}║$NC •  IP VPS         : $(printf "%-36.36s %s\n" "$MYIP" "$garis")"
-echo -e " ${grs}║$NC •  DOMAIN         : $(printf "%-36.36s %s\n" "$domain" "$garis")"
-echo -e " ${grs}║$NC •  STATUS SCRIPT  : $(printf "$gr%-36.36s %s\n" "$sts" "$garis")"
-echo -e " ${grs}║$NC •  CLIENT SCRITP  : $(printf "%-36.36s %s\n" "$username" "$garis")"
-echo -e " ${grs}║$NC •  Expired SCRIPT : $(printf "$gr%-9s $NC%s $gr%-2s $NC%-20s %s\n" "$exp" "|" "$certificate" "Days" "$garis")"
+echo -e " ${grs}║$NC •  OS             : $MODEL${NC}"
+echo -e " ${grs}║$NC •  RAM & USAGE    : $green$tram ${NC}MB | $green$uram ${NC}MB"
+echo -e " ${grs}║$NC •  UPTIME SERVER  : $uptime"
+echo -e " ${grs}║$NC •  DATE           : $DATEVPS${NC}"
+echo -e " ${grs}║$NC •  TIME           : $TIMEZONE${NC}"
+echo -e " ${grs}║$NC •  SERVER         : $ISP${NC}"
+echo -e " ${grs}║$NC •  IP VPS         : $MYIP${NC}"
+echo -e " ${grs}║$NC •  DOMAIN         : $domain${NC}"
+echo -e " ${grs}║$NC •  STATUS SCRIPT  : $sts"
+echo -e " ${grs}║$NC •  CLIENT SCRITP  : $username"
+echo -e " ${grs}║$NC •  Expired SCRIPT : $exp${NC} | $green$certifacate ${NC}Days"
 echo -e " ${grs}╠══════════════════════════════════════════════════════════╣${NC}"
 echo -e " ${grs}║ ${NC}SSH $status_ssh NGINX $status_nginx WS $status_ws_epro PROXY $status_haproxy XRAY $status_xray DROP $status_dropbear"
 echo -e " ${grs}╚══════════════════════════════════════════════════════════╝${NC}"
