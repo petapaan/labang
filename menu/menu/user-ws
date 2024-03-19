@@ -16,7 +16,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/vmess/.vmess.db")
 fi
 
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo -e "  \e[1;97;101m        CONFIG VMESS ACCOUNT         \E[0m"
+  echo -e "\e[1;97;101m           CONFIG VMESS ACCOUNT           \E[0m"
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
   printf "%-5s%-13s%-13s%s\n" "No" "User" "Ip limit" "Expired"
   echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
