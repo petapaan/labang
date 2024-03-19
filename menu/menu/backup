@@ -110,7 +110,7 @@ pesan = f"""
 ────────────────────
 <b>☘ BERHASIL BACKUP VPS ☘</b>
 ────────────────────
-<code>IP VPS  :</code> <code>{IP} </code>
+<code>IP VPS  :</code> <code>{IP}</code>
 <code>Domain  :</code> <code>{domain}</code>
 <code>Tanggal :</code> <code>{date}</code>
 ────────────────────
