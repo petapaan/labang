@@ -3,11 +3,11 @@ clear
 # functions
 update() {
     git add REGISTRASI
-    git commit -m "izinip"
+    git commit -m "bangkalanip"
     git push
 }
 
-# tambah izin ip
+# tambah bangkalan ip
 tambah() {
 pointing() {
 # Mengambil tanggal sekarang
@@ -107,7 +107,7 @@ END
 pointing
 notiftelebot
 }
-# perbarui izin ip
+# perbarui bangkalan ip
 perbarui() {
 hasil_penemuan() {
 mapfile -t lines < REGISTRASI
@@ -271,10 +271,10 @@ echo -e "Ip $ip berhasil dihapus"
 
 # menu
 echo -e ""
-echo -e " [01] Tambah izin ip"
-echo -e " [02] Perbarui izin ip"
-echo -e " [03] Kurangi izin ip"
-echo -e " [04] Hapus izin ip"
+echo -e " [01] Tambah bangkalan ip"
+echo -e " [02] Perbarui bangkalan ip"
+echo -e " [03] Kurangi bangkalan ip"
+echo -e " [04] Hapus bangkalan ip"
 echo -e " [00] Keluar"
 echo -e ""
 read -rp " Silahkan pilih 1-4 atau 0: " jwb

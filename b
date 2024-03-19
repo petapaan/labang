@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 function hasil_penemuan() {
-mapfile -t lines < izin
+mapfile -t lines < bangkalan
 found=0
 tgl_lama=""
 wkwk=""
@@ -30,7 +30,7 @@ hasil_penemuan
 read -p "Masukkan jumlah hari tambahan: " days
 
 # Menyimpan konten file ke dalam array
-mapfile -t lines < izin
+mapfile -t lines < bangkalan
 
 # Menandai apakah IP ditemukan atau tidak
 found=0
@@ -58,7 +58,7 @@ for (( i=0; i<${#lines[@]}; i++ )); do
 done
 
 # Menulis kembali konten yang telah diubah ke file
-printf "%s\n" "${lines[@]}" > izin
+printf "%s\n" "${lines[@]}" > bangkalan
 
 if [[ $found -eq 1 ]]; then
     echo "Tanggal berhasil diubah untuk IP $ip."

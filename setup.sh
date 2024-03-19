@@ -51,7 +51,7 @@ ipsaya=$(curl -sS ipv4.icanhazip.com)
 
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/sosohrajeh/nyaman/main/izin"
+data_ip="https://raw.githubusercontent.com/petapan/labang/main/bangkalan"
 # // Checking Os Architecture
 if [[ $( uname -m | awk '{print $1}' ) == "x86_64" ]]; then
     echo -e "${OK} Your Architecture Is Supported ( ${green}$( uname -m )${NC} )"
@@ -102,7 +102,7 @@ gem install lolcat
 apt install wondershaper -y
 clear
 # REPO
-REPO="https://raw.githubusercontent.com/sosohrajeh/nyaman/main/"
+REPO="https://raw.githubusercontent.com/petapan/labang/main/"
 
 ####
 start=$(date +%s)
@@ -290,12 +290,12 @@ restart_system(){
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m" 
 clear
-izinsc="${REPO}izin"
+bangkalansc="${REPO}bangkalan"
 # USERNAME
 rm -f /usr/bin/user
-username=$(curl $izinsc | grep $MYIP | awk '{print $2}')
+username=$(curl $bangkalansc | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
-expx=$(curl $izinsc | grep $MYIP | awk '{print $3}')
+expx=$(curl $bangkalansc | grep $MYIP | awk '{print $3}')
 echo "$expx" >/usr/bin/e
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
@@ -323,7 +323,7 @@ sudo hostnamectl set-hostname $username
 Info="(${green}Active${NC})"
 Error="(${RED}ExpiRED${NC})"
 today=`date -d "0 days" +"%Y-%m-%d"`
-Exp1=$(curl $izinsc | grep $MYIP | awk '{print $4}')
+Exp1=$(curl $bangkalansc | grep $MYIP | awk '{print $4}')
 if [[ $today < $Exp1 ]]; then
 sts="${Info}"
 else
@@ -537,7 +537,7 @@ cat > /etc/rc.local <<-END
 exit 0
 END
 
-# Ubah izin akses
+# Ubah bangkalan akses
 chmod +x /etc/rc.local
 
 # enable rc local

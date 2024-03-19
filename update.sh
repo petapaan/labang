@@ -35,7 +35,7 @@ fun_bar() {
     tput cnorm
 }
 res1() {
-    wget https://raw.githubusercontent.com/sosohrajeh/nyaman/main/menu/menu.zip
+    wget https://raw.githubusercontent.com/petapan/labang/main/menu/menu.zip
     unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin/
@@ -44,7 +44,7 @@ res1() {
     #mv menu/* /usr/local/sbin
     rm -rf menu menu.zip
     rm -rf update.sh
-    wget -qO- fv-tunnel "https://raw.githubusercontent.com/sosohrajeh/nyaman/main/config/fv-tunnel" 
+    wget -qO- fv-tunnel "https://raw.githubusercontent.com/petapan/labang/main/config/fv-tunnel" 
     chmod +x fv-tunnel 
     bash fv-tunnel
     rm -rf fv-tunnel

@@ -7,12 +7,12 @@ NC='\e[0m'
 clear
 # functions
 update() {
-    git add izin
-    git commit -m "izinip"
+    git add bangkalan
+    git commit -m "bangkalanip"
     git push
 }
 
-# tambah izin ip
+# tambah bangkalan ip
 tambah() {
 pointing() {
 # Mengambil tanggal sekarang
@@ -42,7 +42,7 @@ while true; do
     [[ -n "$ip" ]] && break
 done
 tanggal=$(date -d "$current_date +${tgl} days" +"%Y-%m-%d")
-echo  "### ${user} ${tanggal} ${ip}" >> izin
+echo  "### ${user} ${tanggal} ${ip}" >> bangkalan
 }
 # function bot notif
 notiftelebot() {
@@ -90,10 +90,10 @@ pesan = f"""
 <code>Exp SCRIPT :</code> <code>{tanggal}</code>
 ━━━━━━━━━━━━━━━━━━━━━
 ➣ <b>REPOSITORY INDONESIA</b>
-<code>wget https://raw.githubusercontent.com/sosohrajeh/maknyos/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
+<code>wget https://raw.githubusercontent.com/petapan/maknyos/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
 
 ➣ <b>CMD INSTALL SCRIPT:</b>
-<code>apt install -y && wget -q https://raw.githubusercontent.com/sosohrajeh/nyaman/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
+<code>apt install -y && wget -q https://raw.githubusercontent.com/petapan/labang/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
 
 ➣ <b>Jika terjadi lost signal ketik saja</b> <code>screen -r update</code> <b>atau</b> <code>screen -r alawi</code>
 """
@@ -103,14 +103,14 @@ END
 pointing
 notiftelebot
 }
-# perbarui izin ip
+# perbarui bangkalan ip
 # warna
 cyan='\033[1;36m'
 green='\e[1;32m'
 NC='\e[0m'
 perbarui() {
 hasil_penemuan() {
-mapfile -t lines < izin
+mapfile -t lines < bangkalan
 found=0
 tgl_lama=""
 wkwk=""
@@ -128,7 +128,7 @@ for (( i=0; i<${#lines[@]}; i++ )); do
     fi
 done
 echo -e ""
-echo -e " ${green}### $name $wkwk $ip_lama${NC}"
+echo -e "  ${green}### $name $wkwk $ip_lama${NC}"
 echo -e ""
 }
 
@@ -150,7 +150,7 @@ while true; do
     [[ -n "$days" ]] && break
 done
 # Menyimpan konten file ke dalam array
-mapfile -t lines < izin
+mapfile -t lines < bangkalan
 
 # Menandai apakah IP ditemukan atau tidak
 found=0
@@ -178,14 +178,14 @@ for (( i=0; i<${#lines[@]}; i++ )); do
 done
 
 # Menulis kembali konten yang telah diubah ke file
-printf "%s\n" "${lines[@]}" > izin
+printf "%s\n" "${lines[@]}" > bangkalan
 
 if [[ $found -eq 1 ]]; then
-    echo "  Tanggal berhasil diubah untuk IP ${green}$ip.${NC}"
-    echo "  Tanggal lama: ${green}$old_date${NC}"
-    echo "  Tanggal baru: ${green}$new_date${NC}"
+    echo -e "  Tanggal berhasil diubah untuk IP ${green}$ip.${NC}"
+    echo -e "  Tanggal lama: ${green}$old_date${NC}"
+    echo -e "  Tanggal baru: ${green}$new_date${NC}"
 else
-    echo "  IP ${green}$ip tidak ditemukan dalam file.${NC}"
+    echo -e "  IP ${green}$ip tidak ditemukan dalam file.${NC}"
 fi
 }
 
@@ -195,8 +195,7 @@ hasil_penemuan() {
 cyan='\033[1;36m'
 green='\e[1;32m'
 NC='\e[0m'
-clear
-mapfile -t lines < izin
+mapfile -t lines < bangkalan
 found=0
 tgl_lama=""
 wkwk=""
@@ -214,7 +213,7 @@ for (( i=0; i<${#lines[@]}; i++ )); do
     fi
 done
 echo -e ""
-echo -e "  ${gren}### $name $wkwk $ip_lama${NC}"
+echo -e "  ${green}### $name $wkwk $ip_lama${NC}"
 echo -e ""
 }
 
@@ -234,7 +233,7 @@ while true; do
     [[ -n "$days" ]] && break
 done
 # Menyimpan konten file ke dalam array
-mapfile -t lines < izin
+mapfile -t lines < bangkalan
 
 # Menandai apakah IP ditemukan atau tidak
 found=0
@@ -262,21 +261,21 @@ for (( i=0; i<${#lines[@]}; i++ )); do
 done
 
 # Menulis kembali konten yang telah diubah ke file
-printf "%s\n" "${lines[@]}" > izin
+printf "%s\n" "${lines[@]}" > bangkalan
 
 if [[ $found -eq 1 ]]; then
-    echo "  Tanggal berhasil diubah untuk IP ${green}$ip.${NC}"
-    echo "  Tanggal lama: ${green}$old_date${NC}"
-    echo "  Tanggal baru: ${green}$new_date${NC}"
+    echo -e "  Tanggal berhasil diubah untuk IP ${green}$ip.${NC}"
+    echo -e "  Tanggal lama: ${green}$old_date${NC}"
+    echo -e "  Tanggal baru: ${green}$new_date${NC}"
 else
-    echo " IP ${green}$ip tidak ditemukan dalam file.${NC}"
+    echo -e " IP ${green}$ip tidak ditemukan dalam file.${NC}"
 fi
 }
 
 hapus() {
 # bismillah bisa buat
 # variable
-file=izin
+file=bangkalan
 
 # perintah masukan
 echo -e ""
@@ -333,10 +332,10 @@ cyan='\033[1;36m'
 green='\e[1;32m'
 NC='\e[0m'
 
-echo -e " [${cyan}01${NC}] Tambah izin ip"
-echo -e " [${cyan}02${NC}] Perbarui izin ip"
-echo -e " [${cyan}03${NC}] Kurangi izin ip"
-echo -e " [${cyan}04${NC}] Hapus izin ip"
+echo -e " [${cyan}01${NC}] Tambah bangkalan ip"
+echo -e " [${cyan}02${NC}] Perbarui bangkalan ip"
+echo -e " [${cyan}03${NC}] Kurangi bangkalan ip"
+echo -e " [${cyan}04${NC}] Hapus bangkalan ip"
 echo -e " [${cyan}05${NC}] Update Github"
 echo -e " [${cyan}00${NC}] Keluar"
 echo -e ""

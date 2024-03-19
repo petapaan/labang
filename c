@@ -3,7 +3,7 @@ clear
 
 # bismillah bisa buat
 # variable
-file=izin
+file=bangkalan
 
 # perintah masukan
 echo -e ""
