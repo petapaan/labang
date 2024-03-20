@@ -120,46 +120,46 @@ clear
 
 
 # // RUNNING SSH
-if [[ $ssh_service == "running" ]]; then 
-   status_ssh="${green}[ON]${NC}"
+if [[ $ssh_service == "running" ]]; then
+   status_ssh="ON"
 else
-   status_ssh="${z}[OFF]${NC} "
+   status_ssh="OFF"
 fi
 
 # // RUNNING WEBSOCKET
 ssh_ws=$( systemctl status ws | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $ssh_ws == "running" ]]; then
-    status_ws_epro="${green}[ON]${NC}"
+    status_ws_epro="ON"
 else
-    status_ws_epro="${z}[OFF]${NC} "
+    status_ws_epro="OFF"
 fi
 
 # RUNNING HAPROXY
-if [[ $haproxy_service == "running" ]]; then 
-   status_haproxy="${green}[ON]${NC}"
+if [[ $haproxy_service == "running" ]]; then
+   status_haproxy="ON"
 else
-   status_haproxy="${z}[OFF]${NC} "
+   status_haproxy="OFF"
 fi
 
 # RUNNING XRAY
-if [[ $xray_service == "running" ]]; then 
-   status_xray="${green}[ON]${NC}"
+if [[ $xray_service == "running" ]]; then
+   status_xray="ON"
 else
-   status_xray="${z}[OFF]${NC} "
+   status_xray="OFF"
 fi
 
 # RUNNING NGINX
-if [[ $nginx_service == "running" ]]; then 
-   status_nginx="${green}[ON]${NC}"
+if [[ $nginx_service == "running" ]]; then
+   status_nginx="ON"
 else
-   status_nginx="${z}[OFF]${NC} "
+   status_nginx="OFF"
 fi
 
 # RUNNING DROPBEAR
-if [[ $dropbear_service == "running" ]]; then 
-   status_dropbear="${green}[ON]${NC}"
+if [[ $dropbear_service == "running" ]]; then
+   status_dropbear="ON"
 else
-   status_dropbear="${z}[OFF]${NC} "
+   status_dropbear="OFF"
 fi
 # // UPDATE / REVISI all menu
 REVISI="https://raw.githubusercontent.com/petapaan/labang/main/"
@@ -237,7 +237,56 @@ yesterday_tx=NULL
 yesterday_txv=NULL
 fi
 clear
-garis="${grs}║${NC}"
+
+grs="\033[1;93m"
+bg="\033[42m"
+red="\033[0;31m"
+gr="\e[92;1m"
+NC='\033[0m'
+clear
+satu="SSH:"
+dua="NGNX:"
+tiga="WS:"
+empat="PRXY:"
+lima="XRY:"
+enam="DROP:"
+satuu="$status_ssh"
+duaa="$status_nginx"
+tigaa="$status_ws_epro"
+empatt="$status_haproxy"
+limaa="$status_xray"
+enamm="$status_dropbear"
+garis="${grs}║"
+if [[ $satuu == "ON" ]]; then
+    warna1=${gr}
+else
+    warna1=${red}
+fi
+if [[ $duaa == "ON" ]]; then
+    warna2=${gr}
+else
+    warna2=${red}
+fi
+if [[ $tigaa == "ON" ]]; then
+    warna3=${gr}
+else
+    warna3=${red}
+fi
+if [[ $empatt == "ON" ]]; then
+    warna4=${gr}
+else
+    warna4=${red}
+fi
+if [[ $limaa == "ON" ]]; then
+    warna5=${gr}
+else
+    warna5=${red}
+fi
+if [[ $enamm == "ON" ]]; then
+    warna6=${gr}
+else
+    warna6=${red}
+fi
 echo -e " ${grs}╔══════════════════════════════════════════════════════════╗${NC}"
 echo -e " ${grs}║$NC${bg}        WELCOME TO AUTOSCRIPT PREMIUM BY ALAWI VPN        $NC${grs}║${NC}"
 echo -e " ${grs}╚══════════════════════════════════════════════════════════╝${NC}"
@@ -254,7 +303,7 @@ echo -e " ${grs}║$NC •  STATUS SCRIPT  : $(printf "$gr%-36.36s %s\n" "$sts" 
 echo -e " ${grs}║$NC •  CLIENT SCRITP  : $(printf "%-36.36s %s\n" "$username" "$garis")"
 echo -e " ${grs}║$NC •  Expired SCRIPT : $(printf "$gr%-9s $NC%s $gr%-2s $NC%-20s %s\n" "$exp" "|" "$certificate" "Days" "$garis")"
 echo -e " ${grs}╠══════════════════════════════════════════════════════════╣${NC}"
-echo -e " ${grs}║ ${NC}SSH $status_ssh NGINX $status_nginx WS $status_ws_epro PROXY $status_haproxy XRAY $status_xray DROP $status_dropbear"
+echo -e " ${grs}║  $(printf "${NC}%-4s ${warna1}%-3s ${NC}%-5s ${warna2}%-3s ${NC}%-3s ${warna3}%-3s ${NC}%-5s ${warna4}%-3s ${NC}%-4s ${warna5}%-3s ${NC}%-5s ${warna6}%-3s ${NC}%s\n" "$satu" "$satuu" "$dua" "$duaa" "$tiga" "$tigaa" "$empat" "$empatt" "$lima" "$limaa" "$enam" "$enamm" "$garis")"
 echo -e " ${grs}╚══════════════════════════════════════════════════════════╝${NC}"
 akun1="SSH WS"
 akun2="VMESS"
