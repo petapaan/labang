@@ -3,8 +3,29 @@
 grs="\033[1;93m"
 bg="\033[42m"
 gr="\e[92;1m"
+red='\033[0;31m'
+cyn='\033[0;36'
 NC='\033[0m'
 clear
+# function checking vps
+cekvps() {
+MYIP=$(curl -sS ipv4.icanhazip.com)
+echo -e "${gr}Your IP: $MYIP"
+echo -e "${gr}Checking VPS..."
+IZIN=$(curl https://raw.githubusercontent.com/petapaan/labang/main/perizinan | grep $MYIP )
+if [ $MYIP = $IZIN ]; then
+    echo -e "${gr}Permission Accepted...${NC}"
+    sleep 2
+else
+    echo -e "${NC}${red}Permission Denied!${NC}";
+    echo -e "${NC}${cyn}Please Contact Admin!!"
+    echo -e "${NC}${cyn}WhatsApp : https://wa.me/6283890977190"
+    echo -e "${NC}${cyn}Telegram : https://t.me/alawivpn"
+exit 0
+fi
+}
+cekvps
+
 echo -e "${grs}┌────────────────────────────────────────────────────┐${NC}"
 echo -e "${grs}│${bg}                   MENU MANAGER SSH                 ${NC}${grs}│${NC}"
 echo -e "${grs}└────────────────────────────────────────────────────┘${NC}"
