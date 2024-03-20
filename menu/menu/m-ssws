@@ -24,28 +24,12 @@ echo -e ""
 read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${NC} ] : ")" menu
 echo -e ""
 case $menu in
-1|01)
-    addss
-    ;;
-2|02)
-    trialss
-    ;;
-3|03)
-    renewss
-    ;;
-4|04)
-    delss
-    ;;
-5|05)
-    cekss
-    ;;
-6|06)
-    user-ss
-    ;;
-0|00)
-    menu
-    ;;
-*)
-    menu
-    ;;
+    1|01) addss ;;
+    2|02) trialss ;;
+    3|03) renewss ;;
+    4|04) delss ;;
+    5|05) cekss ;;
+    6|06) user-ss ;;
+    0|00) menu ;;
+    *) m-ssws ;;
 esac

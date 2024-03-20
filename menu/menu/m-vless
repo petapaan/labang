@@ -24,13 +24,13 @@ echo -e ""
 read -p "$(echo -e "Select From Options [ ${gr}1${NC} - ${gr}6${NC} or ${gr}0${NC} ] : ")" menu
 echo -e ""
 case $menu in
-	1|01) clear ; addvless ;;
-	2|02) clear ; trialvless ;;
-	3|03) clear ; renewvless ;;
-	4|04) clear ; delvless ;;
-	5|05) clear ; cekvless ;;
-	6|06) clear ; user-vless ;;
-	0|00) clear ; menu ;;
-	*) clear ; m-vless ;;
+    1|01) clear ; addvless ;;
+    2|02) clear ; trialvless ;;
+    3|03) clear ; renewvless ;;
+    4|04) clear ; delvless ;;
+    5|05) clear ; cekvless ;;
+    6|06) clear ; user-vless ;;
+    0|00) clear ; menu ;;
+    *) clear ; m-vless ;;
 esac
 
