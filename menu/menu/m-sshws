@@ -21,7 +21,7 @@ else
     echo -e "${NC}${cyn}Please Contact Admin!!"
     echo -e "${NC}${cyn}WhatsApp : https://wa.me/6283890977190"
     echo -e "${NC}${cyn}Telegram : https://t.me/alawivpn"
-exit 0
+    exit 0
 fi
 }
 cekvps
@@ -56,3 +56,4 @@ case $menu in
     0|00) menu ;;
     *) m-sshws ;;
 esac
+
