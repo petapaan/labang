@@ -57,8 +57,9 @@ echo -e "\033[1;93m│$NC         SETT TRIAL SSH               $NC"
 echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
 echo -e ""
 read -p " Menit : " pup
-hari="1"
+hari=1
 Pass=1
+iplimit=1
 clear
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
@@ -73,6 +74,8 @@ exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 hariini=`date -d "0 days" +"%Y-%m-%d"`
 expi=`date -d "$masaaktif days" +"%Y-%m-%d"`
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
+
+bot_telegram() {
 CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
@@ -107,7 +110,7 @@ TEXT="
 <code>$domain:80@$Login:$Pass</code>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <b>Payload WSS :</b>
-<code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade>
+<code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]</code>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <b>OVPN Download:</b>
 https://$domain:81/
@@ -115,11 +118,15 @@ https://$domain:81/
 <b>Save Link Account:</b>
 https://$domain:81/ssh-$Login.txt
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
-<code>Berakhir Pada:</code> <b>$pup Menit</b>
+<code>Dibuat Pada  :</code> <b>$tnggl</b>
+<code>Masa Aktif   :</code> <b>$pup Menit</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 "
-
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+bot_telegram
+clear
+
 echo ""
 mkdir -p /etc/ssh
 
