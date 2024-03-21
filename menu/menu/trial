@@ -55,7 +55,7 @@ clear
 biru='\033[1;36m'
 gr='\033[1;32m'
 nc='\033[0m'
-echo -e "
+echo -e ""
 echo -e " $biru╔════════════════════════════════════════════════╗$nc"
 echo -e " ${biru}║${nc{            ${gr}PEMBUATAN AKUN TRIAL SSH            ${biru}║$nc"
 echo -e " $biru╚════════════════════════════════════════════════╝$nc"
