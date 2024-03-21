@@ -10,17 +10,12 @@ clear
 # function checking vps
 cekvps() {
 MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "${gr}Your IP: $MYIP"
-echo -e "${gr}Checking VPS...${NC}"
+echo -e "${gr}Memeriksa izin...${NC}"
 IZIN=$(curl -sS https://raw.githubusercontent.com/petapaan/labang/main/bangkalan | grep $MYIP)
 if [[ "$MYIP" == "$IZIN" ]; then
     echo -e "${gr}Permission Accepted...${NC}"
-    sleep 2
 else
-    echo -e "${NC}${red}Permission Denied!${NC}";
-    echo -e "${NC}${cyn}Please Contact Admin!!"
-    echo -e "${NC}${cyn}WhatsApp : https://wa.me/6283890977190"
-    echo -e "${NC}${cyn}Telegram : https://t.me/alawivpn"
+    bash dilarang
     exit 0
 fi
 }

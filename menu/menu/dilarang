@@ -1,0 +1,71 @@
+#!/bin/bash
+clear
+# warna
+tebal='\033[1;2m'
+merah='\033[1;31m'
+hijau='\033[1;32m'
+kuning='\033[1;33m'
+biru='\033[1;34m'
+mgnt='\033[1;35m'
+cyan='\033[1;36m'
+NC='\e[0m'
+blue_bg='\e[42m'
+lebar=40
+myip=$(curl -sS ipv4.icanhazip.com)
+garis() {
+    echo -e "$kuning========================================$NC"
+}
+penyamaan() {
+    lebar_judul=${#judul}
+    peluasan=$(( (lebar - lebar_judul) /2 ))
+    padding=""
+    for ((i=0; i<peluasan; i++)); do
+        padding+=" "
+    done
+}
+cetak_judul() {
+    printf "${blue_bg}${warna}%s%s%s%s${NC}\n" "$padding" "$judul" "$padding"
+}
+cetak() {
+    printf "${warna}%s%s%s%s${NC}\n" "$padding" "$judul" "$padding"
+}
+judul1() {
+    warna="${merah}"
+    judul="PERIZINAN DILARANG"
+    penyamaan
+}
+# ip
+judul2() {
+    warna="${cyan}"
+    judul="IP KAMU : $myip"
+    penyamaan
+}
+judul3() {
+    warna="${cyan}"
+    judul="Tidak mendapatkan izin"
+    penyamaan
+}
+judul4() {
+    warna="${cyan}"
+    judul="Silahkan hubungi Admin"
+    penyamaan
+}
+judul5() {
+    warna="${cyan}"
+    judul="Telegram : t.me/alawivpn"
+    penyamaan
+}
+garis
+judul1
+cetak_judul
+garis
+judul2
+cetak
+judul3
+cetak
+judul4
+cetak
+judul5
+cetak
+garis
+exit 0
