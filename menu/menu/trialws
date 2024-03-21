@@ -71,9 +71,14 @@ Quota=1
 iplimit=1
 user=Trial-VM`</dev/urandom tr -dc 0-9 | head -c3`
 clear
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
-echo -e " Set Expired In Minutes           "
-echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
+biru='\033[1;36m'
+gr='\033[1;32m'
+nc='\033[0m'
+echo -e "
+echo -e " $biru╔════════════════════════════════════════════════╗$nc"
+echo -e " ${biru}║${nc{           ${gr}PEMBUATAN AKUN TRIAL VMESS           ${biru}║$nc"
+echo -e " $biru╚════════════════════════════════════════════════╝$nc"
+echo -e ""
 read -p " Menit : " pup
 clear
 uuid=$(cat /proc/sys/kernel/random/uuid)
@@ -206,15 +211,15 @@ cat >/var/www/html/vmess-$user.txt <<-END
     grpc-service-name: vmess-grpc
 
 ◇━━━━━━━━━━━━━━━━━◇
- Link Akun Vmess                   
+ Link Akun Vmess
 ◇━━━━━━━━━━━━━━━━━◇
-Link TLS         : 
+Link TLS         :
 ${vmesslink1}
 ◇━━━━━━━━━━━━━━━━━◇
-Link none TLS    : 
+Link none TLS    :
 ${vmesslink2}
 ◇━━━━━━━━━━━━━━━━━◇
-Link GRPC        : 
+Link GRPC        :
 ${vmesslink3}
 ◇━━━━━━━━━━━━━━━━━◇
 
@@ -251,7 +256,7 @@ KEY="$KEY"
 TIME="$TIME"
 URL="$URL"
 TEXT="<code>◇━━━━━━━━━━━━━━━━━◇</code>
-<code>      XRAY/VMESS</code>
+<code>      TRIAL XRAY/VMESS</code>
 <code>◇━━━━━━━━━━━━━━━━━◇</code>
 <code>Remarks   : ${user}
 Domain    : ${domain}
