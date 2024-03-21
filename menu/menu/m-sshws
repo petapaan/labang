@@ -11,9 +11,9 @@ clear
 cekvps() {
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "${gr}Memeriksa izin...${NC}"
-IZIN=$(curl -sS https://raw.githubusercontent.com/petapaan/labang/main/bangkalan | grep $MYIP)
-if [[ "$MYIP" == "$IZIN" ]; then
-    echo -e "${gr}Permission Accepted...${NC}"
+IZIN=$(curl -sS https://raw.githubusercontent.com/petapaan/labang/main/bangkalan | grep $MYIP | awk '{print $4}')
+if [[ "$MYIP" == "$IZIN" ]]; then
+    echo -e "${gr}Sudah terdaftar dalam perizinan...${NC}"
 else
     bash dilarang
     exit 0
