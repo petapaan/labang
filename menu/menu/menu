@@ -378,11 +378,7 @@ case $opt in
 8 | 08) clear ; m-system ;;
 9 | 09) clear ; gotop ;;
 10) clear ; reset ;;
-11)
-clear
-echo -e "${grenbo}Udp custom sudah dipasang saat instalasi script!"
-sleep 2
-menu;;
+11) clear ; wget https://raw.githubusercontent.com/gemilangvip/autoscript/main/files/udp-custom.sh && chmod +x udp-custom.sh && ./udp-custom.sh ;;
 12) clear ; update ;;
 13) clear ; pointing ;;
 14) clear ; barupo ;;
