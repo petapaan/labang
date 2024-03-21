@@ -52,9 +52,13 @@ clear
 IP=$(curl -sS ipv4.icanhazip.com)
 Login=CF-SANTRI-`</dev/urandom tr -dc X-Z0-9 | head -c4`
 clear
-echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;93m│$NC         SETT TRIAL SSH               $NC"
-echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+biru='\033[1;36m'
+gr='\033[1;32m'
+nc='\033[0m'
+echo -e "
+echo -e " $biru╔════════════════════════════════════════════════╗$nc"
+echo -e " ${biru}║${nc{            ${gr}PEMBUATAN AKUN TRIAL SSH            ${biru}║$nc"
+echo -e " $biru╚════════════════════════════════════════════════╝$nc"
 echo -e ""
 read -p " Menit : " pup
 hari=1
@@ -82,7 +86,7 @@ TIME="$TIME"
 URL="$URL"
 TEXT="
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
-<b>    Succes Create SSH Ovpn Account</b>
+<b>    Succes Create Trial SSH Account</b>
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <code>Username    :</code> <code>$Login</code>
 <code>Password    :</code> <code>$Pass</code>
