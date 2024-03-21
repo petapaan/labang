@@ -44,7 +44,7 @@ clear
 ipsaya=$(curl -sS ipv4.icanhazip.com)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
+data_ip="https://raw.githubusercontent.com/petapaan/labang/main/bangkalan"
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
@@ -68,30 +68,30 @@ clear
 domain=$(cat /etc/xray/domain)
 masaaktif=1
 Quota=1
-iplimit=10
+iplimit=1
 user=Trial-VM`</dev/urandom tr -dc 0-9 | head -c3`
 clear
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 echo -e " Set Expired In Minutes           "
 echo -e "\033[1;93m◇━━━━━━━━━━━━━━━━━◇\033[0m"
 read -p " Menit : " pup
-clear 
+clear
 uuid=$(cat /proc/sys/kernel/random/uuid)
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
-expe="$tgl $bln, $thn"
+expe="$tgl-$bln-$thn"
 tgl2=$(date +"%d")
 bln2=$(date +"%b")
 thn2=$(date +"%Y")
-tnggl="$tgl2 $bln2, $thn2"
+tnggl="$tgl2-$bln2-$thn2"
 sed -i '/#vmess$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
 sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-asu=`cat<<EOF
+wstls=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -106,7 +106,7 @@ asu=`cat<<EOF
       "tls": "tls"
 }
 EOF`
-ask=`cat<<EOF
+wsntls=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -121,7 +121,7 @@ ask=`cat<<EOF
       "tls": "none"
 }
 EOF`
-grpc=`cat<<EOF
+wsgrpc=`cat<<EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -139,9 +139,9 @@ EOF`
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmess_base643=$( base64 -w 0 <<< $vmess_json3)
-vmesslink1="vmess://$(echo $asu | base64 -w 0)"
-vmesslink2="vmess://$(echo $ask | base64 -w 0)"
-vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
+vmesslink1="vmess://$(echo $wstls | base64 -w 0)"
+vmesslink2="vmess://$(echo $wsntls | base64 -w 0)"
+vmesslink3="vmess://$(echo $wsgrpc | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 
