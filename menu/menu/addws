@@ -166,9 +166,9 @@ service cron restart > /dev/null 2>&1
 
 cat >/var/www/html/vmess-$user.txt <<-END
 
-◇━━━━━━━━━━━━━━━━━◇
-   Format For Clash
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
+      Format For Clash
+----------------------------
 
 # Format Vmess WS TLS
 
@@ -224,18 +224,18 @@ cat >/var/www/html/vmess-$user.txt <<-END
   grpc-opts:
     grpc-service-name: vmess-grpc
 
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
  Link Akun Vmess
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Link TLS         :
 ${vmesslink1}
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Link none TLS    :
 ${vmesslink2}
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Link GRPC        :
 ${vmesslink3}
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 
 END
 if [ ! -e /etc/vmess ]; then

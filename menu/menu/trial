@@ -144,13 +144,13 @@ fi
 echo "### ${Login} " >>/etc/ssh/.ssh.db
 echo ""
 cat > /var/www/html/ssh-$Login.txt <<-END
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Format SSH OVPN Account
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Username         : $Login
 Password         : $Pass
 Berakhir Pada    : $pup Menit
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 IP               : $IP
 Host             : $domain
 Port OpenSSH     : 443, 80, 22
@@ -164,11 +164,11 @@ Port OVPN SSL    : 443
 Port OVPN TCP    : 1194
 Port OVPN UDP    : 2200
 BadVPN UDP       : 7100, 7300, 7300
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Payload WSS: GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf] 
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 OVPN Download : https://$domain:81/
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 
 END
 echo userdel -f "$Login" | at now + $pup minutes

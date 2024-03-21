@@ -108,9 +108,9 @@ echo "### ${user} ${exp} ${uuid} ${Quota} ${iplimit}" >>/etc/vless/.vless.db
 clear
 cat >/var/www/html/vless-$user.txt <<-END
 
-◇━━━━━━━━━━━━━━━━━◇
-   Format For Clash
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
+      Format For Clash
+----------------------------
 # Format Vless WS TLS
 
 - name: Vless-$user-WS TLS
@@ -162,18 +162,18 @@ cat >/var/www/html/vless-$user.txt <<-END
   grpc-mode: gun
     grpc-service-name: vless-grpc
 
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Link Akun Vless 
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Link TLS      : 
 ${vlesslink1}
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Link none TLS : 
 ${vlesslink2}
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 Link GRPC     : 
 ${vlesslink3}
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
 END
 
 systemctl restart xray

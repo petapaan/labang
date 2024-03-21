@@ -105,9 +105,9 @@ sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
 # Link Trojan Akun
 systemctl restart xray
 cat >/var/www/html/trojan-$user.txt <<-END
-◇━━━━━━━━━━━━━━━━━◇
-   Format For Clash
-◇━━━━━━━━━━━━━━━━━◇
+----------------------------
+      Format For Clash
+----------------------------
 
 # Format Trojan GO/WS
 
