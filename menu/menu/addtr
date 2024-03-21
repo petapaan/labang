@@ -84,10 +84,22 @@ clear
 	done
 # perhitungan dan detail
 uuid=$(cat /proc/sys/kernel/random/uuid)
-read -p "Expired (days) : " masaaktif
-read -p "Limit User (GB): " Quota
-read -p "Limit User (IP): " iplimit
-read -p "Username Buyer : " pembeli
+while true;do
+    read -p "Expired (days) : " masaaktif
+    [[ -n "$" ]] && break
+done
+while true;do
+    read -p "Limit User (GB): " Quota
+    [[ -n "$Quota" ]] && break
+done
+while true;do
+    read -p "Limit User (IP): " iplimit
+    [[ -n "$iplimit" ]] && break
+done
+while true;do
+    read -p "Username Buyer : " pembeli
+    [[ -n "$pembeli" ]] && break
+done
 tgl=$(date -d "$masaaktif days" +"%d")
 bln=$(date -d "$masaaktif days" +"%b")
 thn=$(date -d "$masaaktif days" +"%Y")
