@@ -20,7 +20,7 @@ grenbo="\e[92;1m"
 ipsaya=$(curl -sS ipv4.icanhazip.com)
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-data_ip="https://raw.githubusercontent.com/ALAWI-VPN/autoscript/main/REGISTRASI"
+data_ip="https://raw.githubusercontent.com/petapaan/labang/main/bangkalan"
 checking_sc() {
   useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
   if [[ $date_list < $useexp ]]; then
@@ -50,7 +50,7 @@ CITY=$(curl -s ipinfo.io/city )
 domain=$(cat /etc/xray/domain)
 clear
 IP=$(curl -sS ipv4.icanhazip.com)
-Login=Trial-`</dev/urandom tr -dc X-Z0-9 | head -c4`
+Login=CF-SANTRI-`</dev/urandom tr -dc X-Z0-9 | head -c4`
 clear
 echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
 echo -e "\033[1;93m│$NC         SETT TRIAL SSH               $NC"
@@ -77,29 +77,46 @@ CHATID="$CHATID"
 KEY="$KEY"
 TIME="$TIME"
 URL="$URL"
-TEXT="<code>◇━━━━━━━━━━━━━━━━━◇</code>
-<code>Your Premium VPN Details</code>
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-<code>IP Address    =</code> <code>$IP</code>
-<code>Hostname      =</code> <code>$domain</code>
-<code>Username      =</code> <code>$Login</code>
-<code>Password      =</code> <code>$Pass</code>
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-<code>OpenSSH       = 22
-Dropbear      = 443, 109, 143
-SSL/TLS       = 400-900
-SSH WS TLS    = 443
-SSH WS NTLS   = 80, 8080, 8081-9999
-OVPN WS NTLS  = 80, 8080, 8880
-OVPN WS TLS   = 443
-BadVPN UDP    = 7100,7200,7300</code>
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-Ovpn Download : https://$domain:81/
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-Save Link Account: https://$domain:81/ssh-$Login.txt
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
-Berakhir Pada  : $pup Menit
-<code>◇━━━━━━━━━━━━━━━━━◇</code>
+TEXT="
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>    Succes Create SSH Ovpn Account</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Username    :</code> <code>$Login</code>
+<code>Password    :</code> <code>$Pass</code>
+<code>Limit User  :</code> <code>$iplimit User</code>
+<code>Host        :</code> <code>$domain</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>                   INFORMASI PORT</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>OpenSSH     :</code> 443, 80, 22
+<code>Dropbear    :</code> 443, 109
+<code>SSH WS      :</code> 80, 8080, 8081-9999
+<code>SSH UDP     :</code> 1-65535
+<code>SSH SSL WS  :</code> 443
+<code>SSL/TLS     :</code> 400-900
+<code>OVPN WS SSL :</code> 443
+<code>OVPN SSL    :</code> 443
+<code>OVPN TCP    :</code> 443, 1194
+<code>OVPN UDP    :</code> 2200
+<code>BadVPN UDP  :</code> 7100, 7300, 7300
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>SSH UDP :</b>
+<code>$domain:1-65535@$Login:$Pass</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>HTTP CUSTOM :</b>
+<code>$domain:80@$Login:$Pass</code>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Payload WSS :</b>
+<code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>OVPN Download:</b>
+https://$domain:81/
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<b>Save Link Account:</b>
+https://$domain:81/ssh-$Login.txt
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
+<code>Berakhir Pada:</code> <b>$pup Menit</b>
+◇━━━━━━━━━━━━━━━━━━━━━━━◇
 "
 
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
@@ -121,7 +138,7 @@ Format SSH OVPN Account
 ◇━━━━━━━━━━━━━━━━━◇
 Username         : $Login
 Password         : $Pass
-Berakhir Pada  : $pup Menit
+Berakhir Pada    : $pup Menit
 ◇━━━━━━━━━━━━━━━━━◇
 IP               : $IP
 Host             : $domain
@@ -155,7 +172,7 @@ echo -e " IP/Host          : $IP"
 echo -e " Domain SSH       : $domain"
 echo -e " OpenSSH          : 22"
 echo -e " Dropbear         : 80, 8080, 2082, 2095, 8880"
-echo -e "Port SSH UDP     : 1-65535"
+echo -e " Port SSH UDP     : 1-65535"
 echo -e " SSL/TLS          : 400-900"
 echo -e " SSH Ws Non SSL   : 80, 8080, 8081-9999"
 echo -e " SSH Ws SSL       : 443"
