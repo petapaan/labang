@@ -941,7 +941,9 @@ print_install "Enable Service"
     print_success "Enable Service"
     clear
 }
-
+install_udp() {
+wget https://raw.githubusercontent.com/gemilangvip/autoscript/main/files/udp-custom.sh && chmod +x udp-custom.sh && ./udp-custom.sh
+}
 # function rm file root
 deleting_tmp() {
 history -c
