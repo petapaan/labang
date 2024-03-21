@@ -39,7 +39,7 @@ checking_sc() {
     exit 0
   fi
 }
-checking_sc
+#checking_sc
 clear
 CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
 KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
@@ -57,7 +57,7 @@ gr='\033[1;32m'
 nc='\033[0m'
 echo -e ""
 echo -e " $biru╔════════════════════════════════════════════════╗$nc"
-echo -e " ${biru}║${nc{            ${gr}PEMBUATAN AKUN TRIAL SSH            ${biru}║$nc"
+echo -e " ${biru}║${nc}            ${gr}PEMBUATAN AKUN TRIAL SSH            ${biru}║$nc"
 echo -e " $biru╚════════════════════════════════════════════════╝$nc"
 echo -e ""
 read -p " Menit : " pup
@@ -97,7 +97,7 @@ TEXT="
 ◇━━━━━━━━━━━━━━━━━━━━━━━◇
 <code>OpenSSH     :</code> 443, 80, 22
 <code>Dropbear    :</code> 443, 109
-<code>SSH WS      :</code> 80, 8080, 8081-9999
+/<code>SSH WS      :</code> 80, 8080, 8081-9999
 <code>SSH UDP     :</code> 1-65535
 <code>SSH SSL WS  :</code> 443
 <code>SSL/TLS     :</code> 400-900
