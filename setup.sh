@@ -19,7 +19,7 @@ sudo apt-get install curl -y
 sudo apt update -y && sudo apt upgrade -y
 sudo apt-get update
 sudo apt-get install -y ncurses-dev
-export IP=$( curl -sS icanhazip.com )
+export IP=$( curl -sS ipv4.icanhazip.com )
 
 # // Clear Data
 clear
@@ -44,7 +44,7 @@ while true; do
     [[ -n "$buyer" ]] && break
 done
 sleep 2
-MYIP=$(wget -qO- ipinfo.io/ip);
+MYIP=$(wget -qO- ipv4.icanhazip.com);
 clear
 # // Valid Script
 ipsaya=$(curl -sS ipv4.icanhazip.com)
@@ -146,7 +146,7 @@ function is_root() {
 # Buat direktori xray
 print_install "Membuat direktori xray"
     mkdir -p /etc/xray
-    curl -s ifconfig.me > /etc/xray/ipvps
+    curl -s ipv4.icanhazip.com > /etc/xray/ipvps
     touch /etc/xray/domain
     mkdir -p /var/log/xray
     chown www-data.www-data /var/log/xray
@@ -170,7 +170,7 @@ print_install "Membuat direktori xray"
     export OS_Name=$( cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' )
     export Kernel=$( uname -r )
     export Arch=$( uname -m )
-    export IP=$( curl -s https://ipinfo.io/ip/ )
+    export IP=$( curl -sS ipv4.icanhazip.com )
 
 # Change Environment System
 function first_setup(){
@@ -276,11 +276,9 @@ elif [[ $host == "2" ]]; then
     rm -f /root/cf.sh
     clear
 else
-    echo -e " ${gr}Masukkan Domain kamu...!$NC"
-    read -p " Domain: " host1
-    echo "IP=" > /var/lib/kyt/ipvps.conf
-    echo $host1 > /etc/xray/domain
-    echo $host1 > /root/domain
+    wget ${REPO}files/cf.sh && chmod +x cf.sh && ./cf.sh
+    rm -f /root/cf.sh
+    clear
 fi
 }
 
