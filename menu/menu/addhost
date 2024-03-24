@@ -164,8 +164,8 @@ TEXT="
 ────────────────────
 <b>☘ BERHASIL GANTI DOMAIN ☘</b>
 ────────────────────
-<code>Domain :</code> <code> ${domain}</code>
-<code>IP VPS :</code> <code> ${MYIP}</code>
+<code>Domain :</code> <code>${domain}</code>
+<code>IP VPS :</code> <code>${MYIP}</code>
 ────────────────────
     <b>☘ ALAWI-VPN-SCRIPT ☘</b>
 "'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/alawivpn"}]]}'
