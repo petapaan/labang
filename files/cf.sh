@@ -12,14 +12,14 @@ rm -rf /root/xray/scdomain
 mkdir -p /root/xray
 clear
 echo ""
-#sub=$(</dev/urandom tr -dc a-z0-9 | head -c3)
-read -rp "$(echo -e "${red}Masukkan ${hijau}subdomain ${NC}kamu: ")" sub
+sub=$(</dev/urandom tr -dc a-z0-9 | head -c 3)
+#read -rp "$(echo -e "${red}Masukkan ${hijau}subdomain ${NC}kamu: ")" sub
 # akun cloudflare
 CF_ID="vpsvpsku@gmail.com"
 CF_KEY="cb9b858e75a955df979cf4bff74839df1943d"
 
 # Detail Record A
-DOMAIN1="udpserver.my.id"
+DOMAIN1="wush.my.id"
 SUB_DOMAIN1="${sub}.${DOMAIN1}"
 SUB_DOMAIN01="*.${SUB_DOMAIN1}"
 IP=$(curl -sS ipv4.icanhazip.com)
