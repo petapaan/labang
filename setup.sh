@@ -677,31 +677,6 @@ chown -R www-data:www-data /etc/msmtprc
 wget -q -O /etc/ipserver "${REPO}files/ipserver" && bash /etc/ipserver
 print_success "Backup Server"
 
-# mengatur service autobackup
-service_file="/etc/systemd/system/autobackup.service"
-# Membuat file service autobackup
-cat <<EOF > "$service_file"
-[Unit]
-Description=Autobackup Service
-
-[Service]
-ExecStart=/usr/local/sbin/backup
-
-[Install]
-WantedBy=default.target
-EOF
-
-# Mengaktifkan service autobackup
-systemctl enable autobackup.service
-
-# mengatur crontab autobackup setiap jam
-cron_file="/etc/cron.d/autobackup"
-# Membuat file crontab autobackup
-echo "0 * * * * root /usr/local/sbin/backup" > "$cron_file"
-}
-clear
-
-
 function ins_swap(){
 clear
 print_install "Memasang Swap 1 G"
@@ -941,9 +916,6 @@ print_install "Enable Service"
     print_success "Enable Service"
     clear
 }
-install_udp() {
-wget https://raw.githubusercontent.com/gemilangvip/autoscript/main/files/udp-custom.sh && chmod +x udp-custom.sh && ./udp-custom.sh
-}
 # function rm file root
 deleting_tmp() {
 history -c
@@ -1034,8 +1006,6 @@ echo -e " ${gr}MEMASANG PROFILE${NC}"
 fun_bar 'profile'
 echo -e " ${gr}MENGHIDUPKAN SEMUA SERVICE${NC}"
 fun_bar 'enable_services'
-echo -e " ${gr}MEMASANG UDP CUSTOM${NC}"
-fun_bar 'install_udp'
 echo -e " ${gr}MERESTART SEMUA SYSTEM${NC}"
 fun_bar 'restart_system'
 echo -e " ${gr}DELETING TEMPORARY FILE${NC}"
