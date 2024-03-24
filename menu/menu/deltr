@@ -58,7 +58,7 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^#! " "/etc/xray/config.json")
     else
     exp=$(grep -wE "^#! $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
     sed -i "/^#! $user $exp/,/^},{/d" /etc/xray/config.json
-    sed -i "/### $user $exp/,/^},{/d" /etc/trojan/.trojan.db
+    sed -i "/$user/d" /etc/trojan/.trojan.db
     rm -rf /etc/trojan/$user
     rm -rf /etc/kyt/limit/trojan/ip/$user
     systemctl restart xray > /dev/null 2>&1
