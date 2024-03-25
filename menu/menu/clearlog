@@ -1,38 +1,42 @@
 #!/bin/bash
+GREEN="\e[1;32m"
+NC="\e[0m"
+# Fungsi untuk menghapus log
+clear_log() {
+    log=$1
+    if [ -f "$log" ]; then
+        echo > "$log"
+    fi
+}
 
-# // LUNATIC | PROJECT
-# // 082240074362 >> whatsapp 
-# // t.me/LunaticTunnrl >> Telegram
-# // Dean >> Fb
+# Pencarian dan penghapusan log
+data=( $(find /var/log/ -name "*.log") )
+echo -e "${GREEN}Clearing Log...${NC}"
+for log in "${data[@]}"; do
+    clear_log "$log"
+    echo -e "${GREEN}Log${NC} - $log - ${GREEN}Berhasil dihapus!${NC}"
+done
 
-# // color
-NC='\033[0m'
-GREEN='\033[0;32m'
+# Penghapusan log tambahan
+logs_to_clear=(
+    "/var/log/syslog"
+    "/var/log/btmp"
+    "/var/log/messages"
+    "/var/log/debug"
+)
 
-# // Get
-data=(`find /var/log/ -name *.log`);
-for log in "${data[@]}"
-do
-echo "$log clear"
-echo > $log
+for log in "${logs_to_clear[@]}"; do
+    clear_log "$log"
+    echo -e "${GREEN}Log${NC} - $log - ${GREEN}Berhasil dihapus!${NC}"
 done
-data=(`find /var/log/ -name *.err`);
-for log in "${data[@]}"
-do
-echo "$log clear"
-echo > $log
-done
-data=(`find /var/log/ -name mail.*`);
-for log in "${data[@]}"
-do
-echo "$log clear"
-echo > $log
-done
-echo > /var/log/syslog
-echo > /var/log/btmp
-echo > /var/log/messages
-echo > /var/log/debug
-echo -e ""
-notif_clearlog
-echo -e " ${GREEN} Clear LOG succes. ${NC}"
+
+# Membersihkan cache
+echo -e "${GREEN}Clearing Cache...${NC}"
+if [ "$(command -v apt-get)" ]; then
+    apt-get clean
+elif [ "$(command -v yum)" ]; then
+    yum clean all
+fi
+
+echo -e "Cache - ${GREEN}Berhasil dihapus!${NC}"
 echo ""
