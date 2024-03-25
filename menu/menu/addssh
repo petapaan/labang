@@ -62,7 +62,7 @@ echo -e "${grs}└────────────────────�
 echo -e ""
 while true; do
     read -p " Username : " pengguna
-    [[ -n "$Login" ]] && break
+    [[ -n "$pengguna" ]] && break
 done
 while true; do
     read -p " Password : " Pass
