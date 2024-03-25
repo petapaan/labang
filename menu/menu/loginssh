@@ -18,7 +18,7 @@ fi
 data=( $(ps aux | grep -i dropbear | awk '{print $2}') )
 cek_beserta_ip(){
 echo -e "$cy====================================$NC"
-echo -e "$(printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "USER" "|" "IP")"
+echo -e "$(printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "USER" "|" "IP")"
 echo -e "$cy====================================$NC"
 cat "$LOG" | grep -i dropbear | grep -i "Password auth succeeded" > /tmp/login-db.txt
 total_pid=0
@@ -28,7 +28,7 @@ do
     PID=$(echo "$line" | awk '{print $6}' | cut -d "[" -f2)
     USER=$(echo "$line" | awk '{print $10}' | sed "s/'//g")
     IP=$(echo "$line" | awk '{print $12}')
-    printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "$USER" "|" "$IP"
+    printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "$USER" "|" "$IP"
     #printf "%-10s %s\n" "$USER" "$IP"
     ((total_pid++))
     if [[ -v user_counts["$USER"] ]]; then
@@ -39,14 +39,14 @@ do
 done < <(grep "dropbear\[" /tmp/login-db.txt)
 
 echo -e "$cy====================================$NC"
-echo -e "$(printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "USER" "|" "LOGIN")"
+echo -e "$(printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "USER" "|" "LOGIN")"
 echo -e "$cy====================================$NC"
 for user in "${!user_counts[@]}"; do
     count=${user_counts["$user"]}
-    printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "$user" "|" "$count"
+    printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "$user" "|" "$count"
 done
 echo -e "$cy====================================$NC"
-printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "Total" "|" "$total_pid"
+printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "Total" "|" "$total_pid"
 echo -e "$cy====================================$NC"
 }
 
@@ -61,7 +61,7 @@ do
     PID=$(echo "$line" | awk '{print $6}' | cut -d "[" -f2)
     USER=$(echo "$line" | awk '{print $10}' | sed "s/'//g")
     IP=$(echo "$line" | awk '{print $12}')
-    #printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "$USER" "|" "$IP"
+    #printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "$USER" "|" "$IP"
     #printf "%-10s %s\n" "$USER" "$IP"
     ((total_pid++))
     if [[ -v user_counts["$USER"] ]]; then
@@ -72,14 +72,14 @@ do
 done < <(grep "dropbear\[" /tmp/login-db.txt)
 
 echo -e "$cy====================================$NC"
-echo -e "$(printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "USER" "|" "LOGIN")"
+echo -e "$(printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "USER" "|" "LOGIN")"
 echo -e "$cy====================================$NC"
 for user in "${!user_counts[@]}"; do
     count=${user_counts["$user"]}
-    printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "$user" "|" "$count"
+    printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "$user" "|" "$count"
 done
 echo -e "$cy====================================$NC"
-printf "${gr}%-10s ${cy}%-5s ${gr}%-10s %s\n" "Total" "|" "$total_pid"
+printf "${gr}%-20s ${cy}%-5s ${gr}%-10s %s\n" "Total" "|" "$total_pid"
 echo -e "$cy====================================$NC"
 }
 echo -e ""
