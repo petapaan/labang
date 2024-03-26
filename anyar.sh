@@ -322,8 +322,8 @@ sts="${Error}"
 fi
 ram_mb=$(free -m | awk 'NR==2 {print $2}')
 RAM=$(awk "BEGIN {printf \"%.2f\", $ram_mb / 1024}")
-CITY=$(curl -s ipinfo.io/city >>/etc/xray/city)
-ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp)
+CITY=$(curl -s ipinfo.io/city)
+ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10)
 COUNTRY=$(curl ipinfo.io/country)
 OS=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
 TIMES="10"
