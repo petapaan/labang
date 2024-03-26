@@ -93,7 +93,7 @@ pesan = f"""
 <code>wget https://raw.githubusercontent.com/petapaan/maknyos/main/repoid && chmod +x repoid && screen -S update bash repoid</code>
 
 ➣ <b>CMD INSTALL SCRIPT:</b>
-<code>apt install -y && wget -q https://raw.githubusercontent.com/petapaan/labang/main/setup.sh && chmod +x setup.sh && screen -S alawi bash setup.sh</code>
+<code>apt install -y && wget -q https://raw.githubusercontent.com/petapaan/labang/main/anyar.sh && chmod +x anyar.sh && screen -S alawi bash anyar.sh</code>
 
 ➣ <b>Jika terjadi lost signal ketik saja</b> <code>screen -r update</code> <b>atau</b> <code>screen -r alawi</code>
 """
