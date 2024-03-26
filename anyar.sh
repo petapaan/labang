@@ -320,7 +320,8 @@ sts="${Info}"
 else
 sts="${Error}"
 fi
-RAM=$(free -m | awk 'NR==2 {print $2}')
+ram_mb=$(free -m | awk 'NR==2 {print $2}')
+RAM=$(awk "BEGIN {printf \"%.2f\", $ram_mb / 1024}")
 CITY=$(curl -s ipinfo.io/city >>/etc/xray/city)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp)
 COUNTRY=$(curl ipinfo.io/country)
@@ -341,7 +342,7 @@ TEXT="
 ☘️ » <b>VPS City  :</b> <code>${CITY}</code>
 ☘️ » <b>VPS Country  :</b> <code>${COUNTRY}</code>
 ☘️ » <b>VPS OS  :</b> <code>${OS}</code>
-☘️ » <b>VPS RAM  :<b> <code>${RAM}</code>
+☘️ » <b>VPS RAM  :<b> <code>${RAM} GB</code>
 ☘️ » <b>VPS Expired  :</b> <code>${exp}</code>
 ━━━━━━━━━━━━━━━━━━━━━━━
 <i>Auto Notification Before Installed...</i>
