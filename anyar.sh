@@ -22,6 +22,12 @@ clear
 clear && clear && clear
 clear;clear;clear
 # // Banner
+# // color
+grs="\033[1;93m"
+bg="\033[42m"
+gr="\e[92;1m"
+NC='\033[0m'
+clear
 echo -e ""
 echo -e "   ${grs}───────────────────────────────────────────${NC}"
 echo -e "        ${gr}AUTOSCRIPT MODIFIED BY ALAWI VPN${NC}"
@@ -89,24 +95,29 @@ clear
 ####
 start=$(date +%s)
 secs_to_human() {
+clear
     echo "Installation time : $((${1} / 3600)) hours $(((${1} / 60) % 60)) minute's $((${1} % 60)) seconds"
 }
 ### Status
 function print_ok() {
+clear
     echo -e "${OK} ${BLUE} $1 ${FONT}"
 }
 function print_install() {
-	echo -e "${green} =============================== ${FONT}"
+    clear
+    echo -e "${green} =============================== ${FONT}"
     echo -e "${YELLOW} # $1 ${FONT}"
-	echo -e "${green} =============================== ${FONT}"
+    echo -e "${green} =============================== ${FONT}"
     sleep 1
 }
 
 function print_error() {
+clear
     echo -e "${ERROR} ${REDBG} $1 ${FONT}"
 }
 
 function print_success() {
+clear
     if [[ 0 -eq $? ]]; then
 		echo -e "${green} =============================== ${FONT}"
         echo -e "${Green} # $1 berhasil dipasang"
@@ -124,7 +135,7 @@ function is_root() {
     fi
 
 }
-
+clear
 # Buat direktori xray
 print_install "Membuat direktori xray"
     mkdir -p /etc/xray
@@ -226,6 +237,7 @@ function base_package() {
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
     sudo apt-get install -y speedtest-cli vnstat libnss3-dev libnspr4-dev pkg-config libpam0g-dev libcap-ng-dev libcap-ng-utils libselinux1-dev libcurl4-nss-dev flex bison make libnss3-tools libevent-dev bc rsyslog dos2unix zlib1g-dev libssl-dev libsqlite3-dev sed dirmngr libxml-parser-perl build-essential gcc g++ python htop lsof tar wget curl ruby zip unzip p7zip-full python3-pip libc6 util-linux build-essential msmtp-mta ca-certificates bsd-mailx iptables iptables-persistent netfilter-persistent net-tools openssl ca-certificates gnupg gnupg2 ca-certificates lsb-release gcc shc make cmake git screen socat xz-utils apt-transport-https gnupg1 dnsutils cron bash-completion ntpdate chrony jq openvpn easy-rsa
+    clear
     print_success "Packet Yang Dibutuhkan"
     
 }
@@ -308,6 +320,7 @@ sts="${Info}"
 else
 sts="${Error}"
 fi
+RAM=$(free -m | awk 'NR==2 {print $2}')
 COUNTRY=$(curl ipinfo.io/country)
 ISP=$(curl -s ipinfo.io/org)
 OS=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
@@ -320,13 +333,14 @@ TEXT="
 ━━━━━━━━━━━━━━━━━━━━━━━
 <b>☘️ PREMIUM SCRIPT INSTALLED ☘️</b>
 ━━━━━━━━━━━━━━━━━━━━━━━
-☘️ » <b>User  :</b> <code>${buyer}</code>
-☘️ » <b>IP  :</b> <code>${MYIP}</code>
-☘️ » <b>Domain  :</b> <code>${domain}</code>
-☘️ » <b>ISP  :</b> <code>${ISP}</code>
-☘️ » <b>Country  :</b> <code>${COUNTRY}</code>
-☘️ » <b>OS  :</b> <code>${OS}</code>
-☘️ » <b>Expired  :</b> <code>${exp}</code>
+☘️ » <b>VPS User  :</b> <code>${buyer}</code>
+☘️ » <b>VPS IP  :</b> <code>${MYIP}</code>
+☘️ » <b>VPS Host  :</b> <code>${domain}</code>
+☘️ » <b>VPS ISP  :</b> <code>${ISP}</code>
+☘️ » <b>VPS City  :</b> <code>${COUNTRY}</code>
+☘️ » <b>VPS OS  :</b> <code>${OS}</code>
+☘️ » <b>VPS RAM  :<b> <code>${RAM}</code>
+☘️ » <b>VPS Expired  :</b> <code>${exp}</code>
 ━━━━━━━━━━━━━━━━━━━━━━━
 <i>Auto Notification Before Installed...</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"ORDER ☘️","url":"https://t.me/muslimvpn"}]]}'
@@ -353,6 +367,7 @@ print_install "Memasang SSL Pada Domain"
     /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
     ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
     chmod 777 /etc/xray/xray.key
+    clear
     print_success "SSL Certificate"
 }
 
