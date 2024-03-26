@@ -328,22 +328,22 @@ COUNTRY=$(curl ipinfo.io/country)
 OS=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
 TIMES="10"
 CHATID="-1002074460996"
-KEY="6920568755:AAGDq9kRUEsS_TKnU3v-cyxYei5YVKjd390"
+KEY="6920568755:AAG0yFPo_ZjgjTIThJcsMmPP54FSkLci1GQ"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 TIMEZONE=$(printf '%(%H:%M:%S)T')
 TEXT="
 ━━━━━━━━━━━━━━━━━━━━━━━
 <b>☘️ PREMIUM SCRIPT INSTALLED ☘️</b>
 ━━━━━━━━━━━━━━━━━━━━━━━
-☘️ » <b>VPS User  :</b> <code>${buyer}</code>
-☘️ » <b>VPS IP  :</b> <code>${MYIP}</code>
-☘️ » <b>VPS Host  :</b> <code>${domain}</code>
-☘️ » <b>VPS ISP  :</b> <code>${ISP}</code>
-☘️ » <b>VPS City  :</b> <code>${CITY}</code>
-☘️ » <b>VPS Country  :</b> <code>${COUNTRY}</code>
-☘️ » <b>VPS OS  :</b> <code>${OS}</code>
-☘️ » <b>VPS RAM  :<b> <code>${RAM} GB</code>
-☘️ » <b>VPS Expired  :</b> <code>${exp}</code>
+☘️ » <b>VPS User  :</b>  <code>${buyer}</code>
+☘️ » <b>VPS IP  :</b>  <code>${MYIP}</code>
+☘️ » <b>VPS Host  :</b>  <code>${domain}</code>
+☘️ » <b>VPS ISP  :</b>  <code>${ISP}</code>
+☘️ » <b>VPS City  :</b>  <code>${CITY}</code>
+☘️ » <b>VPS Country  :</b>  <code>${COUNTRY}</code>
+☘️ » <b>VPS OS  :</b>  <code>${OS}</code>
+☘️ » <b>VPS RAM  :</b>  <code>${RAM} GB</code>
+☘️ » <b>VPS Expired  :</b>  <code>${exp}</code>
 ━━━━━━━━━━━━━━━━━━━━━━━
 <i>Auto Notification Before Installed...</i>
 "'&reply_markup={"inline_keyboard":[[{"text":"☘️ ORDER","url":"https://t.me/alawivpn"},{"text":"ORDER ☘️","url":"https://t.me/muslimvpn"}]]}'
