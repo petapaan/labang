@@ -321,8 +321,9 @@ else
 sts="${Error}"
 fi
 RAM=$(free -m | awk 'NR==2 {print $2}')
+CITY=$(curl -s ipinfo.io/city >>/etc/xray/city)
+ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp)
 COUNTRY=$(curl ipinfo.io/country)
-ISP=$(curl -s ipinfo.io/org)
 OS=$(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
 TIMES="10"
 CHATID="-1002074460996"
@@ -337,7 +338,8 @@ TEXT="
 ☘️ » <b>VPS IP  :</b> <code>${MYIP}</code>
 ☘️ » <b>VPS Host  :</b> <code>${domain}</code>
 ☘️ » <b>VPS ISP  :</b> <code>${ISP}</code>
-☘️ » <b>VPS City  :</b> <code>${COUNTRY}</code>
+☘️ » <b>VPS City  :</b> <code>${CITY}</code>
+☘️ » <b>VPS Country  :</b> <code>${COUNTRY}</code>
 ☘️ » <b>VPS OS  :</b> <code>${OS}</code>
 ☘️ » <b>VPS RAM  :<b> <code>${RAM}</code>
 ☘️ » <b>VPS Expired  :</b> <code>${exp}</code>
