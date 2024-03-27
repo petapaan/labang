@@ -56,13 +56,13 @@ echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━�
 clear
 
 if [[ ${c} != "0" ]]; then
-  echo "${d}" >/etc/bottrx/${bottoken}
+    echo "${d}" >/etc/bottrx/${bottoken}
 fi
 DATADB=$(cat /etc/bottrx/.bot.db | grep "^#bot#" | grep -w "${bottoken}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
-  sed -i "/\b${user}\b/d" /etc/bottrx/.bot.db
+    sed -i "/\b${user}\b/d" /etc/bottrx/.bot.db
 fi
-echo "#bot# ${bottoken} ${admin}" >>/etc/bottrx/.bot.db
+echo "#bot# ${bottoken} ${admin}" > /etc/bottrx/.bot.db
 
 echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e " \e[1;97;101m      SUCCES ADD BOT NOTIFIKASI TRX       \e[0m"
