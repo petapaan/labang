@@ -36,10 +36,10 @@ echo -e " [${gr}00${NC}] BACK TO MAIN MENU"
 echo -e " ${grs}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e ""
 read -rp "$(echo -e " Silahkan pilih ${gr}1${NC}-${gr}3${NC} atau ${gr}0${NC}: ")" menu
-
-1) clear ; mbot-panel ;;
-2) clear ; mbot-notif ;;
-3) clear ; mbot-backup ;;
-0) menu ;;
-*) m-bot ;;
+case $menu in
+    1|01) clear ; mbot-panel ;;
+    2|02) clear ; mbot-notif ;;
+    3|03) clear ; mbot-backup ;;
+    0|00) menu ;;
+    *) m-bot ;;
 esac
