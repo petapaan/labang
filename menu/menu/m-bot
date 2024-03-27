@@ -5,7 +5,7 @@ red='\e[0;31m'
 bg='\e[0;42'
 NC='\e[0m'
 clear
-REPO=$(cat /etc/xray/repo)
+REPO=$(cat /usr/local/sbin/repo)
 
 # function checking vps
 cekvps() {
