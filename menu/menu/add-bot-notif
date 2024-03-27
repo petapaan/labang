@@ -55,13 +55,13 @@ echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━�
 clear
 
 if [[ ${c} != "0" ]]; then
-  echo "${d}" >/etc/bot/${bottoken}
+    echo "${d}" >/etc/bot/${bottoken}
 fi
 DATADB=$(cat /etc/bot/.bot.db | grep "^#bot#" | grep -w "${bottoken}" | awk '{print $2}')
 if [[ "${DATADB}" != '' ]]; then
-  sed -i "/\b${user}\b/d" /etc/bot/.bot.db
+    sed -i "/\b${user}\b/d" /etc/bot/.bot.db
 fi
-echo "#bot# ${bottoken} ${admin}" >>/etc/bot/.bot.db
+echo "#bot# ${bottoken} ${admin}" > /etc/bot/.bot.db
 
 echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e " \e[1;97;101m         SUCCES ADD BOT NOTIFIKASI      \e[0m"
