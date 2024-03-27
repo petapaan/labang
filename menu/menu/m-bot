@@ -5,11 +5,13 @@ red='\e[0;31m'
 bg='\e[0;42'
 NC='\e[0m'
 clear
+REPO=$(cat /etc/xray/repo)
+
 # function checking vps
 cekvps() {
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "${gr}Memeriksa izin...${NC}"
-IZIN=$(curl -sS https://raw.githubusercontent.com/petapaan/labang/main/bangkalan | grep $MYIP | awk '{print $4}')
+IZIN=$(curl -sS ${REPO}/bangkalan | grep $MYIP | awk '{print $4}')
 if [[ "$MYIP" == "$IZIN" ]]; then
     echo -e "${gr}Sudah terdaftar dalam perizinan...${NC}"
 else
